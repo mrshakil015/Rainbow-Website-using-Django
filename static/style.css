@@ -10397,7 +10397,7 @@ body {
     -webkit-font-smoothing: antialiased;
     font-size: 15px;
     font-weight: 400;
-    color: #888888;
+    color: #787878;
 }
 
 p,
@@ -10681,6 +10681,12 @@ a:hover {
     color: #534de6;
 }
 
+.section-title h2 {
+    font-family: Anek Bangla;
+    font-size: 35px;
+    font-weight: 800;
+    color: #534de6;
+}
 .bg-cover {
     background-size: cover;
     background-position: center center;
