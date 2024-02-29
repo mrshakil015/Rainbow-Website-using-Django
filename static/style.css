@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@100..800&family=Quicksand:wght@500&display=swap');
+
 :root {
     --bs-blue: #0d6efd;
     --bs-indigo: #6610f2;
@@ -6857,11 +6858,13 @@ fieldset:disabled .btn {
     text-transform: uppercase !important;
 }
 
-.rainbow-text1, .rainbow-text2 {
+.rainbow-text1,
+.rainbow-text2 {
     font-family: Anek Bangla;
     text-transform: capitalize !important;
 }
-.rainbow-text1 strong{
+
+.rainbow-text1 strong {
     color: #534de6;
     font-size: 60px;
 }
@@ -10657,8 +10660,9 @@ a:hover {
 }
 
 .section {
-    padding-top: 120px;
-    padding-bottom: 120px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    text-align: center;
 }
 
 .section-sm {
@@ -10668,6 +10672,13 @@ a:hover {
 
 .section-title {
     margin-bottom: 30px;
+}
+
+.section-title h1 {
+    font-family: Anek Bangla;
+    font-size: 55px;
+    font-weight: 800;
+    color: #534de6;
 }
 
 .bg-cover {
@@ -11283,7 +11294,8 @@ blockquote::before {
 }
 
 .banner-img {
-    border-radius: 30px; /* Adjust the value to set the desired border radius */
+    border-radius: 30px;
+    /* Adjust the value to set the desired border radius */
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
     box-shadow: 0 0 20px 5px #000 inset;
     border: 10px solid #fff;
@@ -12138,3 +12150,77 @@ textarea.form-control {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.course-section {
+    align-items: center;
+}
+
+
+.page {
+    /* background-color: #dfe6e0; */
+    /* padding: 2%; */
+    margin: auto;
+}
+
+.fa {
+    color: #f2dd1d;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 225px;
+}
+
+.view {
+    /* background-color: #dfe6e0; */
+    /* padding: 10px; */
+    margin: 10px 10px 0 10px;
+}
+
+.card {
+    width: 100%;
+    padding: 0px;
+    margin-left: 1%;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.card-body{
+    border: none;
+    /* padding-top: 0; */
+    padding: 0;
+}
+
+.course-card{
+    border: 1px solid #cad1ee;
+}
+.course-card:hover{
+    box-shadow: 0px 25px 65px 0px rgba(0, 0, 0, 0.2) !important;
+}
+
+.card-info button{
+padding: 5px 15px;
+cursor: pointer;
+margin: 2px;
+}
+.price {
+    color: #534de6;
+    font-weight: 900;
+    font-family: Anek Bangla;
+    margin: 10px 0 0 0;
+}
+
+.card-footer {
+    background-color: #cad1ee;
+    color: #fff;
+    font-weight: 900;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    margin: 10px 0 0 0;
+    border: none;
+}
+.card-footer button{
+    margin-bottom: 0px;
+    width: 90%;
+    padding: 10px;
+}
