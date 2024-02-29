@@ -10742,7 +10742,7 @@ a.text-black:hover {
 
 .shadow-md,
 .difference-of-us-item:hover,
-.service-item:hover {
+.card-item:hover {
     box-shadow: 0px 25px 65px 0px rgba(0, 0, 0, 0.1) !important;
 }
 
@@ -11322,23 +11322,26 @@ blockquote::before {
     }
 }
 
-.service-item {
+.card-item {
     transition: 0.3s;
     position: relative;
     z-index: 10;
     border-radius: 1rem;
     margin-top: 1rem;
+    min-height: 300px;
+    background-color: #fff;
 }
 
-.service-item .card-body {
-    padding: 0 5px
+.card-item .card-body {
+    padding: 0 5px;
+    height: 100%;
 }
 
-.service-item h3, .service-item span{
+.card-item h3, .card-item span{
     font-family: Anek Bangla;
 }
 
-.service-item .colored-box {
+.card-item .colored-box {
     display: inline-block;
     height: 50px;
     margin: 15px;
@@ -11349,68 +11352,68 @@ blockquote::before {
     background-color: #534de6;
 }
 
-.service-item h4 {
+.card-item h4 {
     transition: color 0.3s;
     color: #534de6;
 }
 
-.service-item .service-description {
+.card-item .service-description {
     color: #888888;
 }
 
-.service-item a:hover .service-title {
+.card-item a:hover .service-title {
     color: #534de6;
 }
 
-.service-item a:hover .service-description {
+.card-item a:hover .service-description {
     color: #888888;
 }
 
-.service-item .block {
+.card-item .block {
     padding: 35px 39px;
 }
 
 @media (min-width: 991px) {
 
-    .service-item:nth-child(2),
-    .service-item:nth-child(4) {
+    .card-item:nth-child(2),
+    .card-item:nth-child(4) {
         border-left: 1px solid #F4F4F4;
     }
 
-    .service-item:nth-child(4),
-    .service-item:nth-child(5),
-    .service-item:nth-child(6) {
+    .card-item:nth-child(4),
+    .card-item:nth-child(5),
+    .card-item:nth-child(6) {
         border-bottom: 1px solid #F4F4F4;
     }
 }
 
 @media (max-width: 991px) {
 
-    .service-item:nth-child(2),
-    .service-item:nth-child(3),
-    .service-item:nth-child(5) {
+    .card-item:nth-child(2),
+    .card-item:nth-child(3),
+    .card-item:nth-child(5) {
         border-left: 1px solid #F4F4F4;
     }
 
-    .service-item:nth-child(6),
-    .service-item:nth-child(5) {
+    .card-item:nth-child(6),
+    .card-item:nth-child(5) {
         border-bottom: 1px solid #F4F4F4;
     }
 }
 
 @media (max-width: 767px) {
-    .service-item {
+    .card-item {
         border: 1px solid #F4F4F4;
         border-bottom: 0;
     }
 }
 
-.service-item:nth-child(even) .colored-box {
+.card-item:nth-child(even) .colored-box {
     color: #917AEB;
     background-color: rgba(145, 122, 235, 0.2);
 }
 
-.service-item:hover {
+.card-item:hover {
     border-color: transparent;
 }
 
