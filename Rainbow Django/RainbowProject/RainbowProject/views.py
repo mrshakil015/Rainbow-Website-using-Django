@@ -50,3 +50,8 @@ def galleryPage(request):
     }
     
     return render(request,'gallery/gallerypage.html',context)
+
+
+def contactUsPage(request):
+    
+    return render(request,'common/contactpage.html')
