@@ -8,6 +8,43 @@ class CustomUserModel(AbstractUser):
         ('Student','Student'),
     ]
     UserType = models.CharField(choices=USERTYPE,max_length=100)
+
+class StudentInfoModel(models.Model):
+    user = models.OneToOneField(CustomUserModel, on_delete =models.CASCADE,related_name='studentuser')
+    StudentName = models.CharField(max_length=100)
+    FatherName = models.CharField(max_length=100)
+    MotherName = models.CharField(max_length=100)
+    GENDER = [
+        ('Male','Male'),
+        ('Female','Female'),
+    ]
+    
+    Gender = models.CharField(choices=GENDER,max_length=100)
+    DOB = models.DateField()
+    Religion = models.CharField(max_length=100)
+    Mobile = models.CharField(max_length=100)
+    EmergencyMobile = models.CharField(max_length=100)
+    StudentPhoto = models.ImageField(upload_to='static/pendingstudent/')
+    PresentAddress = models.CharField(max_length=100)
+    PermanentAddress = models.CharField(max_length=100)
+    RollNo = models.CharField(max_length=100)
+    CourseName = models.CharField(max_length=100) 
+    Batch = models.CharField(max_length=100)
+    
+    SECTION = [
+        ('A','A'),
+        ('B','B'),
+        ('C','C'),
+    ]
+    
+    Section = models.CharField(max_length=100)
+    CourseFee = models.CharField(max_length=100)
+    Payment = models.CharField(max_length=100)
+    Due = models.CharField(max_length=100)
+    AdmissionDate = models.DateField(auto_now_add=True)
+    LastModified = models.DateField(auto_now=True)
+    
+    
     
 class AdmissionFormModel(models.Model):
     CourseName = models.CharField(max_length=100)

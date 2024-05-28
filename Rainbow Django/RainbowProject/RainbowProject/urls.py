@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from RainbowProject.views import *
+from RainbowProject.studentviews import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,7 +10,13 @@ urlpatterns = [
     path('adminSignUP/',adminSignUP, name='adminSignUP'),
     path('adminSignin/',adminSignin, name='adminSignin'),
     path('logoutPage/',logoutPage, name='logoutPage'),
+    
     path('adminDashboard/',adminDashboard, name='adminDashboard'),
+    
+    #--------------Student Section-----------
+    path('addStudentPage/',addStudentPage, name='addStudentPage'),
+    path('studentList/',studentList, name='studentList'),
+    
     
     
     path('aboutUs/',aboutUs, name='aboutUs'),
