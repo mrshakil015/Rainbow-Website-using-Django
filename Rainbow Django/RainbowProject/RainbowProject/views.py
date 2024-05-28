@@ -55,3 +55,7 @@ def galleryPage(request):
 def contactUsPage(request):
     
     return render(request,'commons/contactus.html')
+
+def admissionformPage(request):
+    
+    return render(request,'students/admissionform.html')
