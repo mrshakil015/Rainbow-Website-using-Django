@@ -41,3 +41,12 @@ def servicePage(request):
     }
     
     return render(request,'ourservice/servicepage.html',context)
+
+def galleryPage(request):
+    galleryData = GalleryImageModel.objects.all()
+    
+    context = {
+        'galleryData': galleryData,
+    }
+    
+    return render(request,'gallery/gallerypage.html',context)
