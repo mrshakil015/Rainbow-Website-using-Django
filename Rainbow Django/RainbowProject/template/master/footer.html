@@ -14,17 +14,17 @@
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>গুরুত্বপূর্ণ লিংক</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="">হোম</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="">আমাদের সম্পর্কে</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="">যোগাযোগ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'homePage' %}">হোম</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'aboutUs' %}">আমাদের সম্পর্কে</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'contactUsPage' %}">যোগাযোগ</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>আমাদের সেবাসমূহ</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="">কোর্সসমূহ</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="">সেবাসমূহ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'coursePage' %}">কোর্সসমূহ</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'servicePage' %}">সেবাসমূহ</a></li>
             </ul>
           </div>
 

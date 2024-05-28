@@ -54,4 +54,4 @@ def galleryPage(request):
 
 def contactUsPage(request):
     
-    return render(request,'common/contactpage.html')
+    return render(request,'commons/contactus.html')
