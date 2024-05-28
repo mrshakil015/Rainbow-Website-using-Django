@@ -32,3 +32,12 @@ def coursePage(request):
     }
     
     return render(request,'course/coursepage.html',context)
+
+def servicePage(request):
+    serviceData = ServiceInfoModel.objects.all()
+    
+    context = {
+        'serviceData': serviceData,
+    }
+    
+    return render(request,'ourservice/servicepage.html',context)

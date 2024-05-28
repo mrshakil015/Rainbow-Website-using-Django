@@ -10,4 +10,5 @@ urlpatterns = [
     
     path('aboutUs/',aboutUs, name='aboutUs'),
     path('coursePage/',coursePage, name='coursePage'),
+    path('servicePage/',servicePage, name='servicePage'),
 ]
