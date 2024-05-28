@@ -117,7 +117,23 @@
         <hr>
       </div>
       <div class="row" id="successfulstudent-cards-container">
-
+        
+        {% for i in successStudentData %}
+        <div class="col-lg-3">
+          <div class="card card-item">
+            <div class="view view-cascade overlay text-center">
+            <img src="/{{i.StudentImage}}" class="card-img-top" alt="profile image">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title"><strong>{{i.StudentName}}</strong>
+              </h4>
+              <p class="designation">{{i.StudentDesignation}}</p>
+              <p class="institute">{{i.StudentInstitute}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+          
       </div>
 
       <!-- Pagination controls -->

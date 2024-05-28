@@ -4,10 +4,12 @@ from RainbowApp.models import *
 def homePage(request):
     courseData = CourseInfoModel.objects.all()
     serviceData = ServiceInfoModel.objects.all()
+    successStudentData = SuccessfulStudentInfoModel.objects.all()
     
     context = {
         'courseData': courseData,
         'serviceData': serviceData,
+        'successStudentData': successStudentData,
     }
     
     return render(request,'commons/index.html',context)

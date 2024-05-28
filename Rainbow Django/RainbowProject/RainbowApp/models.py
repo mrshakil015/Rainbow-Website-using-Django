@@ -28,4 +28,4 @@ class SuccessfulStudentInfoModel(models.Model):
     StudentName = models.CharField(max_length=100)
     StudentDesignation = models.CharField(max_length=100)
     StudentInstitute = models.CharField(max_length=100)
-    CourseImage = models.ImageField(upload_to='static/successStudent/')
+    StudentImage = models.ImageField(upload_to='static/successStudent/')
