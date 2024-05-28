@@ -1,0 +1,53 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+<section class="page-header bg-tertiary">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 mx-auto text-center">
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+<section class="section course-section">
+    <div class="container">
+      <div class="row">
+        <div class="section-title">
+          <h1>আমাদের কোর্সসমূহ</h1>
+          <p>সময়োপযোগী কোর্সসমূহ দিয়ে সাজানো হয়েছে আমাদের পাঠ্যসূচি, যা আপনাকে বিশ্বজুড়ে কর্মক্ষম করে গড়ে তুলবে</p>
+          <hr>
+        </div>
+        <div class="row" id="course-cards-container">
+          {% for i in courseData %}
+          <div class="col-lg-4 course-card-item">
+            <div class="card card-item">
+              <div class="card-header view view-cascade overlay text-center">
+                <img src="/{{i.CourseImage}}" class="card-img-top" alt="profile image">
+              </div>
+              <div class="card-body">
+                <hr>
+                <h4 class="card-title"><strong>{{i.CourseName}}</strong></h4>
+                <div class="card-info">
+                  <button class="btn btn-outline-primary">{{i.CourseDuration}} মাস</button>
+                  <button class="btn btn-outline-primary">সপ্তাহে {{i.WeeklyClass}} দিন</button>
+                  <button class="btn btn-outline-primary"> {{i.ClassDurationHour}} ঘন্টা {{i.ClassDurationMinute}} মিনিট</button>
+                  <p class="price">৳ {{i.CourseFee}}/-</p>
+                  <hr>
+                  <div class="course-footer">
+                    <button class="btn btn-outline-primary">বিস্তারিত দেখুন</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div id="course-pagination-controls" class="mt-4"></div>
+      </div>
+    </div>
+  </section>
+    
+{% endblock content %}
+    

@@ -24,4 +24,11 @@ def aboutUs(request):
     
     return render(request,'commons/aboutus.html')
 
-# def coursePage()
+def coursePage(request):
+    courseData = CourseInfoModel.objects.all()
+    
+    context = {
+        'courseData': courseData,
+    }
+    
+    return render(request,'course/coursepage.html',context)

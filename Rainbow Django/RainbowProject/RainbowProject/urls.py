@@ -9,4 +9,5 @@ urlpatterns = [
     
     
     path('aboutUs/',aboutUs, name='aboutUs'),
+    path('coursePage/',coursePage, name='coursePage'),
 ]
