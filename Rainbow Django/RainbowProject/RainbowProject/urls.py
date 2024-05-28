@@ -6,6 +6,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',homePage, name='homePage'),
     path('studentSignin/',studentSignin, name='studentSignin'),
+    path('adminSignUP/',adminSignUP, name='adminSignUP'),
+    path('adminSignin/',adminSignin, name='adminSignin'),
+    path('adminDashboard/',adminDashboard, name='adminDashboard'),
     
     
     path('aboutUs/',aboutUs, name='aboutUs'),

@@ -4,6 +4,13 @@ from RainbowApp.models import *
 # Register your models here.
 class CustomUserModelDisplay(admin.ModelAdmin):
     list_display = ['username','UserType']
+    search_fields = ['username','email']
+    fieldsets = [
+        (
+            "User Information",
+            {"fields":["username","email","password","UserType"]}
+        )
+    ]
 
 admin.site.register(CustomUserModel,CustomUserModelDisplay)
 

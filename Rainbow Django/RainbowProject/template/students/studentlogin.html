@@ -53,8 +53,9 @@
                 </script>
             <div class="text-center align-center">
                 <button class="btn mt-3">ছাত্র/ছাত্রী লগইন</button>
-                <a class="pt-3" href="{% url 'homePage' %}">Goto HomePage </a>
+                
             </div>
+            <a class="pt-3" href="{% url 'homePage' %}">Goto HomePage </a>
             {% if error_message %}
             <p class="text-danger">{{ error_message }}</p>
             {% endif %}

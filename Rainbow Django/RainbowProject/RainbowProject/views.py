@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from RainbowApp.models import *
+
 
 def homePage(request):
     courseData = CourseInfoModel.objects.all()
@@ -16,9 +18,45 @@ def homePage(request):
     
     return render(request,'commons/index.html',context)
 
+def adminSignUP(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirmpassword = request.POST.get('confirmpassword')
+
+        if password == confirmpassword:
+            user = CustomUserModel.objects.create_user(username=username,password=password)
+            user.email = email
+            user.UserType = 'Admin'
+            
+            user.save()
+            return redirect('adminSignin')
+        else:
+            return redirect('homePage')
+    
+    return render(request,'myadmin/adminregister.html')
+
 def adminSignin(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print("User name is: ",username)
+        print("Password is: ",password)
+        
+        user = authenticate(username=username,password=password)
+        print("User is :",user)
+        if user:
+            login(request,user)
+            return redirect('adminDashboard')
+        else:
+            return redirect('homePage')
     
     return render(request,'myadmin/adminlogin.html')
+
+def adminDashboard(request):
+    
+    return render(request,'myadmin/admindashboard.html')
 
 def studentSignin(request):
     
