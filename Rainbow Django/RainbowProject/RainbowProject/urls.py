@@ -8,6 +8,7 @@ urlpatterns = [
     path('studentSignin/',studentSignin, name='studentSignin'),
     path('adminSignUP/',adminSignUP, name='adminSignUP'),
     path('adminSignin/',adminSignin, name='adminSignin'),
+    path('logoutPage/',logoutPage, name='logoutPage'),
     path('adminDashboard/',adminDashboard, name='adminDashboard'),
     
     

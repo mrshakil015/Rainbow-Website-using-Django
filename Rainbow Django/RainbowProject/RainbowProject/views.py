@@ -54,6 +54,11 @@ def adminSignin(request):
     
     return render(request,'myadmin/adminlogin.html')
 
+
+def logoutPage(request):
+    logout(request)
+    return redirect('homePage')
+
 def adminDashboard(request):
     
     return render(request,'myadmin/admindashboard.html')
