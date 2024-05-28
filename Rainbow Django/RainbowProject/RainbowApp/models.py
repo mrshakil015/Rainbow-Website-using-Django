@@ -29,3 +29,7 @@ class SuccessfulStudentInfoModel(models.Model):
     StudentDesignation = models.CharField(max_length=100)
     StudentInstitute = models.CharField(max_length=100)
     StudentImage = models.ImageField(upload_to='static/successStudent/')
+    
+class GalleryImageModel(models.Model):
+    ImageTitle = models.CharField(max_length=100)
+    GalleryImage = models.ImageField(upload_to='static/galleryImage/')

@@ -18,7 +18,12 @@ class ServiceInfoDisplay(admin.ModelAdmin):
 admin.site.register(ServiceInfoModel,ServiceInfoDisplay)
 
 class SuccessfulStudentDisplay(admin.ModelAdmin):
-    list_display = ['StudentName','StudentDesignation']
+    list_display = ['id','StudentName','StudentDesignation']
 
 admin.site.register(SuccessfulStudentInfoModel,SuccessfulStudentDisplay)
+
+class GalleryImageDisplay(admin.ModelAdmin):
+    list_display = ['id','ImageTitle']
+
+admin.site.register(GalleryImageModel,GalleryImageDisplay)
 
