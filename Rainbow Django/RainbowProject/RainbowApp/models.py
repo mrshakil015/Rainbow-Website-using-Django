@@ -9,6 +9,24 @@ class CustomUserModel(AbstractUser):
     ]
     UserType = models.CharField(choices=USERTYPE,max_length=100)
     
+class AdmissionFormModel(models.Model):
+    CourseName = models.CharField(max_length=100)
+    StudentName = models.CharField(max_length=100)
+    FatherName = models.CharField(max_length=100)
+    MotherName = models.CharField(max_length=100)
+    DOB = models.DateField()
+    
+    GENDER = [
+        ('Male','Male'),
+        ('Female','Female'),
+    ]
+    
+    Gender = models.CharField(choices=GENDER,max_length=100)
+    email = models.EmailField(max_length=100)
+    Mobile = models.CharField(max_length=100)
+    Address = models.CharField(max_length=100)
+    StudentPhoto = models.ImageField(upload_to='static/pendingstudent/')
+    
 class CourseInfoModel(models.Model):
     CourseName = models.CharField(max_length=100)
     CourseDuration = models.CharField(max_length=100)

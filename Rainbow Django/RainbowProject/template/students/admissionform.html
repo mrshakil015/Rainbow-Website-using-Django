@@ -31,8 +31,9 @@
                         <p>বিঃদ্রঃ ফরমটি অবশ্যই ইংরেজিতে পূরণ করতে হবে।<br> সকল তথ্য অবশ্যই সার্টিফিকেট অনুযায়ী দিতে
                             হবে।</p>
                     </div>
-                    <form id="contact-form" role="form" action="/applicationform" method="post"
+                    <form id="contact-form" role="form" action="{% url 'admissionformPage' %}" method="POST"
                         enctype="multipart/form-data">
+                        {% csrf_token %}
                         <div class="controls">
                             <div class="row">
 
@@ -42,16 +43,17 @@
                                         <select id="coursename" name="coursename" class="form-control"
                                             required="required" data-error="Select the Course.">
                                             <option value="" selected disabled>--Select Course--</option>
-                                            <option>Office Application Program</option>
-                                            <option>Graphic Designing</option>
-                                            <option>Digital Marketing</option>
+                                            <option value="Office Application Program">Office Application Program</option>
+                                            <option value="Graphic Designing">Graphic Designing</option>
+                                            <option value="Digital Marketing">Digital Marketing</option>
+                                            <option value="Computer Hardware">Computer Hardware</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="applicant-name">শিক্ষার্থীর নাম *</label>
-                                        <input id="applicant-studentname" type="text" name="applicant-studentname"
+                                        <input id="applicant-studentname" type="text" name="studentname"
                                             class="form-control" placeholder="Full Name *" required="required">
                                     </div>
                                 </div>
@@ -61,14 +63,14 @@
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="applicant-fathername">পিতার নাম *</label>
-                                        <input id="applicant-fathername" type="text" name="applicant-fathername"
+                                        <input id="applicant-fathername" type="text" name="fathername"
                                             class="form-control" placeholder="Father Name *" required="required">
                                     </div>
                                 </div>
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="applicant-mothername">মাতার নাম *</label>
-                                        <input id="applicant-mothername" type="text" name="applicant-mothername"
+                                        <input id="applicant-mothername" type="text" name="mothername"
                                             class="form-control" placeholder="Mother Name *" required="required">
                                     </div>
                                 </div>
@@ -78,7 +80,7 @@
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="applicant-dob">জন্ম তারিখ *</label>
-                                        <input id="applicant-dob" type="date" name="applicant-dob"
+                                        <input id="applicant-dob" type="date" name="dob"
                                             class="form-control" placeholder="Date of Birth *" required="required">
                                     </div>
                                 </div>
@@ -87,11 +89,11 @@
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="applicant-gender">লিঙ্গ *</label>
-                                        <select id="applicant-gender" name="applicant-gender" class="form-control"
-                                            required="required" data-error="Select the Course.">
+                                        <select id="applicant-gender" name="gender" class="form-control"
+                                            required="required">
                                             <option value="" selected disabled>--Select Gender--</option>
-                                            <option>Male</option>
-                                            <option>Female</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
                                         </select>
                                     </div>
                                 </div>
@@ -101,14 +103,14 @@
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="applicant-email">ইমেল *</label>
-                                        <input id="applicant-email" type="text" name="applicant-email"
+                                        <input id="applicant-email" type="text" name="email"
                                             class="form-control" placeholder="Email Address *" required="required">
                                     </div>
                                 </div>
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="applicant-mobile">মোবইল *</label>
-                                        <input id="applicant-mobile" type="number" name="applicant-mobile"
+                                        <input id="applicant-mobile" type="number" name="mobile"
                                             class="form-control" placeholder="Mobile No *" required="required">
                                     </div>
                                 </div>
@@ -117,7 +119,7 @@
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="applicant-address">ঠিকানা *</label>
-                                        <input id="applicant-address" type="text" name="applicant-address"
+                                        <input id="applicant-address" type="text" name="address"
                                             class="form-control" placeholder="Address *" required="required">
                                     </div>
                                 </div>
@@ -127,74 +129,16 @@
                                             Pixels)
                                             *</label>
                                         <input class="form-control" type="file" accept="image/*" id="photo"
-                                            name="photo" required="required">
+                                            name="studentphoto" required="required">
                                     </div>
                                 </div>
-                                <script>
-                                    // Function to handle file input change event
-                                    function checkImage(input) {
-                                        input.classList.remove('error-border');
-
-                                        if (input.files && input.files[0]) {
-                                            let file = input.files[0];
-                                            let maxSize = 2 * 1024 * 1024;
-                                            let requiredWidth = 530;
-                                            let requiredHeight = 650;
-
-                                            // Check file size
-                                            if (file.size > maxSize) {
-                                                Swal.fire({
-                                                    title: "Error!",
-                                                    text: "ছবির সাইজ অবশ্যই ২ MB এর কম হতে হবে।",
-                                                    icon: "error"
-                                                });
-                                                input.value = '';
-                                                input.classList.add('error-border');
-                                                return;
-                                            }
-
-                                            let img = new Image();
-                                            img.onload = function () {
-                                                // Check image dimensions
-                                                if (img.width !== requiredWidth || img.height !== requiredHeight) {
-                                                    Swal.fire({
-                                                        title: "Error!",
-                                                        text: "ছবির সাইজ অবশ্যই 530x650 Pixels হতে হবে।",
-                                                        icon: "error"
-                                                    });
-                                                    input.value = '';
-                                                    input.classList.add('error-border');
-                                                }
-                                            };
-                                            img.src = URL.createObjectURL(file);
-                                        }
-                                    }
-
-                                    let fileInput = document.getElementById('photo');
-
-                                    fileInput.addEventListener('change', function () {
-                                        checkImage(this);
-                                    });
-                                </script>
-
+                               
                             </div>
 
                         </div>
                         <div class="form-footer">
                             <button type="submit" class="btn col-lg-3" id="add-service-button">সাবমিট করুন</button>
                         </div>
-                        {% if message %}
-                        <script>
-                            // Display SweetAlert when message exists
-                            document.addEventListener('DOMContentLoaded', function () {
-                                Swal.fire({
-                                    title: "Good job!",
-                                    text: "{{ message }}",
-                                    icon: "success"
-                                });
-                            });
-                        </script>
-                        {% endif %}
 
                     </form>
                 </div>
