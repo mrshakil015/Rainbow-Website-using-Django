@@ -41,6 +41,33 @@
       <!-- <div class="page"> -->
       <!--For Row containing all card-->
       <div class="row" id="cards-container">
+
+        {% for i in courseData %}
+        <div class="col-lg-4">
+          <div class="card card-item">
+            <div class="card-header view view-cascade overlay text-center">
+              <img src="/{{i.CourseImage}}" class="card-img-top" alt="profile image">
+            </div>
+            <div class="card-body">
+              <hr>
+              <h4 class="card-title"><strong>{{i.CourseName}}</strong></h4>
+              <div class="card-info">
+                <button class="btn btn-outline-primary">{{i.CourseDuration}} মাস</button>
+                <button class="btn btn-outline-primary">সপ্তাহে {{i.WeeklyClass}} দিন</button>
+                <button class="btn btn-outline-primary"> {{i.ClassDurationHour}} ঘন্টা {{i.ClassDurationMinute}}
+                  মিনিট</button>
+                <p class="price">৳ {{i.CourseFee}}/-</p>
+                <hr>
+                <div class="course-footer">
+                  <button class="btn btn-outline-primary">বিস্তারিত দেখুন</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
       </div>
       <!-- </div> -->
     </div>
@@ -56,6 +83,24 @@
         <hr>
       </div>
       <div class="row" id="service-cards-container">
+        
+        {% for i in serviceData %}
+
+        <div class="col-lg-4">
+          <div class="card card-item">
+            <div class="card-body">
+              <div class="rounded">
+                <img class="colored-box text-center h3" src="../static/images/icons/serviceicon.png" alt="Service Icon"
+                  width="30" height="30">
+                <h3 class="mb-3">{{i.ServiceName}}</h3>
+                <p>{{i.AboutService}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        {% endfor %}
+          
       </div>
 
     </div>
@@ -83,7 +128,7 @@
           </ul>
         </nav>
       </div>
-  
+
     </div>
   </div>
 </section>
@@ -168,6 +213,5 @@
   </div>
 </section><!-- End Contact Section -->
 
-  
+
 {% endblock content %}
-  
