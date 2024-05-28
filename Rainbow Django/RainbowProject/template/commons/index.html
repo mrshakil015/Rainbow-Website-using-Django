@@ -1,0 +1,173 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+
+<section class="banner bg-tertiary position-relative overflow-hidden">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="block text-center text-lg-start pe-0 pe-xl-5">
+          <p class="rainbow-text0">গণপ্রজাতন্ত্রী বাংলাদেশ সরকার কর্তৃক অনুমোদিত</p>
+          <h1 class="rainbow-text1"><strong>রেইনবো</strong></h1>
+          <h2 class="rainbow-text2 mb-4">কম্পিউটার পয়েন্ট</h2>
+          <p class="text-justify mb-4">আমাদের প্রতিষ্ঠানের পক্ষ থেকে আপনাদের সকলকে জানাই আন্তরিক শুভেচ্ছা। আমরা দীর্ঘ
+            একযুগেরও বেশি সময় ধরে তথ্য ও প্রযুক্তির উন্নয়নে কাজ করে আসছি। আমাদের মূল লক্ষ্য বেকার
+            জনগোষ্ঠিকে প্রযুক্তিভিত্তিক আত্মনির্ভরশীল করে গড়ে তোলা এবং বাংলাদেশ সরকারের ডিজিটাল
+            বাংলাদেশকে স্মার্ট বাংলাদেশে রুপান্তর করা।</p>
+          <a type="button" class="btn btn-primary" href="/applicationform">ছাত্র/ছাত্রী ভর্তির আবেদন <span
+              style="font-size: 14px;" class="ms-2 fas fa-arrow-right"></span></a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="text-center">
+          <img loading="lazy" decoding="async" src="../static/images/banner3.png" alt="banner image"
+            class="banner-img w-100">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="section course-section">
+  <div class="container">
+    <div class="row">
+      <div class="section-title">
+        <h1>আমাদের কোর্সসমূহ</h1>
+        <p>সময়োপযোগী কোর্সসমূহ দিয়ে সাজানো হয়েছে আমাদের পাঠ্যসূচি, যা আপনাকে বিশ্বজুড়ে কর্মক্ষম করে গড়ে তুলবে</p>
+        <hr>
+      </div>
+      <!--For Page-->
+      <!-- <div class="page"> -->
+      <!--For Row containing all card-->
+      <div class="row" id="cards-container">
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</section>
+
+<section class="about-section section bg-tertiary position-relative overflow-hidden">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="section-title">
+        <h1>আমাদের সেবাসমূহ</h1>
+        <p>আমরা আমাদের প্রতিষ্ঠানে কম্পিউটার এবং অনলাইন সংক্রান্ত সকল প্রকার সেবা দিয়ে থাকি। </p>
+        <hr>
+      </div>
+      <div class="row" id="service-cards-container">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section success-student">
+  <div class="container">
+    <div class="row">
+      <div class="section-title">
+        <h1>সফল ছাত্র/ছাত্রী</h1>
+        <p>আমাদের প্রতিষ্ঠান থেকে প্রশিক্ষণ শেষে সরকারের বিভিন্ন মন্ত্রণালয়/বিভাগ/জেলা/উপজেলায় চাকরি প্রাপ্তদের
+          বর্তমান কর্মস্থল (আংশিক)</p>
+        <hr>
+      </div>
+      <div class="row" id="successfulstudent-cards-container">
+
+      </div>
+
+      <!-- Pagination controls -->
+      <div class="pagination-control col-12">
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center" id="successfulpagination">
+
+          </ul>
+        </nav>
+      </div>
+  
+    </div>
+  </div>
+</section>
+
+<section class="section bg-tertiary gallery">
+  <div class="container">
+    <div class="row">
+      <div class="section-title">
+        <h1>গ্যালারী</h1>
+        <hr>
+      </div>
+      <div class="row" id="galleryimage-cards-container">
+
+      </div>
+
+      <!-- Pagination controls -->
+      <div class="pagination-control col-12">
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center" id="gallerypagination">
+            <!-- Pagination links will be inserted here dynamically -->
+          </ul>
+        </nav>
+      </div>
+    </div>
+</section>
+
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="section contact">
+  <div class="container">
+    <div class="section-title">
+      <h1>যোগাযোগ করুন</h1>
+      <p>ভর্তি এবং যাবতীয় বিষয় সম্পর্কে আমাদের সাথে যোগাযোগ করুন।</p>
+      <hr>
+    </div>
+
+    <div class="row mt-2">
+
+      <div class="col-md-6 d-flex align-items-stretch">
+        <div class="card info-box">
+          <i class="bx bx-map"></i>
+          <h3>আমাদের ঠিকানা</h3>
+          <p>জয়নাবড়ি রোড, হেমায়েতপুর, সাভার, ঢাকা-১৩৪০।</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+        <div class="card info-box">
+          <i class="bx bx-share-alt"></i>
+          <h3>সোশাল মিডিয়া</h3>
+          <div class="social-links">
+            <a href="https://www.facebook.com/mrshakil015" class="facebook" target="_blank"><i
+                class="bi bi-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/mrshakil015" class="linkedin" target="_blank"><i
+                class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 mt-4 d-flex align-items-stretch">
+        <div class="card  info-box">
+          <i class="bx bx-envelope"></i>
+          <h3>ই-মেইল</h3>
+          <p>rainbow.saif@gmail.com</p>
+        </div>
+      </div>
+      <div class="col-md-6 mt-4 d-flex align-items-stretch">
+        <div class="card info-box">
+          <i class="bx bx-phone-call"></i>
+          <h3>মোবাইল</h3>
+          <p>+880 1716226026</p>
+        </div>
+      </div>
+      <div class="location-section">
+        <div class="col-md-12 d-flex align-items-stretch">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.6729736420266!2d90.26838887419115!3d23.794656987078056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755eae58c2a7d19%3A0x9adaa5bc5720253f!2sRainbow%20Computer!5e0!3m2!1sen!2sbd!4v1710010898836!5m2!1sen!2sbd"
+            frameborder="0" style="width: 100%; height: 290px;" allowfullscreen=""></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Contact Section -->
+
+  
+{% endblock content %}
+  

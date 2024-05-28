@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Rainbow Computer Point</title>
+    <link href="../static/login.css" rel="stylesheet">
+    <link rel="icon" href="../static/images/sobjanta-favicon.ico" type="image/x-icon" />
+    <!-- Add Font Awesome for the eye icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+</head>
+<body>
+    
+    <div class="wrapper">
+        <div class="logo">
+            <a href="{% url 'homePage' %}">
+                <img src="../static/images/logo.png" alt="">
+            </a>
+        </div>
+        
+        <div class="text-center mt-4 name">
+            
+        </div>
+    
+        <form class="p-3 mt-3" method="POST" action="">
+
+            <div class="form-field">
+                <span class="fas fa-user icon"></span>
+                <input type="text" name="studentroll" id="studentuser" placeholder="Enter Roll No">
+            </div>
+            <div class="form-field">
+                <span class="fas fa-key icon"></span>
+                <input type="password" name="studentpassword" id="studentpassword" placeholder="Enter Passowrd">
+                <span class="toggle-password fas fa-eye" onclick="togglePasswordVisibility()"></span>
+            </div>
+            
+            <script>
+                function togglePasswordVisibility() {
+                    var passwordInput = document.getElementById("admin_password");
+                    var togglePassword = document.querySelector(".toggle-password");
+                
+                    if (passwordInput.type === "password") {
+                        passwordInput.type = "text";
+                        togglePassword.classList.remove("fa-eye");
+                        togglePassword.classList.add("fa-eye-slash");
+                    } else {
+                        passwordInput.type = "password";
+                        togglePassword.classList.remove("fa-eye-slash");
+                        togglePassword.classList.add("fa-eye");
+                    }
+                }
+                </script>
+            <div class="text-center align-center">
+                <button class="btn mt-3">ছাত্র/ছাত্রী লগইন</button>
+                <a class="pt-3" href="{% url 'homePage' %}">Goto HomePage </a>
+            </div>
+            {% if error_message %}
+            <p class="text-danger">{{ error_message }}</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>
+
