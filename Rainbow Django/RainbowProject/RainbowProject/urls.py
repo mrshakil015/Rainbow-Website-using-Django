@@ -27,6 +27,7 @@ urlpatterns = [
     path('courseList/',courseList, name='courseList'),
     path('editCoursePage/<str:myid>',editCoursePage, name='editCoursePage'),
     path('deleteCourse/<str:myid>',deleteCourse, name='deleteCourse'),
+    path('viewCourse/<str:courseid>',viewCourse, name='viewCourse'),
     
     
     

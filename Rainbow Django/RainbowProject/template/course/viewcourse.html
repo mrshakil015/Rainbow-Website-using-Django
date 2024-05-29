@@ -1,0 +1,77 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+<section class="page-header bg-tertiary">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 mx-auto text-center">
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="course-info">
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="section-title">
+                    <h1>{{courseData.CourseName}}</h1>
+                    <hr>
+                </div>
+                <div class="text-center text-lg-start pe-0 pe-xl-5">
+                    <p class="text-justify about-course mb-4">{{courseData.AboutCourse}}</p>
+                    <h3><strong>কোর্সটি করে যা শিখবেন</strong></h3>
+                    <hr>
+                    <p class="text-justify course-topics mb-4" id="courseInfo">{{ courseData.CourseTopics }}</p>
+
+                    <script>
+                        const paragraph = document.getElementById('courseInfo');
+                        const textContent = paragraph.textContent;
+                        const splittedText = textContent.split('।');
+                        paragraph.textContent = '';
+
+                        splittedText.forEach(text => {
+                            const newParagraph = document.createElement('p');
+                            newParagraph.style.marginBottom = '5px';
+
+                            const icon = document.createElement('i');
+                            icon.className = 'bx bx-check-shield icon';
+                            newParagraph.appendChild(icon);
+
+                            newParagraph.appendChild(document.createTextNode(text.trim()));
+                            paragraph.appendChild(newParagraph);
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="col-lg-4 course-info">
+                <div class="card card-item">
+                    <div class="card-header view view-cascade overlay text-center">
+                        <img src="/{{courseData.CourseImage}}" class="card-img-top"
+                            alt="profile image">
+                    </div>
+                    <div class="card-body mt-3 mb-3">
+                        <div class="card-info text-center">
+                            <button class="btn btn-outline-primary">{{courseData.CourseDuration}} মাস</button>
+                            <button class="btn btn-outline-primary">সপ্তাহে {{courseData.WeeklyClass}} দিন</button>
+                            <button class="btn btn-outline-primary">দৈনিক {{courseData.ClassDurationHour}} ঘন্টা
+                                {{courseData.ClassDurationMinute}} মিনিট</button>
+                            <p class="price">৳ {{courseData.CourseFee}}/-</p>
+                            <div class="course-footer">
+                                <a href="{% url 'admissionformPage' %}"><button class="btn btn-outline-primary">নিবন্ধন করুন</button></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+    
+{% endblock content %}
+    

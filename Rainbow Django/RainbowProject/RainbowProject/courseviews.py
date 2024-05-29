@@ -97,3 +97,20 @@ def deleteCourse(request,myid):
    courseData = CourseInfoModel.objects.get(id=myid)
    courseData.delete()
    return redirect('courseList')
+
+def coursePage(request):
+    courseData = CourseInfoModel.objects.all()
+    
+    context = {
+        'courseData': courseData,
+    }
+    
+    return render(request,'course/coursepage.html',context)
+
+def viewCourse(request,courseid):
+   courseData = CourseInfoModel.objects.get(id=courseid)
+   context = {
+      'courseData':courseData
+   }
+   
+   return render(request,'course/viewcourse.html',context)
