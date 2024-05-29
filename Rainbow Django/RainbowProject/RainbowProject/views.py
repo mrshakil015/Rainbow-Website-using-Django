@@ -47,8 +47,9 @@ def adminSignin(request):
         user = authenticate(username=username,password=password)
         print("User is :",user)
         if user:
-            login(request,user)
-            return redirect('adminDashboard')
+            if user.UserType == 'Admin':
+                login(request,user)
+                return redirect('adminDashboard')
         else:
             return redirect('homePage')
     
@@ -70,8 +71,11 @@ def studentSignin(request):
         
         user = authenticate(username=studentroll,password=studentpassword)
         if user:
-            login(request,user)
-            return redirect('studentDashboard')
+            if user.UserType == 'Student':
+                login(request,user)
+                return redirect('studentDashboard')
+            else:
+                return redirect('studentSignin')
         else:
             return redirect('studentSignin')
         
