@@ -12,10 +12,13 @@ urlpatterns = [
     path('logoutPage/',logoutPage, name='logoutPage'),
     
     path('adminDashboard/',adminDashboard, name='adminDashboard'),
+    path('studentDashboard/',studentDashboard, name='studentDashboard'),
     
     #--------------Student Section-----------
     path('addStudentPage/',addStudentPage, name='addStudentPage'),
     path('studentList/',studentList, name='studentList'),
+    path('admitedcourseInfo/',admitedcourseInfo, name='admitedcourseInfo'),
+    path('admitedcoursePaymentInfo/',admitedcoursePaymentInfo, name='admitedcoursePaymentInfo'),
     
     
     

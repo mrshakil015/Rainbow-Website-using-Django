@@ -24,7 +24,8 @@
             
         </div>
     
-        <form class="p-3 mt-3" method="POST" action="">
+        <form class="p-3 mt-3" action="{% url 'studentSignin' %}" method="POST">
+            {% csrf_token %}
 
             <div class="form-field">
                 <span class="fas fa-user icon"></span>

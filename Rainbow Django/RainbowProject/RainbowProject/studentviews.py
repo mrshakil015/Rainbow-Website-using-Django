@@ -65,6 +65,14 @@ def addStudentPage(request):
             return redirect('studentList') 
     
     return render(request,'students/addstudent.html')
+
+def admitedcourseInfo(request):
+    
+    return render(request,'students/admitedcourseinfo.html')
+
+def admitedcoursePaymentInfo(request):
+    
+    return render(request,'students/admitedcoursepaymentinfo.html')
     
 def studentList(request):
     studentinfo = StudentInfoModel.objects.all()

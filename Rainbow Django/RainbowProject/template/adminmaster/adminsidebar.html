@@ -9,13 +9,7 @@
                 
                 {% if user.UserType == 'Admin' %}
                 <li><a href="{% url 'adminDashboard' %}"><i class="fab fa-microsoft"></i><span> Admin Dashboard</span> </a></li>
-                {% else %}
-                <li><a href=""><i class="fab fa-microsoft"></i><span> Dashboard</span> </a></li>
-                {% endif %}
-                    
-                
-                
-            
+
                 <li class="submenu">
                     <a href="#"><i class="fas fa-user-graduate"></i> <span> Students</span> <span
                             class="menu-arrow"></span></a>
@@ -54,6 +48,19 @@
                     <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
                 </li>
                 </ul>
+
+                {% elif user.UserType == 'Student' %}
+                <li><a href="{% url 'studentDashboard' %}"><i class="fab fa-microsoft"></i><span> Dashboard</span> </a></li>
+                <li><a href="{% url 'admitedcourseInfo' %}"><i class="fas fa-book"></i><span> Course Information</span> </a></li>
+                <li><a href=""><i class="fas fa-chart-line"></i><span> Result</span> </a></li>
+                <li><a href="{% url 'admitedcoursePaymentInfo' %}"><i class="fas fa-credit-card"></i><span> Payment</span> </a></li>
+                
+                {% endif %}
+                    
+                
+                
+            
+               
         </div>
     </div>
 </div>

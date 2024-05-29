@@ -1,0 +1,143 @@
+{% extends 'adminmaster/adminmaster.html' %}
+
+{% block admincontent %}
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row">
+          <div class="col">
+             <h3 class="page-title">Profile</h3>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'studentDashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active">Profile</li>
+             </ul>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-md-12">
+          <div class="profile-header">
+             <div class="row align-items-center">
+                <div class="col-auto profile-image">
+                   <a href="#">
+                   <img class="rounded-circle" alt="User Image" src="/{{user.studentuser.StudentPhoto}}">
+                   </a>
+                </div>
+                <div class="col ml-md-n2 profile-user-info">
+                   <h4 class="user-name mb-0">{{user.studentuser.StudentName}}</h4>
+                   <h6 class="text-muted">{{user.studentuser.CourseName}}</h6>
+                   <div class="user-Location"><i class="fas fa-map-marker-alt"></i> {{user.studentuser.PresentAddress}}</div>
+                </div>
+                
+             </div>
+          </div>
+          <div class="profile-menu">
+             <ul class="nav nav-tabs nav-tabs-solid">
+                <li class="nav-item">
+                   <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link" data-toggle="tab" href="#password_tab">Password</a>
+                </li>
+             </ul>
+          </div>
+          <div class="tab-content profile-tab-cont">
+             <div class="tab-pane fade show active" id="per_details_tab">
+                <div class="row">
+                   <div class="col-lg-12">
+                      <div class="card">
+                         <div class="card-body">
+                            <h5 class="card-title d-flex justify-content-between">
+                               <span><strong>Personal Details</strong></span>
+                               <hr>
+                              
+                            </h5>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Name</p>
+                               <p class="col-sm-8">: {{user.studentuser.StudentName}}</p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Father Name</p>
+                               <p class="col-sm-8">: {{user.studentuser.FatherName}}</p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Mother Name</p>
+                               <p class="col-sm-8">: {{user.studentuser.MotherName}}</p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Religion</p>
+                               <p class="col-sm-8">: {{user.studentuser.Religion}}</p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Gender</p>
+                               <p class="col-sm-8">: {{user.studentuser.Gender}}</p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Date of Birth</p>
+                               <p class="col-sm-8">: {{user.studentuser.DOB}}</p>
+                            </div>
+                            <h5 class="card-title d-flex justify-content-between">
+                                <span><strong>Contact Information</strong></span>
+                             </h5>
+                            
+                            <hr>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Email ID</p>
+                               <p class="col-sm-8">: {{user.email}}</p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Mobile</p>
+                               <p class="col-sm-8">: {{user.studentuser.Mobile}}</p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Emergency Contact</p>
+                               <p class="col-sm-8">: {{user.studentuser.EmergencyMobile}}</p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Present Address</p>
+                               <p class="col-sm-8 mb-0">: {{user.studentuser.PresentAddress}}
+                               </p>
+                            </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0">Permenent Address</p>
+                               <p class="col-sm-8 mb-0">: {{user.studentuser.PermanentAddress}}
+                               </p>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                  
+                </div>
+             </div>
+             <div id="password_tab" class="tab-pane fade">
+                <div class="card">
+                   <div class="card-body">
+                      <h5 class="card-title">Change Password</h5>
+                      <div class="row">
+                         <div class="col-md-10 col-lg-6">
+                            <form>
+                               <div class="form-group">
+                                  <label>Old Password</label>
+                                  <input type="password" class="form-control">
+                               </div>
+                               <div class="form-group">
+                                  <label>New Password</label>
+                                  <input type="password" class="form-control">
+                               </div>
+                               <div class="form-group">
+                                  <label>Confirm Password</label>
+                                  <input type="password" class="form-control">
+                               </div>
+                               <button class="btn btn-primary" type="submit">Save Changes</button>
+                            </form>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+    
+{% endblock admincontent %}
+    

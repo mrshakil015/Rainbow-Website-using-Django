@@ -64,8 +64,24 @@ def adminDashboard(request):
     return render(request,'myadmin/admindashboard.html')
 
 def studentSignin(request):
-    
+    if request.method == 'POST':
+        studentroll = request.POST.get('studentroll')
+        studentpassword = request.POST.get('studentpassword')
+        
+        user = authenticate(username=studentroll,password=studentpassword)
+        if user:
+            login(request,user)
+            return redirect('studentDashboard')
+        else:
+            return redirect('studentSignin')
+        
     return render(request,'students/studentlogin.html')
+
+def studentDashboard(request):
+    
+   
+    
+    return render(request,'students/studentdashboard.html')
 
 def aboutUs(request):
     
