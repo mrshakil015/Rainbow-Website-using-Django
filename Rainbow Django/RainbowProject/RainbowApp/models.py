@@ -71,6 +71,7 @@ class CourseInfoModel(models.Model):
     ClassDurationHour = models.CharField(max_length=100)
     ClassDurationMinute = models.CharField(max_length=100)
     CourseFee = models.CharField(max_length=100)
+    NoOfStudents = models.CharField(max_length=100)
     AboutCourse = models.TextField()
     CourseTopics = models.TextField()
     CourseImage = models.ImageField(upload_to='static/courseImg/')

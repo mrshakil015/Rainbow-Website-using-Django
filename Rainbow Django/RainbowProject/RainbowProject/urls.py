@@ -24,6 +24,9 @@ urlpatterns = [
     
     #------------Course Section----------------
     path('addCoursePage/',addCoursePage, name='addCoursePage'),
+    path('courseList/',courseList, name='courseList'),
+    path('editCoursePage/<str:myid>',editCoursePage, name='editCoursePage'),
+    path('deleteCourse/<str:myid>',deleteCourse, name='deleteCourse'),
     
     
     
