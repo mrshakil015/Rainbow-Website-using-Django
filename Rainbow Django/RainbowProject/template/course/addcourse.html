@@ -1,0 +1,180 @@
+{% extends 'adminmaster/adminmaster.html' %}
+
+{% block admincontent %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Add Courses</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="students.html">Courses</a></li>
+               <li class="breadcrumb-item active">Add Courses</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="card">
+            
+            <div class="card-body">
+               {% include 'commons/message.html' %}
+               <form action="{% url 'addStudentPage' %}" method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Course Information</span></h5>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Full Name</label>
+                           <input type="text" name="fullname" class="form-control">
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Father's Name</label>
+                           <input type="text" name="fathername" class="form-control">
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Mother Name</label>
+                           <input type="text" name="mothername" class="form-control">
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                       <div class="form-group">
+                          <label>Gender</label>
+                          <select name="gender" class="form-control">
+                             <option>Select Gender</option>
+                             <option value="Male">Male</option>
+                             <option value="Female">Female</option>
+                          </select>
+                       </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                       <div class="form-group">
+                          <label>Date of Birth</label>
+                          <div>
+                             <input type="date" name="dateofbirth" class="form-control">
+                          </div>
+                       </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                       <div class="form-group">
+                          <label>Religion</label>
+                          <input type="text" name="religion" class="form-control">
+                       </div>
+                    </div>
+                    
+                    <div class="col-12 col-sm-6">
+                       <div class="form-group">
+                          <label>Mobile Number</label>
+                          <input type="text" name="mobile" class="form-control">
+                       </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                       <div class="form-group">
+                          <label>Emergency Number</label>
+                          <input type="text" name="emergencymobile" class="form-control">
+                       </div>
+                    </div>
+                     <div class="col-12 col-sm-6">
+                       <div class="form-group">
+                          <label>Email</label>
+                          <input type="email" name="email" class="form-control">
+                       </div>
+                    </div>       
+                    <div class="col-12 col-sm-6">
+                     <div class="form-group">
+                        <label>Student Image</label>
+                        <input type="file" name="studentImage" class="form-control">
+                     </div>
+                  </div>
+                    
+                    <div class="col-12 col-sm-6">
+                     <div class="form-group">
+                        <label>Present Address</label>
+                        <input name="presentaddress" class="form-control">
+                     </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                     <div class="form-group">
+                        <label>Permanent Address</label>
+                        <input name="permanentaddress" class="form-control">
+                     </div>
+                  </div>
+                     
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Course Information</span></h5>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Roll No</label>
+                           <input name="rollno" class="form-control">
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Course Name</label>
+                           <select name="coursename" class="form-control">
+                              <option>Select Course</option>
+                              <option value="Office Application Program">Office Application Program</option>
+                              <option value="Graphic Designing">Graphic Designing</option>
+                              <option value="Digital Marketing">Digital Marketing</option>
+                              <option value="Computer Hardware">Computer Hardware</option>
+                           </select>
+                        </div>
+                     </div>
+                     
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Batch</label>
+                           <select name="batch" class="form-control">
+                              <option>Select Batch</option>
+                              <option value="9:00 AM">9:00 AM</option>
+                              <option value="10:00 AM">10:00 AM</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Section</label>
+                           <select name="section" class="form-control">
+                              <option>Select Section</option>
+                              <option value="A">A</option>
+                              <option value="B">B</option>
+                              <option value="C">C</option>
+                           </select>
+                        </div>
+                     </div>
+
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Course Fee</label>
+                           <input type="number" name="coursefee" class="form-control">
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Payment</label>
+                           <input type="number" name="payment" class="form-control">
+                        </div>
+                     </div>
+                     
+                     <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+    
+{% endblock admincontent %}
+    
