@@ -17,6 +17,7 @@ urlpatterns = [
     
     #--------------Student Section-------------------------------
     path('addStudentPage/',addStudentPage, name='addStudentPage'),
+    path('editStudent/<str:myid>',editStudent, name='editStudent'),
     path('studentList/',studentList, name='studentList'),
     path('admitedcourseInfo/',admitedcourseInfo, name='admitedcourseInfo'),
     path('admitedcoursePaymentInfo/',admitedcoursePaymentInfo, name='admitedcoursePaymentInfo'),

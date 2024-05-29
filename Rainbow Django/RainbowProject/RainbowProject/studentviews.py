@@ -66,6 +66,16 @@ def addStudentPage(request):
     
     return render(request,'students/addstudent.html')
 
+def editStudent(request,myid):
+    studentdata = StudentInfoModel.objects.get(id=myid)
+    date_of_birth = studentdata.DOB.isoformat() if studentdata.DOB else ''
+    context = {
+        'studentdata':studentdata,
+        'date_of_birth': date_of_birth,
+    }
+    
+    return render(request,'students/editstudent.html',context)
+
 def admitedcourseInfo(request):
     
     return render(request,'students/admitedcourseinfo.html')
