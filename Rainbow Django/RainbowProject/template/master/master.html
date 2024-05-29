@@ -1,5 +1,5 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en-us">
 
 <head>
@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   <meta name="description" content="This is meta description">
   <meta name="author" content="Rainbow Computer Point">
-  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-  <link rel="icon" href="images/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}" type="image/x-icon" />
+  <link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/x-icon" />
 
   <!-- theme meta -->
   <meta name="theme-name" content="Rainbow Computer Point" />
@@ -32,7 +32,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- # Main Style Sheet -->
-  <link rel="stylesheet" href="../static/style.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 
 <body>
