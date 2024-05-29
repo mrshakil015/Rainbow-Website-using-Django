@@ -61,8 +61,13 @@ def logoutPage(request):
     return redirect('homePage')
 
 def adminDashboard(request):
+    studentinfo = StudentInfoModel.objects.all()
     
-    return render(request,'myadmin/admindashboard.html')
+    context = {
+        'studentinfo':studentinfo,
+    }
+    
+    return render(request,'myadmin/admindashboard.html',context)
 
 def studentSignin(request):
     if request.method == 'POST':
