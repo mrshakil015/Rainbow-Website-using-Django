@@ -15,21 +15,8 @@
     </div>
     <div class="row">
        <div class="col-md-12">
-          <div class="profile-header">
-             <div class="row align-items-center">
-                <div class="col-auto profile-image">
-                   <a href="#">
-                   <img class="rounded-circle" alt="User Image" src="/{{user.studentuser.StudentPhoto}}">
-                   </a>
-                </div>
-                <div class="col ml-md-n2 profile-user-info">
-                   <h4 class="user-name mb-0">{{user.studentuser.StudentName}}</h4>
-                   <h6 class="text-muted">{{user.studentuser.CourseName}}</h6>
-                   <div class="user-Location"><i class="fas fa-map-marker-alt"></i> {{user.studentuser.PresentAddress}}</div>
-                </div>
-                
-             </div>
-          </div>
+         {% include 'students/studentshortdetail.html' %}
+         
           
           <div class="tab-content profile-tab-cont">
              <div class="tab-pane fade show active" id="per_details_tab">

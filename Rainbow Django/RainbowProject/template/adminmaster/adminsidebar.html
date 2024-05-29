@@ -52,8 +52,8 @@
                 {% elif user.UserType == 'Student' %}
                 <li><a href="{% url 'studentDashboard' %}"><i class="fab fa-microsoft"></i><span> Dashboard</span> </a></li>
                 <li><a href="{% url 'admitedcourseInfo' %}"><i class="fas fa-book"></i><span> Course Information</span> </a></li>
-                <li><a href=""><i class="fas fa-chart-line"></i><span> Result</span> </a></li>
-                <li><a href="{% url 'admitedcoursePaymentInfo' %}"><i class="fas fa-credit-card"></i><span> Payment</span> </a></li>
+                <li><a href=""><i class="fas fa-table"></i><span> Result Information</span> </a></li>
+                <li><a href="{% url 'admitedcoursePaymentInfo' %}"><i class="fas fa-credit-card"></i><span> Payment Information</span> </a></li>
                 
                 {% endif %}
                     
