@@ -3,6 +3,13 @@ from RainbowApp.models import *
 from django.contrib import messages
 
 def addStudentPage(request):
+    
+    courseData = CourseInfoModel.objects.all()
+    
+    context = {
+        'courseData':courseData
+    }
+    
     if request.method == 'POST':
         fullname=request.POST.get('fullname')
         fathername=request.POST.get('fathername')
@@ -19,7 +26,8 @@ def addStudentPage(request):
         
         rollno=request.POST.get('rollno')
         coursename=request.POST.get('coursename')
-        batch=request.POST.get('batch')
+        batchno=request.POST.get('batchno')
+        batchschedule=request.POST.get('batchschedule')
         section=request.POST.get('section')
         coursefee=request.POST.get('coursefee')
         payment=request.POST.get('payment')
@@ -54,7 +62,8 @@ def addStudentPage(request):
                 
                 RollNo=rollno,
                 CourseName=coursename,
-                Batch=batch,
+                BatchNo=batchno,
+                Batchschedule=batchschedule,
                 Section=section,
                 CourseFee=coursefee,
                 Payment=payment,
@@ -64,17 +73,102 @@ def addStudentPage(request):
             messages.success(request,'Successfully Created.')
             return redirect('studentList') 
     
-    return render(request,'students/addstudent.html')
+    return render(request,'students/addstudent.html',context)
 
 def editStudent(request,myid):
+    courseData = CourseInfoModel.objects.all()   
     studentdata = StudentInfoModel.objects.get(id=myid)
     date_of_birth = studentdata.DOB.isoformat() if studentdata.DOB else ''
     context = {
         'studentdata':studentdata,
+        'courseData':courseData,
         'date_of_birth': date_of_birth,
     }
     
+    if request.method == 'POST':
+        fullname=request.POST.get('fullname')
+        fathername=request.POST.get('fathername')
+        mothername=request.POST.get('mothername')
+        gender=request.POST.get('gender')
+        dateofbirth=request.POST.get('dateofbirth')
+        religion=request.POST.get('religion')
+        mobile=request.POST.get('mobile')
+        emergencymobile=request.POST.get('emergencymobile')
+        email=request.POST.get('email')
+        studentImage=request.FILES.get('studentImage')
+        presentaddress=request.POST.get('presentaddress')
+        permanentaddress=request.POST.get('permanentaddress')
+        
+        rollno=request.POST.get('rollno')
+        coursename=request.POST.get('coursename')
+        batchno=request.POST.get('batchno')
+        batchschedule=request.POST.get('batchschedule')
+        section=request.POST.get('section')
+        coursefee=request.POST.get('coursefee')
+        payment=request.POST.get('payment')
+        
+        due = int(coursefee) - int(payment)
+        
+        
+    
+        if studentImage:
+            StudentInfoModel.objects.filter(id=myid).update(
+                StudentName=fullname,
+                FatherName=fathername,
+                MotherName=mothername,
+                Gender=gender,
+                DOB=dateofbirth,
+                Religion=religion,
+                Mobile=mobile,
+                EmergencyMobile=emergencymobile,
+                StudentPhoto=studentImage,
+                PresentAddress=presentaddress,
+                PermanentAddress=permanentaddress,
+                
+                RollNo=rollno,
+                CourseName=coursename,
+                BatchNo=batchno,
+                Batchschedule=batchschedule,
+                Section=section,
+                CourseFee=coursefee,
+                Payment=payment,
+                Due=due,
+            )
+        else:
+            studentdata = StudentInfoModel.objects.get(id=myid)
+            previImg = studentdata.StudentPhoto
+            
+            StudentInfoModel.objects.filter(id=myid).update(
+                StudentName=fullname,
+                FatherName=fathername,
+                MotherName=mothername,
+                Gender=gender,
+                DOB=dateofbirth,
+                Religion=religion,
+                Mobile=mobile,
+                EmergencyMobile=emergencymobile,
+                StudentPhoto=previImg,
+                PresentAddress=presentaddress,
+                PermanentAddress=permanentaddress,
+                
+                RollNo=rollno,
+                CourseName=coursename,
+                BatchNo=batchno,
+                Batchschedule=batchschedule,
+                Section=section,
+                CourseFee=coursefee,
+                Payment=payment,
+                Due=due,
+            )
+        messages.success(request,'Successfully Updated.')
+        return redirect('studentList')
+    
     return render(request,'students/editstudent.html',context)
+
+def deleteStudent(request,myid):
+   studentdata = StudentInfoModel.objects.get(id=myid)
+   studentdata.delete()
+   return redirect('studentList')
 
 def admitedcourseInfo(request):
     

@@ -29,7 +29,8 @@ class StudentInfoModel(models.Model):
     PermanentAddress = models.CharField(max_length=100)
     RollNo = models.CharField(max_length=100)
     CourseName = models.CharField(max_length=100) 
-    Batch = models.CharField(max_length=100)
+    BatchNo = models.CharField(max_length=100)
+    Batchschedule = models.CharField(max_length=100)
     
     SECTION = [
         ('A','A'),

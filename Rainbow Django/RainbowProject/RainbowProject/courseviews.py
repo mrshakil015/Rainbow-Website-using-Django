@@ -77,7 +77,7 @@ def editCoursePage(request,myid):
       else:
          courseData = CourseInfoModel.objects.get(id=myid)
          previImg = courseData.CourseImage
-         print("Previous Img")
+         
          CourseInfoModel.objects.filter(id=myid).update(
             CourseName = coursename,
             CourseDuration =courseduration,
