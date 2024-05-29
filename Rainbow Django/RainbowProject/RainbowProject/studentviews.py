@@ -37,7 +37,8 @@ def addStudentPage(request):
         if CustomUserModel.objects.filter(username=rollno).exists():
             messages.warning(request,'User already exist.')
            
-        else:            
+        else:
+                        
             studentuser = CustomUserModel.objects.create_user(
                 username = rollno,
                 email = email,
@@ -70,6 +71,11 @@ def addStudentPage(request):
                 Due=due,
             )
             studentData.save()
+            
+            courseStu = CourseInfoModel.objects.get(CourseName=coursename)
+            CourseInfoModel.objects.filter(CourseName=coursename).update(
+                NoOfStudents = int(courseStu.NoOfStudents)+1
+            )
             messages.success(request,'Successfully Created.')
             return redirect('studentList') 
     
@@ -108,9 +114,7 @@ def editStudent(request,myid):
         payment=request.POST.get('payment')
         
         due = int(coursefee) - int(payment)
-        
-        
-    
+
         if studentImage:
             StudentInfoModel.objects.filter(id=myid).update(
                 StudentName=fullname,
