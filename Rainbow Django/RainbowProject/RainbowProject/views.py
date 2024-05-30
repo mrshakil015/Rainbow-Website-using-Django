@@ -141,3 +141,10 @@ def contactUsPage(request):
     
     return render(request,'commons/contactus.html')
 
+def paymentList(request):
+    studentinfo = StudentInfoModel.objects.all()
+    context = {
+        'studentinfo':studentinfo,
+    }
+
+    return render(request,'payment/paymentlist.html',context)
