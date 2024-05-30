@@ -1,0 +1,57 @@
+{% extends 'adminmaster/adminmaster.html' %}
+
+{% block admincontent %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Add Services</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="students.html">Services</a></li>
+               <li class="breadcrumb-item active">Add Services</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="card">
+            
+            <div class="card-body">
+               {% include 'commons/message.html' %}
+               
+               <form action="{% url 'addService' %}" method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Service Information</span></h5>
+                     </div>
+                     <div class="col-lg-12 col-sm-6">
+                        <div class="form-group">
+                           <label>সেবার নাম</label>
+                           <input type="text" name="servicename" class="form-control">
+                        </div>
+                     </div>
+                     
+                     <div class="col-lg-12 col-sm-6">
+                        <div class="form-group">
+                           <label>বিস্তারিত</label>
+                           <textarea type="text" name="aboutservice" class="form-control"></textarea>
+                        </div>
+                     </div>
+                     
+                    
+                     
+                     <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+    
+{% endblock admincontent %}
+    

@@ -39,7 +39,7 @@ urlpatterns = [
     
     
     
-    
+    #-------------Common Front End-----------
     path('aboutUs/',aboutUs, name='aboutUs'),
     path('contactUsPage/',contactUsPage, name='contactUsPage'),
     path('coursePage/',coursePage, name='coursePage'),
@@ -47,7 +47,13 @@ urlpatterns = [
     path('galleryPage/',galleryPage, name='galleryPage'),
     path('admissionformPage/',admissionformPage, name='admissionformPage'),
     
+    #----------Payment-----------
     path('paymentList/',paymentList, name='paymentList'),
+    
+    #------------Service------------
+    path('serviceList/',serviceList, name='serviceList'),
+    path('addService/',addService, name='addService'),
+    path('editService/<str:myid>',editService, name='editService'),
 ]
 
 urlpatterns+=re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),

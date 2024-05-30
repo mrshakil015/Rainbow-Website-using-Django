@@ -2,19 +2,23 @@
 
 {% block admincontent %}
 {% load static %}
+
+<!-- Include messages -->
+{% include 'commons/messsage.html' %}
+
 <div class="content container-fluid">
     <div class="page-header">
        <div class="row align-items-center">
           <div class="col">
-             <h3 class="page-title">Students</h3>
+             <h3 class="page-title">Service List</h3>
              <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{% url 'adminDashboard' %}">Dashboard</a></li>
-                <li class="breadcrumb-item active">Students</li>
+                <li class="breadcrumb-item active">Service</li>
              </ul>
           </div>
           <div class="col-auto text-right float-right ml-auto">
              <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-             <a href="{% url 'addStudentPage' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+             <a href="{% url 'addCoursePage' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
           </div>
        </div>
     </div>
@@ -23,47 +27,32 @@
           <div class="card card-table">
              <div class="card-body">
                 <div class="table-responsive">
-                    {% include 'commons/message.html' %}
                    <table class="table table-hover table-center mb-0 datatable">
                       <thead>
                          <tr>
-                            <th>Roll No</th>
-                            <th>Photo</th>
-                            <th>Name</th>
-                            <th>Course Name</th>
-                            <th>Mobile Number</th>
-                            <th>Address</th>
-                            <th>Admission Date</th>
+                            
+                            <th>সেবার নাম</th>
+                            <th>বিস্তারিত</th>
                             <th class="text-right">Action</th>
                          </tr>
                       </thead>
                       <tbody>
                         
-                        {% for i in studentinfo %}
+                        {% for i in servicedata %}
                         <tr>
-                           <td>{{i.RollNo}}</td>
-                           <td>
-                              <h2 class="table-avatar">
-                                 <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{i.StudentPhoto.url}}" alt="User Image"></a>
-                              </h2>
-                           </td>
-                           <td>
-                              {{i.StudentName}}</a>
-                           </td>
-                           <td>{{i.CourseName}}</td>
-                           <td>{{i.Mobile}}</td>
-                           <td>{{i.PresentAddress}}</td>
-                           <td>{{i.AdmissionDate}}</td>
+                           <td><strong>{{i.ServiceName}}</strong></td>
+                           <td>{{i.AboutService}}</td>
+                           
                            
                            <td class="text-right">
                               <div class="actions">
                                  <a href="" class="btn btn-sm bg-info-light mr-2">
                                  <i class="fas fa-eye"></i>
                                  </a>
-                                 <a href="{% url 'editStudent' i.id %}" class="btn btn-sm bg-success-light mr-2">
+                                 <a href="{% url 'editService' i.id %}" class="btn btn-sm bg-success-light mr-2">
                                  <i class="fas fa-pen"></i>
                                  </a>
-                                 <a href="{% url 'deleteStudent' i.user %}" class="btn btn-sm bg-danger-light">
+                                 <a href="" class="btn btn-sm bg-danger-light">
                                  <i class="fas fa-trash"></i>
                                  </a>
                               </div>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from RainbowApp.models import *
+from django.contrib import messages
 
 
 def homePage(request):
@@ -148,3 +149,46 @@ def paymentList(request):
     }
 
     return render(request,'payment/paymentlist.html',context)
+
+def serviceList(request):
+    servicedata = ServiceInfoModel.objects.all()
+    
+    context = {
+        'servicedata':servicedata,
+    }
+    
+    return render(request,'ourservice/servicelist.html',context)
+
+def addService(request):
+    if request.method=='POST':
+        servicename = request.POST.get('servicename')
+        aboutservice = request.POST.get('aboutservice')
+        
+        servicedata = ServiceInfoModel(
+            ServiceName= servicename,
+            AboutService = aboutservice,
+        )
+        servicedata.save()
+        messages.success(request,'Service Successfully Added.')
+        return redirect('serviceList')
+        
+    return render(request,'ourservice/addservice.html')
+
+def editService(request,myid):
+    servicedata = ServiceInfoModel.objects.get(id=myid)
+    
+    context = {
+        'servicedata':servicedata,
+    }
+    if request.method=='POST':
+        servicename = request.POST.get('servicename')
+        aboutservice = request.POST.get('aboutservice')
+
+
+        servicedata.ServiceName= servicename
+        servicedata.AboutService = aboutservice
+        servicedata.save()
+        messages.success(request,'Service Successfully Updated.')
+        return redirect('serviceList')
+    
+    return render(request,'ourservice/editservice.html',context)    
