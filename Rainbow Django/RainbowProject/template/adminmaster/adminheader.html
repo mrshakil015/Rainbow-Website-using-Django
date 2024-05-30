@@ -117,21 +117,45 @@
 
 
         <li class="nav-item dropdown has-arrow">
+            {% if user.UserType == 'Student' %}
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <span class="user-img"><img class="avatar-img rounded-circle"
+                        src="{{user.studentuser.StudentPhoto.url}}" width="31"
+                        alt="Ryan Taylor"></span>
+            </a>
+            {% else %}
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 <span class="user-img"><img class="rounded-circle"
                         src="{% static 'assets/img/profiles/shakil.jpg' %}" width="31"
                         alt="Ryan Taylor"></span>
             </a>
+            {% endif %}
+           
             <div class="dropdown-menu">
                 <div class="user-header">
+                    
+                    {% if user.UserType == 'Student' %}
+                    <div class="avatar avatar-sm">
+                        <img src="{{user.studentuser.StudentPhoto.url}}" alt="User Image"
+                            class="avatar-img rounded-circle">
+                    </div>
+                    <div class="user-text">
+                        <h6>{{user.studentuser.StudentName}}</h6>
+                        <p class="text-muted mb-0">{{user.UserType}}</p>
+                    </div>
+
+                    {% else %}
                     <div class="avatar avatar-sm">
                         <img src="{% static 'assets/img/profiles/shakil.jpg' %}" alt="User Image"
                             class="avatar-img rounded-circle">
                     </div>
                     <div class="user-text">
-                        <h6>MD. SHAKIL</h6>
-                        <p class="text-muted mb-0">Administrator</p>
+                        <h6>Rainbow</h6>
+                        <p class="text-muted mb-0">{{user.UserType}}</p>
                     </div>
+                    {% endif %}
+                        
+                    
                 </div>
                 <a class="dropdown-item" href="profile.html">My Profile</a>
                 <a class="dropdown-item" href="inbox.html">Inbox</a>
