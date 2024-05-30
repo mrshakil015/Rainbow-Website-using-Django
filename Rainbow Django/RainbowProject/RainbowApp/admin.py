@@ -15,7 +15,7 @@ class CustomUserModelDisplay(admin.ModelAdmin):
 admin.site.register(CustomUserModel,CustomUserModelDisplay)
 
 class StudentInfoDisplay(admin.ModelAdmin):
-    list_display = ['StudentName','CourseName']
+    list_display = ['user','StudentName','CourseName']
 admin.site.register(StudentInfoModel,StudentInfoDisplay)    
     
 

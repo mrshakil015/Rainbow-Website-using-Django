@@ -47,7 +47,9 @@ def addStudentPage(request):
             )
             studentuser.save()
             
-            studentData = StudentInfoModel(
+            courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
+            
+            studentData = StudentInfoModel.objects.create(
                 user=studentuser,
                 StudentName=fullname,
                 FatherName=fathername,
@@ -62,7 +64,7 @@ def addStudentPage(request):
                 PermanentAddress=permanentaddress,
                 
                 RollNo=rollno,
-                CourseName=coursename,
+                CourseName=courseinfo,
                 BatchNo=batchno,
                 Batchschedule=batchschedule,
                 Section=section,
@@ -72,10 +74,10 @@ def addStudentPage(request):
             )
             studentData.save()
             
-            courseStu = CourseInfoModel.objects.get(CourseName=coursename)
-            CourseInfoModel.objects.filter(CourseName=coursename).update(
-                NoOfStudents = int(courseStu.NoOfStudents)+1
-            )
+            # courseStu = CourseInfoModel.objects.get(CourseName=coursename)
+            # CourseInfoModel.objects.filter(CourseName=coursename).update(
+            #     NoOfStudents = int(courseStu.NoOfStudents)+1
+            # )
             messages.success(request,'Successfully Created.')
             return redirect('studentList') 
     
@@ -169,8 +171,8 @@ def editStudent(request,myid):
     
     return render(request,'students/editstudent.html',context)
 
-def deleteStudent(request,myid):
-   studentdata = StudentInfoModel.objects.get(id=myid)
+def deleteStudent(request,user):
+   studentdata = CustomUserModel.objects.get(username=user)
    studentdata.delete()
    return redirect('studentList')
 
@@ -184,7 +186,8 @@ def admitedcoursePaymentInfo(request):
     
 def studentList(request):
     studentinfo = StudentInfoModel.objects.all()
-    
+
+
     context = {
         'studentinfo':studentinfo,
     }

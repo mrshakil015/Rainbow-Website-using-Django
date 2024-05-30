@@ -4,6 +4,11 @@ from RainbowProject.views import *
 from RainbowProject.studentviews import *
 from RainbowProject.courseviews import *
 
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.static import serve
+from django.urls import path, include, re_path
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',homePage, name='homePage'),
@@ -18,7 +23,7 @@ urlpatterns = [
     #--------------Student Section-------------------------------
     path('addStudentPage/',addStudentPage, name='addStudentPage'),
     path('editStudent/<str:myid>',editStudent, name='editStudent'),
-    path('deleteStudent/<str:myid>',deleteStudent, name='deleteStudent'),
+    path('deleteStudent/<str:user>',deleteStudent, name='deleteStudent'),
     path('studentList/',studentList, name='studentList'),
     path('pendingStudentList/',pendingStudentList, name='pendingStudentList'),
     path('editPendingStudent/<str:myid>',editPendingStudent, name='editPendingStudent'),
@@ -42,3 +47,6 @@ urlpatterns = [
     path('galleryPage/',galleryPage, name='galleryPage'),
     path('admissionformPage/',admissionformPage, name='admissionformPage'),
 ]
+
+urlpatterns+=re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
+urlpatterns+=re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),

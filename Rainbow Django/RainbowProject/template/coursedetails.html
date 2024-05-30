@@ -141,7 +141,7 @@
                 <div class="col-lg-4 course-info">
                     <div class="card card-item">
                         <div class="card-header view view-cascade overlay text-center">
-                            <img src="../static/images/{{course_info.image_name}}" class="card-img-top"
+                            <img src="{{course_info.image_name.url}}" class="card-img-top"
                                 alt="profile image">
                         </div>
                         <div class="card-body mt-3 mb-3">
@@ -152,7 +152,7 @@
                                     {{course_info.duration_minute}} মিনিট</button>
                                 <p class="price">৳ {{course_info.amount}}/-</p>
                                 <div class="course-footer">
-                                    <a href="{{ url_for('applicationform') }}"><button class="btn btn-outline-primary">নিবন্ধন করুন</button></a>
+                                    <a href="{% url 'admissionformPage' %}"><button class="btn btn-outline-primary">নিবন্ধন করুন</button></a>
                                 </div>
                             </div>
                             

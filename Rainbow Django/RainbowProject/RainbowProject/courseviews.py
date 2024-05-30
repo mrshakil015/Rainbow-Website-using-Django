@@ -24,7 +24,6 @@ def addCoursePage(request):
             ClassDurationHour =coursedurationhour,
             ClassDurationMinute =coursedurationminute,
             CourseFee =coursefee,
-            NoOfStudents ='০',
             AboutCourse =aboutcourse,
             CourseTopics=coursetopics,
             CourseImage=courseimage,
@@ -37,8 +36,26 @@ def addCoursePage(request):
 def courseList(request):
    courseinfo = CourseInfoModel.objects.all()
    
+   # studentcount = StudentInfoModel.objects.filter(CourseName='Graphic Designing').count()
+   courseList = []
+   for i in courseinfo:
+      studentcount = StudentInfoModel.objects.filter(CourseName=i).count()
+      print("Course name: ",i.CourseName)
+      
+      courseList.append(
+         {
+            'id':i.id,
+            'CourseName':i.CourseName,
+            'studentcount':studentcount,
+            'CourseDuration':i.CourseDuration,
+            'CourseFee':i.CourseFee,
+         }
+      )
+      
+    
+   
    context = {
-      'courseinfo':courseinfo,
+      'courseList':courseList,
    }
    
    return render(request,'course/courselist.html',context)

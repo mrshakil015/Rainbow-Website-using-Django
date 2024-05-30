@@ -44,7 +44,7 @@
         <div class="col-lg-4 course-card-item">
           <div class="card card-item">
             <div class="card-header view view-cascade overlay text-center">
-              <img src="/{{i.CourseImage}}" class="card-img-top" alt="profile image">
+              <img src="{{i.CourseImage.url}}" class="card-img-top" alt="profile image">
             </div>
             <div class="card-body">
               <hr>
@@ -56,7 +56,7 @@
                 <p class="price">৳ {{i.CourseFee}}/-</p>
                 <hr>
                 <div class="course-footer">
-                  <button class="btn btn-outline-primary">বিস্তারিত দেখুন</button>
+                  <a href="{% url 'viewCourse' i.id %}" class="btn btn-outline-primary">বিস্তারিত দেখুন</a>
                 </div>
               </div>
             </div>
@@ -113,7 +113,7 @@
         <div class="col-lg-3 student-card-item">
             <div class="card card-item">
                 <div class="view view-cascade overlay text-center">
-                    <img src="/{{ i.StudentImage }}" class="card-img-top" alt="profile image">
+                    <img src="{{ i.StudentImage.url }}" class="card-img-top" alt="profile image">
                 </div>
                 <div class="card-body">
                     <h4 class="card-title"><strong>{{ i.StudentName }}</strong></h4>
@@ -141,7 +141,7 @@
         {% for i in galleryData %}
         <div class="col-lg-6 gallery-item">
             <div class="img-card" style="height: 300px; padding-top:20px;">
-                <img src="/{{ i.GalleryImage }}" class="card-img-top" alt="profile image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                <img src="{{ i.GalleryImage.url }}" class="card-img-top" alt="profile image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
             </div>
         </div>
         {% endfor %}

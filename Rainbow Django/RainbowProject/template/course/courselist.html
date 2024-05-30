@@ -37,17 +37,15 @@
                       </thead>
                       <tbody>
                         
-                        {% for i in courseinfo %}
+                        {% for i in courseList %}
                         <tr>
                            <td>{{i.id}}</td>
                            <td>
-                                 <a href="">{{i.CourseName}}</a>
-                             
+                              <a href="">{{i.CourseName}}</a>
                            </td>
-                           <td>{{i.NoOfStudents}}</td>
+                           <td>{{i.studentcount}}</td>
                            <td>{{i.CourseDuration}} মাস</td>
                            <td>{{i.CourseFee}}/-</td>
-                           
                            
                            <td class="text-right">
                               <div class="actions">
