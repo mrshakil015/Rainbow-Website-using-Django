@@ -25,6 +25,24 @@
                      <div class="col-12">
                         <h5 class="form-title"><span>Student Information</span></h5>
                      </div>
+
+                     <div class="col-lg-12 col-12 col-sm-6 mb-3">
+                        <div class="profile-header">
+                           <div class="row align-items-center">
+                              <div class="col-auto profile-image">
+                                 <a href="#">
+                                    <img alt="User Image" src="{{studentdata.StudentPhoto.url}}">
+                                 </a>
+                              </div>
+
+                              <div class="col ml-md-n2 profile-user-info">
+                                 <h4 class="user-name mb-0">{{studentdata.StudentName}}</h4>
+                                 <h6 class="text-muted">{{studentdata.CourseName}}</h6>
+                                 <div class="user-Location"><i class="fas fa-map-marker-alt"></i> {{studentdata.PresentAddress}}</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                      <div class="col-12 col-sm-6">
                         <div class="form-group">
                            <label>Full Name</label>
@@ -116,7 +134,7 @@
                            <select name="coursename" class="form-control">
                               <option>Select Course</option>                              
                               {% for i in courseData %}
-                              <option value="{{i.CourseName}}" {% if studentdata.CourseName == i.CourseName %} selected {% endif %}>{{i.CourseName}}</option>
+                              <option value="{{i.CourseName}}" {% if studentdata.CourseName == i %} selected {% endif %}>{{i.CourseName}}</option>
                               {% endfor %}
                            </select>
                         </div>

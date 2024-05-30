@@ -25,6 +25,23 @@
                      <div class="col-12">
                         <h5 class="form-title"><span>Student Information</span></h5>
                      </div>
+                     <div class="col-lg-12 col-12 col-sm-12 mb-3">
+                        <div class="profile-header">
+                           <div class="row align-items-center">
+                              <div class="col-auto profile-image">
+                                 <a href="#">
+                                    <img alt="User Image" src="{{pendingstudentdata.StudentPhoto.url}}">
+                                 </a>
+                              </div>
+
+                              <div class="col ml-md-n2 profile-user-info">
+                                 <h4 class="user-name mb-0">{{pendingstudentdata.StudentName}}</h4>
+                                 <h6 class="text-muted">{{pendingstudentdata.CourseName}}</h6>
+                                 <div class="user-Location"><i class="fas fa-map-marker-alt"></i> {{pendingstudentdata.Address}}</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                      <div class="col-12 col-sm-6">
                         <div class="form-group">
                            <label>Full Name</label>
