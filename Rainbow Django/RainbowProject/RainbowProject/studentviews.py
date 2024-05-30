@@ -146,6 +146,7 @@ def editStudent(request,myid):
 def deleteStudent(request,user):
    studentdata = CustomUserModel.objects.get(username=user)
    studentdata.delete()
+   messages.success(request,'Student Deleted Done.')
    return redirect('studentList')
 
 def admitedcourseInfo(request):
@@ -294,3 +295,11 @@ def editPendingStudent(request,myid):
             return redirect('studentList') 
     
     return render(request,'students/editpendingstudent.html',context)
+
+
+def admissionPage(request):
+    student_info=StudentInfoModel.objects.get(RollNo=21)
+    context = {
+        'student_info':student_info,
+    }
+    return render(request,'commons/test.html',context)

@@ -192,3 +192,9 @@ def editService(request,myid):
         return redirect('serviceList')
     
     return render(request,'ourservice/editservice.html',context)    
+
+def deleteService(request,myid):
+    servicedata = ServiceInfoModel.objects.get(id=myid)
+    servicedata.delete()
+    messages.success(request,'Service Successfully Deleted.')
+    return redirect('serviceList')

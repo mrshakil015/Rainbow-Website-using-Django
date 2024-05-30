@@ -113,6 +113,7 @@ def editCoursePage(request,myid):
 def deleteCourse(request,myid):
    courseData = CourseInfoModel.objects.get(id=myid)
    courseData.delete()
+   messages.success(request,'Course Successfully Deleted.')
    return redirect('courseList')
 
 def coursePage(request):

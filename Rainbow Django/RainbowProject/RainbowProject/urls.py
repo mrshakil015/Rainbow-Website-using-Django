@@ -54,6 +54,10 @@ urlpatterns = [
     path('serviceList/',serviceList, name='serviceList'),
     path('addService/',addService, name='addService'),
     path('editService/<str:myid>',editService, name='editService'),
+    path('deleteService/<str:myid>',deleteService, name='deleteService'),
+    
+    
+    path('admissionPage/',admissionPage, name='admissionPage'),
 ]
 
 urlpatterns+=re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),

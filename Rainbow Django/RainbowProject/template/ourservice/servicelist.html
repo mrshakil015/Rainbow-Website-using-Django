@@ -4,7 +4,7 @@
 {% load static %}
 
 <!-- Include messages -->
-{% include 'commons/messsage.html' %}
+{% include 'commons/message.html' %}
 
 <div class="content container-fluid">
     <div class="page-header">
@@ -18,7 +18,7 @@
           </div>
           <div class="col-auto text-right float-right ml-auto">
              <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-             <a href="{% url 'addCoursePage' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+             <a href="{% url 'addService' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
           </div>
        </div>
     </div>
@@ -52,7 +52,7 @@
                                  <a href="{% url 'editService' i.id %}" class="btn btn-sm bg-success-light mr-2">
                                  <i class="fas fa-pen"></i>
                                  </a>
-                                 <a href="" class="btn btn-sm bg-danger-light">
+                                 <a href="{% url 'deleteService' i.id %}" class="btn btn-sm bg-danger-light">
                                  <i class="fas fa-trash"></i>
                                  </a>
                               </div>
