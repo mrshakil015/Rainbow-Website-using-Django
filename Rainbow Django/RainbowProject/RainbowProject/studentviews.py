@@ -191,6 +191,14 @@ def studentList(request):
 
 
 def admissionformPage(request):
+    
+    courseData = CourseInfoModel.objects.all()
+
+
+    context = {
+        'courseData':courseData,
+    }
+    
     if request.method == 'POST':
         coursename = request.POST.get('coursename')
         studentname = request.POST.get('studentname')
@@ -204,8 +212,10 @@ def admissionformPage(request):
         address = request.POST.get('address')
         studentphoto = request.FILES.get('studentphoto')
         
+        courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
+        
         admissiondata = AdmissionFormModel(
-            CourseName=coursename,
+            CourseName=courseinfo,
             StudentName=studentname,
             FatherName=fathername,
             MotherName=mothername,
@@ -219,7 +229,7 @@ def admissionformPage(request):
         admissiondata.save()
         return redirect('homePage')
         
-    return render(request,'students/admissionform.html')
+    return render(request,'students/admissionform.html',context)
 
 def pendingStudentList(request):
     pendingstudentdata = AdmissionFormModel.objects.all()
@@ -277,7 +287,7 @@ def editPendingStudent(request,myid):
                 UserType = 'Student',
             )
             studentuser.save()
-            
+            courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
             studentData = StudentInfoModel(
                 user=studentuser,
                 StudentName=fullname,
@@ -293,7 +303,7 @@ def editPendingStudent(request,myid):
                 PermanentAddress=permanentaddress,
                 
                 RollNo=rollno,
-                CourseName=coursename,
+                CourseName=courseinfo,
                 BatchNo=batchno,
                 Batchschedule=batchschedule,
                 Section=section,
@@ -302,12 +312,6 @@ def editPendingStudent(request,myid):
                 Due=due,
             )
             studentData.save()
-            
-            
-            courseStu = CourseInfoModel.objects.get(CourseName=coursename)
-            CourseInfoModel.objects.filter(CourseName=coursename).update(
-                NoOfStudents = int(courseStu.NoOfStudents)+1
-            )
             
             pendingstudentdata.delete()
             messages.success(request,'Successfully Created.')

@@ -116,7 +116,7 @@
                            <select name="coursename" class="form-control" required>
                               <option>Select Course</option>                              
                               {% for i in courseData %}
-                              <option value="{{i.CourseName}}">{{i.CourseName}}</option>
+                              <option value="{{i.CourseName}}" {% if pendingstudentdata.CourseName == i %} selected {% endif %}>{{i.CourseName}}</option>
                               {% endfor %}
                            </select>
                         </div>

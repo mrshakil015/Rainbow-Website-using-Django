@@ -43,10 +43,14 @@
                                         <select id="coursename" name="coursename" class="form-control"
                                             required="required" data-error="Select the Course.">
                                             <option value="" selected disabled>--Select Course--</option>
-                                            <option value="Office Application Program">Office Application Program</option>
-                                            <option value="Graphic Designing">Graphic Designing</option>
-                                            <option value="Digital Marketing">Digital Marketing</option>
-                                            <option value="Computer Hardware">Computer Hardware</option>
+
+                                            
+                                            {% for i in courseData %}
+
+                                            <option value="{{i.CourseName}}">{{i.id}} - {{i.CourseName}}</option>
+                                                
+                                            {% endfor %}
+                                                
                                         </select>
                                     </div>
                                 </div>
