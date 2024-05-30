@@ -20,7 +20,15 @@
                 </li>
                 <li><a href="{% url 'pendingStudentList' %}"><i class="fas fa-list"></i><span>Pending Student List</span> </a></li>
                 <li class="submenu">
-                    <a href="#"><i class="fas fa-book-reader"></i> <span> Courses</span> <span
+                    <a href="#"><i class="fas fa-check-circle"></i> <span>Successful Student</span> <span
+                            class="menu-arrow"></span></a>
+                    <ul>
+                        <li><a href="{% url 'courseList' %}">Successful Student List</a></li>
+                        <li><a href="{% url 'addCoursePage' %}">Add Successful Student</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#"><i class="fas fa-book"></i> <span> Courses</span> <span
                             class="menu-arrow"></span></a>
                     <ul>
                         <li><a href="{% url 'courseList' %}">Course List</a></li>
