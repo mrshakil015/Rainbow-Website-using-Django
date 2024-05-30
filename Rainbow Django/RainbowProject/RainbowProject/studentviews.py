@@ -74,10 +74,6 @@ def addStudentPage(request):
             )
             studentData.save()
             
-            # courseStu = CourseInfoModel.objects.get(CourseName=coursename)
-            # CourseInfoModel.objects.filter(CourseName=coursename).update(
-            #     NoOfStudents = int(courseStu.NoOfStudents)+1
-            # )
             messages.success(request,'Successfully Created.')
             return redirect('studentList') 
     
@@ -227,6 +223,7 @@ def admissionformPage(request):
 
 def pendingStudentList(request):
     pendingstudentdata = AdmissionFormModel.objects.all()
+    
     
     context = {
         'pendingstudentdata':pendingstudentdata,
