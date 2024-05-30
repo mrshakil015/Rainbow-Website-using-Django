@@ -62,9 +62,26 @@ def logoutPage(request):
 
 def adminDashboard(request):
     studentinfo = StudentInfoModel.objects.all()
+    courseinfo = CourseInfoModel.objects.all()
+    
+    courseList = []
+    for i in courseinfo:
+        studentcount = StudentInfoModel.objects.filter(CourseName=i).count()
+        print("Course name: ",i.CourseName)
+        
+        courseList.append(
+            {
+            'id':i.id,
+            'CourseName':i.CourseName,
+            'studentcount':studentcount,
+            'CourseDuration':i.CourseDuration,
+            'CourseFee':i.CourseFee,
+            }
+        )
     
     context = {
         'studentinfo':studentinfo,
+        'courseList':courseList,
     }
     
     return render(request,'myadmin/admindashboard.html',context)

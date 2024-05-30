@@ -2625,9 +2625,9 @@ table.table-inbox tbody tr.checked {
 	background-color: transparent;
 }
 .profile-header img {
-    height: auto;
-    max-width: 120px;
     width: 120px;
+    height: 120px;
+    object-fit: cover;
 }
 .profile-tab-cont {
 	padding-top: 1.875rem;
