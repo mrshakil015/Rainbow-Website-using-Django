@@ -19,7 +19,6 @@
                     </ul>
                 </li>
                 <li><a href="{% url 'pendingStudentList' %}"><i class="fas fa-list"></i><span>Pending Student List</span> </a></li>
-
                 <li class="submenu">
                     <a href="#"><i class="fas fa-book-reader"></i> <span> Courses</span> <span
                             class="menu-arrow"></span></a>
@@ -28,25 +27,8 @@
                         <li><a href="{% url 'addCoursePage' %}">Course Add</a></li>
                     </ul>
                 </li>
-                <li class="menu-title">
-                    <span>Management</span>
-                </li>
-                <li class="submenu">
-                    <a href="#"><i class="fas fa-file-invoice-dollar"></i> <span> Accounts</span> <span
-                            class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="fees-collections.html">Fees Collection</a></li>
-                        <li><a href="expenses.html">Expenses</a></li>
-                        <li><a href="salary.html">Salary</a></li>
-                        <li><a href="add-fees-collection.html">Add Fees</a></li>
-                        <li><a href="add-expenses.html">Add Expenses</a></li>
-                        <li><a href="add-salary.html">Add Salary</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="exam.html"><i class="fas fa-clipboard-list"></i> <span>Exam list</span></a>
-                </li>
+                <li><a href="{% url 'pendingStudentList' %}"><i class="fas fa-clipboard-list"></i><span>Exam Result</span> </a></li>
+                <li><a href="{% url 'pendingStudentList' %}"><i class="fas fa-file-invoice-dollar"></i><span>Payment</span> </a></li>           
                 </ul>
 
                 {% elif user.UserType == 'Student' %}

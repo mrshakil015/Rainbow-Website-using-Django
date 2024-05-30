@@ -65,9 +65,12 @@ def adminDashboard(request):
     courseinfo = CourseInfoModel.objects.all()
     
     courseList = []
+    totalStudents = 0
+    
     for i in courseinfo:
         studentcount = StudentInfoModel.objects.filter(CourseName=i).count()
-        print("Course name: ",i.CourseName)
+        totalStudents+=studentcount
+        
         
         courseList.append(
             {
@@ -78,12 +81,14 @@ def adminDashboard(request):
             'CourseFee':i.CourseFee,
             }
         )
-    
+    totalCourse = len(courseList)
     context = {
         'studentinfo':studentinfo,
         'courseList':courseList,
+        'totalStudents':totalStudents,
+        'totalCourse':totalCourse,
     }
-    
+
     return render(request,'myadmin/admindashboard.html',context)
 
 def studentSignin(request):
