@@ -60,6 +60,7 @@
                      <thead>
                         <tr>
                            <th>Roll No</th>
+                           <th>Photo</th>
                            <th>Name</th>
                            <th>Course Name</th>
                            <th>Mobile Number</th>
@@ -73,6 +74,10 @@
                        {% for i in studentinfo %}
                        <tr>
                           <td>{{i.RollNo}}</td>
+                          <td>
+                           <h2 class="table-avatar">
+                              <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{i.StudentPhoto.url}}" alt="User Image"></a>
+                           </h2>
                           <td>
                                 <a href="">{{i.StudentName}}</a>
                             

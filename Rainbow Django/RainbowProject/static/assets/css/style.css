@@ -43,9 +43,9 @@ body {
 	background-color: #fff;
 	color: #333;
 	font-family: 'Poppins', sans-serif;
-	font-size: 1rem;
+	font-size: 0.8rem;
 	height: 100%;
-	line-height: 1.5;
+	line-height: 1;
 	overflow-x: hidden;
 }
 
@@ -252,7 +252,7 @@ table.table td h2 span {
 }
 .card-table .table td, .card-table .table th {
     border-top: 1px solid #e2e5e8;
-    padding: 1rem 0.75rem;
+    padding: 0.5rem 0.3rem;
     white-space: nowrap;
 }
 .table .thead-light th {
@@ -847,7 +847,7 @@ button.bg-danger:hover {
     margin-bottom: 1.875rem;
 }
 .card-body {
-	padding: 1.5rem;
+	padding: 1rem;
 }
 .card-header {
 	border-bottom: 1px solid #e6e6e6;
@@ -884,15 +884,15 @@ button.bg-danger:hover {
 	border-bottom-color:#4a45cf;
 }
 .bg-info-light{
-	background-color:rgba(2, 182, 179,0.12) !important;
-	color:#1db9aa !important;
+	background-color:#009efb !important;
+	color:#fff !important;
 }
 .bg-primary-light{
 	background-color:rgba(17, 148, 247,0.12) !important;
 	color:#2196f3 !important;
 }
 .bg-danger-light{
-	background-color:#4a45cf !important;
+	background-color:#ee0000 !important;
 	color:#fff !important;
 }
 .bg-warning-light{
@@ -900,7 +900,7 @@ button.bg-danger:hover {
 	color:#f39c12 !important;
 }
 .bg-success-light{
-	background-color: #18aefa;
+	background-color: #02ba05;
     color: #fff;
 }
 .bg-purple-light{
@@ -1356,7 +1356,7 @@ div.dataTables_wrapper div.dataTables_info {
     height: 60px;
     padding: 0 20px;
     position: relative;
-    width: 320px;
+    width: 270px;
     z-index: 1;
     transition: all 0.2s ease-in-out;
     background-color: #f7f7fa;
@@ -1605,7 +1605,7 @@ footer p {
     position: fixed;
     top: 60px;
     transition: all 0.2s ease-in-out 0s;
-    width: 320px;
+    width: 270px;
     z-index: 1001;	
 }
 .sidebar.opened {
@@ -1622,7 +1622,7 @@ footer p {
     padding: 15px;
 }
 .sidebar-menu ul {
-	font-size: 15px;
+	font-size: 0.8rem;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -1631,7 +1631,7 @@ footer p {
 .sidebar-menu li a {
 	color: #6f6f6f;
 	display: block;
-	font-size: 16px;
+	font-size: 0.8rem;
 	height: auto;
 	padding: 0 20px;
 }
@@ -1712,7 +1712,7 @@ footer p {
 }
 .sidebar-menu ul ul a {
     display: block;
-    font-size: 15px;
+    font-size: 0.8rem;
     padding: 7px 10px 7px 45px;
     position: relative;
 }
@@ -1769,7 +1769,7 @@ footer p {
     align-items: center;
     display: flex;
     justify-content: flex-start;
-    padding: 12px 15px;
+    padding: 8px 10px;
     position: relative;
     transition: all 0.2s ease-in-out 0s;
 }
@@ -1802,7 +1802,7 @@ footer p {
 	min-height: 100vh;
 }
 .page-wrapper {
-	margin-left: 320px;
+	margin-left: 270px;
 	padding-top: 60px;
 	position: relative;
 	transition: all 0.4s ease;
@@ -1816,7 +1816,7 @@ footer p {
 .page-header .breadcrumb {
     background-color: transparent;
     color: #6c757d;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 500;
     margin-bottom: 0;
     padding: 0;
@@ -1825,7 +1825,7 @@ footer p {
 	color: #333;
 }
 .page-title {
-	font-size: 28px;
+	font-size: 20px;
 	font-weight: 600;
     color: #333;
     margin-bottom: 5px;
@@ -2112,10 +2112,10 @@ footer p {
 	border-radius: 30px 0px;
 }
 .db-icon {
-	font-size: 25px;
-    width: 60px;
-    height: 60px;
-    padding: 13px 21px;
+	font-size: 19px;
+    width: 40px;
+    height: 40px;
+    padding: 13px 10px;
 	border-radius: 10px;
 	color: #fff;
 	margin-right: 20px;
