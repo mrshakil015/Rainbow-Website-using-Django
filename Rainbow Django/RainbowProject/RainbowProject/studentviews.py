@@ -100,6 +100,7 @@ def editStudent(request,myid):
         emergencymobile=request.POST.get('emergencymobile')
         email=request.POST.get('email')
         studentImage=request.FILES.get('studentImage')
+        print("Image path: ",studentImage)
         presentaddress=request.POST.get('presentaddress')
         permanentaddress=request.POST.get('permanentaddress')
         
@@ -112,56 +113,31 @@ def editStudent(request,myid):
         payment=request.POST.get('payment')
         
         due = int(coursefee) - int(payment)
+        courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
 
+        studentdata.StudentName=fullname
+        studentdata.FatherName=fathername
+        studentdata.MotherName=mothername
+        studentdata.Gender=gender
+        studentdata.DOB=dateofbirth
+        studentdata.Religion=religion
+        studentdata.Mobile=mobile
+        studentdata.EmergencyMobile=emergencymobile
         if studentImage:
-            StudentInfoModel.objects.filter(id=myid).update(
-                StudentName=fullname,
-                FatherName=fathername,
-                MotherName=mothername,
-                Gender=gender,
-                DOB=dateofbirth,
-                Religion=religion,
-                Mobile=mobile,
-                EmergencyMobile=emergencymobile,
-                StudentPhoto=studentImage,
-                PresentAddress=presentaddress,
-                PermanentAddress=permanentaddress,
-                
-                RollNo=rollno,
-                CourseName=coursename,
-                BatchNo=batchno,
-                Batchschedule=batchschedule,
-                Section=section,
-                CourseFee=coursefee,
-                Payment=payment,
-                Due=due,
-            )
-        else:
-            studentdata = StudentInfoModel.objects.get(id=myid)
-            previImg = studentdata.StudentPhoto
-            
-            StudentInfoModel.objects.filter(id=myid).update(
-                StudentName=fullname,
-                FatherName=fathername,
-                MotherName=mothername,
-                Gender=gender,
-                DOB=dateofbirth,
-                Religion=religion,
-                Mobile=mobile,
-                EmergencyMobile=emergencymobile,
-                StudentPhoto=previImg,
-                PresentAddress=presentaddress,
-                PermanentAddress=permanentaddress,
-                
-                RollNo=rollno,
-                CourseName=coursename,
-                BatchNo=batchno,
-                Batchschedule=batchschedule,
-                Section=section,
-                CourseFee=coursefee,
-                Payment=payment,
-                Due=due,
-            )
+            studentdata.StudentPhoto=studentImage
+        studentdata.PresentAddress=presentaddress
+        studentdata.PermanentAddress=permanentaddress
+        
+        studentdata.RollNo=rollno
+        studentdata.CourseName=courseinfo
+        studentdata.BatchNo=batchno
+        studentdata.Batchschedule=batchschedule
+        studentdata.Section=section
+        studentdata.CourseFee=coursefee
+        studentdata.Payment=payment
+        studentdata.Due=due
+        
+        studentdata.save()
         messages.success(request,'Successfully Updated.')
         return redirect('studentList')
     

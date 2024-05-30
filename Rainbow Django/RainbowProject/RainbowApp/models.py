@@ -38,7 +38,7 @@ class StudentInfoModel(models.Model):
     Religion = models.CharField(max_length=100)
     Mobile = models.CharField(max_length=100)
     EmergencyMobile = models.CharField(max_length=100)
-    StudentPhoto = models.ImageField(upload_to='pendingstudent')
+    StudentPhoto = models.ImageField(upload_to='studentphoto')
     PresentAddress = models.CharField(max_length=100)
     PermanentAddress = models.CharField(max_length=100)
     RollNo = models.CharField(max_length=100)
