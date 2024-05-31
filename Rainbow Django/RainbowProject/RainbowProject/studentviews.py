@@ -303,3 +303,63 @@ def admissionPage(request):
         'student_info':student_info,
     }
     return render(request,'commons/test.html',context)
+
+
+
+#-----------------Successfull Students-----------------
+def addSuccessfulStudent(request):
+    if request.method == 'POST':
+        studentname=request.POST.get('studentname')
+        jobplace=request.POST.get('jobplace')
+        designation=request.POST.get('designation')
+        studentImage=request.FILES.get('studentImage')
+        
+        studentData = SuccessfulStudentInfoModel(
+            StudentName=studentname,
+            StudentDesignation=jobplace,
+            StudentInstitute=designation,
+            StudentImage=studentImage,
+        )
+        studentData.save()
+        messages.success(request,'Successfully Created.') 
+        return redirect('successStudentList')
+    return render(request,'students/addsuccessstudent.html')
+
+def successStudentList(request):
+    studentData = SuccessfulStudentInfoModel.objects.all()
+    
+    context = {
+        'studentData':studentData
+    }
+    
+    return render(request,'students/success_student_list.html',context)
+
+def deleteSuccessStudent(request,myid):
+    studentData = SuccessfulStudentInfoModel.objects.get(id=myid)
+    studentData.delete()
+    messages.success(request,'Delete Successfully.') 
+    return redirect('successStudentList')
+
+def editSuccessStudent(request,myid):
+    studentData = SuccessfulStudentInfoModel.objects.get(id=myid)
+    context = {
+        'studentData':studentData
+    }
+    
+    if request.method=='POST':
+        studentname=request.POST.get('studentname')
+        jobplace=request.POST.get('jobplace')
+        designation=request.POST.get('designation')
+        studentImage=request.FILES.get('studentImage')
+        
+        studentData.StudentName = studentname
+        studentData.StudentInstitute = jobplace
+        studentData.StudentDesignation = designation
+        if studentImage:
+            studentData.StudentImage = studentImage
+        
+        studentData.save()
+        messages.success(request,'Updated Successfully.')
+        return redirect('successStudentList')
+    
+    return render(request,'students/success_student_edit.html',context)

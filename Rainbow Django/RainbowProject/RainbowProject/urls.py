@@ -30,6 +30,11 @@ urlpatterns = [
     path('admitedcourseInfo/',admitedcourseInfo, name='admitedcourseInfo'),
     path('admitedcoursePaymentInfo/',admitedcoursePaymentInfo, name='admitedcoursePaymentInfo'),
     
+    path('addSuccessfulStudent/',addSuccessfulStudent, name='addSuccessfulStudent'),
+    path('successStudentList/',successStudentList, name='successStudentList'),
+    path('editSuccessStudent/<str:myid>',editSuccessStudent, name='editSuccessStudent'),
+    path('deleteSuccessStudent/<str:myid>',deleteSuccessStudent, name='deleteSuccessStudent'),
+    
     #------------Course Section----------------
     path('addCoursePage/',addCoursePage, name='addCoursePage'),
     path('courseList/',courseList, name='courseList'),

@@ -1,0 +1,83 @@
+{% extends 'adminmaster/adminmaster.html' %}
+
+{% block admincontent %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Add Successfull Students</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="students.html">Students</a></li>
+               <li class="breadcrumb-item active">Add Successfull Students</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="card">
+            
+            <div class="card-body">
+               {% include 'commons/message.html' %}
+               <form action="{% url 'editSuccessStudent' studentData.id %}" method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Student Information</span></h5>
+                     </div>
+                     <div class="col-lg-12 col-12 col-sm-6 mb-3">
+                        <div class="profile-header">
+                           <div class="row align-items-center">
+                              <div class="col-auto profile-image">
+                                 <a href="#">
+                                    <img alt="User Image" src="{{studentData.StudentImage.url}}">
+                                 </a>
+                              </div>
+
+                              <div class="col ml-md-n2 profile-user-info">
+                                 <h4 class="user-name mb-0">{{studentData.StudentName}}</h4>
+                                 <h6 class="text-muted">{{studentData.StudentDesignation}}</h6>
+                                 <div class="user-Location"><i class="fas fa-map-marker-alt"></i> {{studentData.StudentInstitute}}</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Student Name</label>
+                           <input type="text" name="studentname" value="{{studentData.StudentName}}" class="form-control">
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Job Place Name</label>
+                           <input type="text" name="jobplace" value="{{studentData.StudentInstitute}}" class="form-control">
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Designation</label>
+                           <input type="text" name="designation" value="{{studentData.StudentDesignation}}" class="form-control">
+                        </div>
+                     </div>
+                       
+                    <div class="col-12 col-sm-6">
+                     <div class="form-group">
+                        <label>Student Image</label>
+                        <input type="file" name="studentImage" class="form-control">
+                     </div>
+                  </div>
+                     
+                     <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+    
+{% endblock admincontent %}
+    

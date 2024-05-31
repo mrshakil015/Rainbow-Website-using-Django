@@ -27,7 +27,7 @@
                    <table class="table table-hover table-center mb-0 datatable">
                       <thead>
                          <tr>
-                            <th>ID No</th>
+                            <th>SL No</th>
                             <th>Course Name</th>
                             <th>No of Students</th>
                             <th>Course Duration</th>
@@ -39,7 +39,7 @@
                         
                         {% for i in courseList %}
                         <tr>
-                           <td>{{i.id}}</td>
+                           <td>{{ forloop.counter }}</td>
                            <td>
                               <a href="">{{i.CourseName}}</a>
                            </td>
