@@ -5,9 +5,11 @@ from django.contrib import messages
 def addStudentPage(request):
     
     courseData = CourseInfoModel.objects.all()
+    batchData = BatchInfoModel.objects.all()
     
     context = {
-        'courseData':courseData
+        'courseData':courseData,
+        'batchData':batchData,
     }
     
     if request.method == 'POST':
@@ -48,6 +50,7 @@ def addStudentPage(request):
             studentuser.save()
             
             courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
+            batchinfo = BatchInfoModel.objects.get(BatchNo=batchno)
             
             studentData = StudentInfoModel.objects.create(
                 user=studentuser,
@@ -65,7 +68,7 @@ def addStudentPage(request):
                 
                 RollNo=rollno,
                 CourseName=courseinfo,
-                BatchNo=batchno,
+                BatchNo=batchinfo,
                 Batchschedule=batchschedule,
                 Section=section,
                 CourseFee=coursefee,
@@ -81,14 +84,15 @@ def addStudentPage(request):
 
 def editStudent(request,myid):
     courseData = CourseInfoModel.objects.all()   
+    batchData = BatchInfoModel.objects.all()
     studentdata = StudentInfoModel.objects.get(id=myid)
     date_of_birth = studentdata.DOB.isoformat() if studentdata.DOB else ''
     context = {
         'studentdata':studentdata,
         'courseData':courseData,
         'date_of_birth': date_of_birth,
+        'batchData': batchData,
     }
-    
     if request.method == 'POST':
         fullname=request.POST.get('fullname')
         fathername=request.POST.get('fathername')
@@ -100,7 +104,6 @@ def editStudent(request,myid):
         emergencymobile=request.POST.get('emergencymobile')
         email=request.POST.get('email')
         studentImage=request.FILES.get('studentImage')
-        print("Image path: ",studentImage)
         presentaddress=request.POST.get('presentaddress')
         permanentaddress=request.POST.get('permanentaddress')
         
@@ -114,10 +117,13 @@ def editStudent(request,myid):
         
         due = int(coursefee) - int(payment)
         courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
-
+        batchinfo = BatchInfoModel.objects.get(BatchNo=batchno)
+        
+        
         studentdata.StudentName=fullname
         studentdata.FatherName=fathername
         studentdata.MotherName=mothername
+        
         studentdata.Gender=gender
         studentdata.DOB=dateofbirth
         studentdata.Religion=religion
@@ -130,12 +136,19 @@ def editStudent(request,myid):
         
         studentdata.RollNo=rollno
         studentdata.CourseName=courseinfo
-        studentdata.BatchNo=batchno
-        studentdata.Batchschedule=batchschedule
-        studentdata.Section=section
+        studentdata.BatchNo=batchinfo
+        if batchschedule != 'Select Batch Schedule':
+            studentdata.Batchschedule=batchschedule
+        if section != 'Select Section':
+            studentdata.Section=section
         studentdata.CourseFee=coursefee
         studentdata.Payment=payment
         studentdata.Due=due
+        
+        CustomUserModel.objects.filter(username = rollno).update(
+            email=email
+        )
+        
         
         studentdata.save()
         messages.success(request,'Successfully Updated.')
@@ -220,12 +233,15 @@ def pendingStudentList(request):
 
 def editPendingStudent(request,myid):
     pendingstudentdata = AdmissionFormModel.objects.get(id=myid)
+    batchData = BatchInfoModel.objects.all()
     courseData = CourseInfoModel.objects.all()   
     date_of_birth = pendingstudentdata.DOB.isoformat() if pendingstudentdata.DOB else ''
-    
+    for batch in batchData:
+        print("Batch data is: ",batch.Batchschedule)
     context = {
         'pendingstudentdata':pendingstudentdata,
         'courseData':courseData,
+        'batchData':batchData,
         'date_of_birth':date_of_birth,
     }
     
@@ -240,6 +256,7 @@ def editPendingStudent(request,myid):
         emergencymobile=request.POST.get('emergencymobile')
         email=request.POST.get('email')
         studentImage=request.FILES.get('studentImage')
+        preimg=request.FILES.get('preimg')
         presentaddress=request.POST.get('presentaddress')
         permanentaddress=request.POST.get('permanentaddress')
         
@@ -265,29 +282,56 @@ def editPendingStudent(request,myid):
             )
             studentuser.save()
             courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
-            studentData = StudentInfoModel(
-                user=studentuser,
-                StudentName=fullname,
-                FatherName=fathername,
-                MotherName=mothername,
-                Gender=gender,
-                DOB=dateofbirth,
-                Religion=religion,
-                Mobile=mobile,
-                EmergencyMobile=emergencymobile,
-                StudentPhoto=studentImage,
-                PresentAddress=presentaddress,
-                PermanentAddress=permanentaddress,
-                
-                RollNo=rollno,
-                CourseName=courseinfo,
-                BatchNo=batchno,
-                Batchschedule=batchschedule,
-                Section=section,
-                CourseFee=coursefee,
-                Payment=payment,
-                Due=due,
-            )
+            batchinfo = BatchInfoModel.objects.get(BatchNo=batchno)
+            
+            if studentImage:
+                studentData = StudentInfoModel(
+                    user=studentuser,
+                    StudentName=fullname,
+                    FatherName=fathername,
+                    MotherName=mothername,
+                    Gender=gender,
+                    DOB=dateofbirth,
+                    Religion=religion,
+                    Mobile=mobile,
+                    EmergencyMobile=emergencymobile,
+                    StudentPhoto=studentImage,
+                    PresentAddress=presentaddress,
+                    PermanentAddress=permanentaddress,
+                    
+                    RollNo=rollno,
+                    CourseName=courseinfo,
+                    BatchNo=batchinfo,
+                    Batchschedule=batchschedule,
+                    Section=section,
+                    CourseFee=coursefee,
+                    Payment=payment,
+                    Due=due,
+                )
+            else:
+                studentData = StudentInfoModel(
+                    user=studentuser,
+                    StudentName=fullname,
+                    FatherName=fathername,
+                    MotherName=mothername,
+                    Gender=gender,
+                    DOB=dateofbirth,
+                    Religion=religion,
+                    Mobile=mobile,
+                    EmergencyMobile=emergencymobile,
+                    StudentPhoto=preimg,
+                    PresentAddress=presentaddress,
+                    PermanentAddress=permanentaddress,
+                    
+                    RollNo=rollno,
+                    CourseName=courseinfo,
+                    BatchNo=batchinfo,
+                    Batchschedule=batchschedule,
+                    Section=section,
+                    CourseFee=coursefee,
+                    Payment=payment,
+                    Due=due,
+                )
             studentData.save()
             
             pendingstudentdata.delete()

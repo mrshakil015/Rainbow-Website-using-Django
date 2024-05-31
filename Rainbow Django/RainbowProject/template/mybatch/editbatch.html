@@ -1,0 +1,92 @@
+{% extends 'adminmaster/adminmaster.html' %}
+
+{% block admincontent %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Edit Batch Info</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="{% url 'batchList' %}">Batch</a></li>
+               <li class="breadcrumb-item active">Edit Batch</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="card">
+            
+            <div class="card-body">
+               {% include 'commons/message.html' %}
+               
+               <form action="{% url 'editBatch' batchData.id %}" method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Edit Batch Information</span></h5>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Batch No</label>
+                           <input type="text" name="batchno" value="{{batchData.BatchNo}}" class="form-control">
+                        </div>
+                     </div>
+                     
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Batch Schedule</label>
+                           <select name="schedule" class="form-control">
+                              <option>Select Batch Schedule</option>
+                              <option value="09:00 AM - 10:00 AM" {% if batchData.Batchschedule == '09:00 AM - 10:00 AM' %} selected {% endif %}>09:00 AM - 10:00 AM</option>
+                              <option value="10:00 AM - 11:30 AM" {% if batchData.Batchschedule == '10:00 AM - 11:30 AM' %} selected {% endif %}>10:00 AM - 11:30 AM</option>
+                              <option value="11:30 AM - 01:00 PM" {% if batchData.Batchschedule == '11:30 AM - 01:00 PM' %} selected {% endif %}>11:30 AM - 01:00 PM</option>
+                              <option value="01:00 PM - 02:30 PM" {% if batchData.Batchschedule == '01:00 PM - 02:30 PM' %} selected {% endif %}>01:00 PM - 02:30 PM</option>
+                              <option value="03:00 PM - 04:30 PM" {% if batchData.Batchschedule == '03:00 PM - 04:30 PM' %} selected {% endif %}>03:00 PM - 04:30 PM</option>
+                              <option value="04:30 PM - 06:00 PM" {% if batchData.Batchschedule == '04:30 PM - 06:00 PM' %} selected {% endif %}>04:30 PM - 06:00 PM</option>
+                              <option value="06:00 PM - 07:30 PM" {% if batchData.Batchschedule == '06:00 PM - 07:30 PM' %} selected {% endif %}>06:00 PM - 07:30 PM</option>
+                              <option value="08:00 PM - 09:30 PM" {% if batchData.Batchschedule == '08:00 PM - 09:30 PM' %} selected {% endif %}>08:00 PM - 09:30 PM</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Section</label>
+                           <select name="section" class="form-control">
+                              <option>Select Section</option>
+                              <option value="A" {% if batchData.Section == 'A' %} selected {% endif %}>A</option>
+                              <option value="B" {% if batchData.Section == 'B' %} selected {% endif %}>B</option>
+                              <option value="C" {% if batchData.Section == 'C' %} selected {% endif %}>C</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Batch Status</label>
+                           <select name="status" class="form-control">
+                              <option>Select Status</option>
+                              <option value="Running" {% if batchData.Status == 'Running' %} selected {% endif %}>Running</option>
+                              <option value="Completed" {% if batchData.Status == 'Completed' %} selected {% endif %}>Completed</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Batch Start</label>
+                           <input type="date" name="batchstart" value="{{batch_Date}}" class="form-control">
+                        </div>
+                     </div>
+                     
+                     <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+    
+{% endblock admincontent %}
+    

@@ -3,6 +3,7 @@ from django.urls import path
 from RainbowProject.views import *
 from RainbowProject.studentviews import *
 from RainbowProject.courseviews import *
+from RainbowProject.batchviews import *
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -51,6 +52,12 @@ urlpatterns = [
     path('servicePage/',servicePage, name='servicePage'),
     path('galleryPage/',galleryPage, name='galleryPage'),
     path('admissionformPage/',admissionformPage, name='admissionformPage'),
+    
+    #-----------Batch---------------
+    path('batchList/',batchList, name='batchList'),
+    path('addBatch/',addBatch, name='addBatch'),
+    path('deleteBatch/<str:myid>',deleteBatch, name='deleteBatch'),
+    path('editBatch/<str:myid>',editBatch, name='editBatch'),
     
     #----------Payment-----------
     path('paymentList/',paymentList, name='paymentList'),

@@ -14,6 +14,13 @@
 + CourseTopics
 + CourseImage
 
+# BatchInfoModel:
++ BatchNo
++ Batchschedule
++ Section
++ Status
++ BatchStart
+
 # GalleryInfoModel
 + ImageFile
 + ImageTitle

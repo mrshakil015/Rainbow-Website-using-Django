@@ -131,37 +131,70 @@
                      
                      <div class="col-12 col-sm-6">
                         <div class="form-group">
-                           <label>Batch No</label>
-                           <input name="batchno" class="form-control">
+                            <label>Batch No</label>
+                            <select name="batchno" id="batchno" class="form-control">
+                                <option>Select BatchNo</option>
+                                {% for i in batchData|slice:":15" %}
+                                    {% if i.Status == 'Running' %}
+                                        <option value="{{ i.BatchNo }}" data-schedule="{{ i.Batchschedule }}" data-section="{{ i.Section }}">{{ i.BatchNo }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
                         </div>
-                     </div>
-                     <div class="col-12 col-sm-6">
+                    </div>
+                    <div class="col-12 col-sm-6">
                         <div class="form-group">
-                           <label>Batch Schedule</label>
-                           <select name="batchschedule" class="form-control">
-                              <option>Select Batch Schedule</option>
-                              <option value="9:00 AM">9:00 AM - 10:00 AM</option>
-                              <option value="10:00 AM">10:00 AM - 11:30 AM</option>
-                              <option value="11:30 AM">11:30 AM - 01:00 PM</option>
-                              <option value="01:00 PM">01:00 PM - 02:30 PM</option>
-                              <option value="03:00 PM">03:00 PM - 04:30 PM</option>
-                              <option value="04:30 PM">04:30 PM - 06:00 PM</option>
-                              <option value="06:00 PM">06:00 PM - 07:30 PM</option>
-                              <option value="08:00 PM">08:00 PM - 9:30 PM</option>
-                           </select>
+                            <label>Batch Schedule</label>
+                            <select name="batchschedule" id="batchschedule" class="form-control">
+                                <option>Select Batch Schedule</option>
+                            </select>
                         </div>
-                     </div>
-                     <div class="col-12 col-sm-6">
+                    </div>
+                    <div class="col-12 col-sm-6">
                         <div class="form-group">
-                           <label>Section</label>
-                           <select name="section" class="form-control">
-                              <option>Select Section</option>
-                              <option value="A">A</option>
-                              <option value="B">B</option>
-                              <option value="C">C</option>
-                           </select>
+                            <label>Section</label>
+                            <select name="section" id="section" class="form-control">
+                                <option>Select Section</option>
+                            </select>
                         </div>
-                     </div>
+                    </div>
+                    
+                    <script>
+                        document.getElementById('batchno').addEventListener('change', function() {
+                            var selectedOption = this.options[this.selectedIndex];
+                            var schedule = selectedOption.getAttribute('data-schedule');
+                            var section = selectedOption.getAttribute('data-section');
+                            
+                            var batchScheduleSelect = document.getElementById('batchschedule');
+                            var sectionSelect = document.getElementById('section');
+                            
+                            batchScheduleSelect.innerHTML = ''; // Clear existing options
+                            sectionSelect.innerHTML = ''; // Clear existing options
+                    
+                            if (schedule) {
+                                var option = document.createElement('option');
+                                option.value = schedule;
+                                option.textContent = schedule;
+                                batchScheduleSelect.appendChild(option);
+                            } else {
+                                var defaultOption = document.createElement('option');
+                                defaultOption.textContent = 'Select Batch Schedule';
+                                batchScheduleSelect.appendChild(defaultOption);
+                            }
+                    
+                            if (section) {
+                                var option = document.createElement('option');
+                                option.value = section;
+                                option.textContent = section;
+                                sectionSelect.appendChild(option);
+                            } else {
+                                var defaultOption = document.createElement('option');
+                                defaultOption.textContent = 'Select Section';
+                                sectionSelect.appendChild(defaultOption);
+                            }
+                        });
+                    </script>
+                    
 
                      <div class="col-12 col-sm-6">
                         <div class="form-group">
