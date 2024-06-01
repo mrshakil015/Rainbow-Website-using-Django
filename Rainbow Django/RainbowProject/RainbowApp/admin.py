@@ -25,21 +25,24 @@ admin.site.register(AdmissionFormModel,PendingStudentDisplay)
     
 class CourseInfoDisplay(admin.ModelAdmin):
     list_display = ['CourseName','CourseDuration']
-
 admin.site.register(CourseInfoModel,CourseInfoDisplay)
 
 class ServiceInfoDisplay(admin.ModelAdmin):
     list_display = ['ServiceName']
-
 admin.site.register(ServiceInfoModel,ServiceInfoDisplay)
 
 class SuccessfulStudentDisplay(admin.ModelAdmin):
     list_display = ['id','StudentName','StudentDesignation']
-
 admin.site.register(SuccessfulStudentInfoModel,SuccessfulStudentDisplay)
 
 class GalleryImageDisplay(admin.ModelAdmin):
     list_display = ['id','ImageTitle']
-
 admin.site.register(GalleryImageModel,GalleryImageDisplay)
 
+class BatchInfoDisplay(admin.ModelAdmin):
+    list_display = ['BatchNo','Batchschedule','BatchStart']
+admin.site.register(BatchInfoModel,BatchInfoDisplay)
+
+class ContactDisplay(admin.ModelAdmin):
+    list_display = ['Address','Email','Mobile']
+admin.site.register(ContactUsModel,ContactDisplay)

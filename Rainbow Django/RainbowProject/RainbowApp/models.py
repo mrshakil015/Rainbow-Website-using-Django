@@ -123,3 +123,11 @@ class SuccessfulStudentInfoModel(models.Model):
 class GalleryImageModel(models.Model):
     ImageTitle = models.CharField(max_length=100)
     GalleryImage = models.ImageField(upload_to='galleryImage')
+    
+class ContactUsModel(models.Model):
+    Address = models.CharField(max_length=200)
+    Email = models.EmailField(max_length=100)
+    Mobile = models.CharField(max_length=100)
+    Facebook = models.CharField(max_length=100)
+    MapLink = models.TextField()
+    

@@ -37,7 +37,6 @@
 + Address
 + StudentPhoto
 
-
 # ServiceInfoModel
 + ServiceName
 + AboutService
@@ -68,5 +67,9 @@
 + StudentInstitute
 + StudentImage
 
-
-
+# ContactUsModel
++ Address
++ Email
++ Mobile
++ Facebook
++ MapLink

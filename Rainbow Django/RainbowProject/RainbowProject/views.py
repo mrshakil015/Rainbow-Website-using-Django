@@ -198,3 +198,54 @@ def deleteService(request,myid):
     servicedata.delete()
     messages.success(request,'Service Successfully Deleted.')
     return redirect('serviceList')
+
+#------------Gallery-----------------
+def addGallery(request):
+    if request.method == 'POST':
+        imagetitle = request.POST.get('imagetitle')
+        galleryimage = request.FILES.get('galleryimage')
+        
+        galleryData = GalleryImageModel(
+            ImageTitle=imagetitle,
+            GalleryImage=galleryimage
+        )
+        galleryData.save()
+        messages.success(request,'Image Successfully Added.')
+        return redirect('galleryList')      
+        
+    return render(request,'gallery/addgallery.html')
+
+def galleryList(request):
+    galleryData = GalleryImageModel.objects.all()
+    
+    context = {
+        'galleryData':galleryData
+    }
+    
+    return render(request,'gallery/gallerylist.html',context)
+
+def editImage(request,myid):
+    galleryData = GalleryImageModel.objects.get(id=myid)
+    
+    context = {
+        'galleryData':galleryData
+    }
+    
+    if request.method == 'POST':
+        imagetitle = request.POST.get('imagetitle')
+        galleryimage = request.FILES.get('galleryimage')
+        
+        galleryData.ImageTitle=imagetitle
+        if galleryimage:
+            galleryData.GalleryImage=galleryimage
+        galleryData.save()
+        messages.success(request,'Image Successfully Updated.')
+        return redirect('galleryList')
+    return render(request,'gallery/editgallery.html',context)
+
+def deleteImage(request,myid):
+    galleryData = GalleryImageModel.objects.get(id=myid)
+    galleryData.delete()
+    messages.success(request,'Image Successfully Deleted.')
+    return redirect('galleryList')
+        

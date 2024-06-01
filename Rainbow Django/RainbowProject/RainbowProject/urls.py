@@ -50,8 +50,14 @@ urlpatterns = [
     path('contactUsPage/',contactUsPage, name='contactUsPage'),
     path('coursePage/',coursePage, name='coursePage'),
     path('servicePage/',servicePage, name='servicePage'),
-    path('galleryPage/',galleryPage, name='galleryPage'),
     path('admissionformPage/',admissionformPage, name='admissionformPage'),
+    
+    #----------Gallery-------------------
+    path('galleryPage/',galleryPage, name='galleryPage'),
+    path('addGallery/',addGallery, name='addGallery'),
+    path('galleryList/',galleryList, name='galleryList'),
+    path('editImage/<str:myid>',editImage, name='editImage'),
+    path('deleteImage/<str:myid>',deleteImage, name='deleteImage'),
     
     #-----------Batch---------------
     path('batchList/',batchList, name='batchList'),
