@@ -9,15 +9,29 @@ def homePage(request):
     serviceData = ServiceInfoModel.objects.all()
     successStudentData = SuccessfulStudentInfoModel.objects.all()
     galleryData = GalleryImageModel.objects.all()
+    contactData = ContactUsModel.objects.all()
     
     context = {
         'courseData': courseData,
         'serviceData': serviceData,
         'successStudentData': successStudentData,
         'galleryData': galleryData,
+        'contactData': contactData,
     }
     
     return render(request,'commons/index.html',context)
+
+def aboutUs(request):
+    contactData = ContactUsModel.objects.all()
+    courseData = CourseInfoModel.objects.all()
+    
+    context = {
+       'contactData' :contactData,
+       'courseData': courseData,
+    }
+    
+    return render(request,'commons/aboutus.html',context)
+
 
 def adminSignUP(request):
     if request.method == 'POST':
@@ -115,9 +129,6 @@ def studentDashboard(request):
     
     return render(request,'students/studentdashboard.html')
 
-def aboutUs(request):
-    
-    return render(request,'commons/aboutus.html')
 
 def servicePage(request):
     serviceData = ServiceInfoModel.objects.all()
@@ -138,9 +149,7 @@ def galleryPage(request):
     return render(request,'gallery/gallerypage.html',context)
 
 
-def contactUsPage(request):
-    
-    return render(request,'commons/contactus.html')
+
 
 def paymentList(request):
     studentinfo = StudentInfoModel.objects.all()
@@ -248,4 +257,75 @@ def deleteImage(request,myid):
     galleryData.delete()
     messages.success(request,'Image Successfully Deleted.')
     return redirect('galleryList')
+    
+#------------Contact------------
+def contactUsPage(request):
+    contactData = ContactUsModel.objects.all()
+    
+    context = {
+        'contactData':contactData,
+    }
+    
+    return render(request,'contact/contactus.html',context)
+
+def contactList(request):
+    contactData = ContactUsModel.objects.all()
+    
+    context = {
+        'contactData':contactData,
+    }
+    
+    
+    return render(request,'contact/contactlist.html',context)
+
+def addContact(request):
+    if request.method=='POST':
+        address=request.POST.get('address')
+        email=request.POST.get('email')
+        mobile=request.POST.get('mobile')
+        facebooklink=request.POST.get('facebooklink')
+        googlemap=request.POST.get('googlemap')
         
+        contactData = ContactUsModel(
+            Address = address,
+            Email = email,
+            Mobile = mobile,
+            Facebook = facebooklink,
+            MapLink = googlemap,
+        )
+        contactData.save()
+        messages.success(request,'Contact Successfully Added.')
+        return redirect('contactList')
+    return render(request,'contact/addcontact.html')
+
+def deleteContact(request,myid):
+    contactData = ContactUsModel.objects.get(id=myid)
+    contactData.delete()
+    return redirect('contactList')
+
+def editContact(request,myid):
+    
+    contactData = ContactUsModel.objects.get(id=myid)
+    
+    context = {
+        'contactData':contactData,
+    }
+    
+    if request.method=='POST':
+        address=request.POST.get('address')
+        email=request.POST.get('email')
+        mobile=request.POST.get('mobile')
+        facebooklink=request.POST.get('facebooklink')
+        googlemap=request.POST.get('googlemap')
+        
+        contactData.Address = address
+        contactData.Email = email
+        contactData.Mobile = mobile
+        contactData.Facebook = facebooklink
+        contactData.MapLink = googlemap
+        
+        contactData.save()
+        messages.success(request,'Contact Successfully Updated.')
+        return redirect('contactList')
+    
+    return render(request,'contact/editcontact.html',context)

@@ -47,7 +47,6 @@ urlpatterns = [
     
     #-------------Common Front End-----------
     path('aboutUs/',aboutUs, name='aboutUs'),
-    path('contactUsPage/',contactUsPage, name='contactUsPage'),
     path('coursePage/',coursePage, name='coursePage'),
     path('servicePage/',servicePage, name='servicePage'),
     path('admissionformPage/',admissionformPage, name='admissionformPage'),
@@ -74,6 +73,12 @@ urlpatterns = [
     path('editService/<str:myid>',editService, name='editService'),
     path('deleteService/<str:myid>',deleteService, name='deleteService'),
     
+    #-----------Contact-------------------
+    path('contactUsPage/',contactUsPage, name='contactUsPage'),
+    path('contactList/',contactList, name='contactList'),
+    path('addContact/',addContact, name='addContact'),
+    path('editContact/<str:myid>',editContact, name='editContact'),
+    path('deleteContact/<str:myid>',deleteContact, name='deleteContact'),
     
     path('admissionPage/',admissionPage, name='admissionPage'),
 ]
