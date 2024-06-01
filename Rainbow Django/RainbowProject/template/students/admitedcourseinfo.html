@@ -53,6 +53,17 @@
                                <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Admission Date</p>
                                <p class="col-sm-8">: {{user.studentuser.AdmissionDate}}</p>
                             </div>
+                            <div class="row">
+                               <p class="col-sm-4 text-muted text-sm-left mb-0 mb-sm-2">Course Status</p>
+                               <p class="col-sm-8" 
+                               {% if batchData.Status == 'Running' %}
+                               style="color: rgb(7, 113, 46);"
+                               {% else %}
+                               style="color: rgb(255, 0, 0);"
+                               {% endif %}
+                              
+                                 >: {{batchData.Status}}</p>
+                            </div>
                             
                             
                          </div>

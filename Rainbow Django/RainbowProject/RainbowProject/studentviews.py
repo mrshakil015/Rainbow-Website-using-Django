@@ -163,8 +163,15 @@ def deleteStudent(request,user):
    return redirect('studentList')
 
 def admitedcourseInfo(request):
+    current_batch = request.user
+    studentData=StudentInfoModel.objects.get(user=current_batch)
+    batchData = BatchInfoModel.objects.get(BatchNo=studentData.BatchNo)
+    print("Current batch, ",batchData.Status)
+    context ={
+        'batchData':batchData,
+    }
     
-    return render(request,'students/admitedcourseinfo.html')
+    return render(request,'students/admitedcourseinfo.html',context)
 
 def admitedcoursePaymentInfo(request):
     

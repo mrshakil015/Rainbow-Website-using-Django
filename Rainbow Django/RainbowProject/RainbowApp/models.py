@@ -71,8 +71,8 @@ class StudentInfoModel(models.Model):
     PresentAddress = models.CharField(max_length=100)
     PermanentAddress = models.CharField(max_length=100)
     RollNo = models.CharField(max_length=100)
-    CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.DO_NOTHING) 
-    BatchNo = models.ForeignKey(BatchInfoModel,on_delete=models.DO_NOTHING)
+    CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.DO_NOTHING,related_name='courseinfomodel') 
+    BatchNo = models.ForeignKey(BatchInfoModel,on_delete=models.DO_NOTHING,related_name='batchinfomodel')
     Batchschedule = models.CharField(max_length=100)
     
     SECTION = [
