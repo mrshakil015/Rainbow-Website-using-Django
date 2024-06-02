@@ -10479,7 +10479,7 @@ h6,
     font-size: 15px;
     text-transform: capitalize;
     padding: 13px 28px;
-    border-radius: 10px;
+    border-radius: 10px 0px;
     position: relative;
     z-index: 1;
     font-weight: 500;
@@ -10561,7 +10561,7 @@ h6,
 
 .btn-outline-primary {
     background: #E8E4FB;
-    color: #4a45cf;
+    color: #2e2a96;
 }
 
 .btn-outline-primary::after {

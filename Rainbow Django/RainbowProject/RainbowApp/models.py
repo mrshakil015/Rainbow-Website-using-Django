@@ -7,24 +7,24 @@ class CustomUserModel(AbstractUser):
         ('Admin','Admin'),
         ('Student','Student'),
     ]
-    UserType = models.CharField(choices=USERTYPE,max_length=100)
+    UserType = models.CharField(choices=USERTYPE,max_length=100, null=True)
 
 class CourseInfoModel(models.Model):
-    CourseName = models.CharField(max_length=100)
-    CourseDuration = models.CharField(max_length=100)
-    WeeklyClass = models.CharField(max_length=100)
-    ClassDurationHour = models.CharField(max_length=100)
-    ClassDurationMinute = models.CharField(max_length=100)
-    CourseFee = models.CharField(max_length=100)
-    AboutCourse = models.TextField()
-    CourseTopics = models.TextField()
-    CourseImage = models.ImageField(upload_to='courseImg')
+    CourseName = models.CharField(max_length=100, null=True)
+    CourseDuration = models.CharField(max_length=100, null=True)
+    WeeklyClass = models.CharField(max_length=100, null=True)
+    ClassDurationHour = models.CharField(max_length=100, null=True)
+    ClassDurationMinute = models.CharField(max_length=100, null=True)
+    CourseFee = models.CharField(max_length=100, null=True)
+    AboutCourse = models.TextField(null=True)
+    CourseTopics = models.TextField(null=True)
+    CourseImage = models.ImageField(upload_to='courseImg',null=True)
     
     def __str__(self):
         return self.CourseName
 
 class BatchInfoModel(models.Model):
-    BatchNo = models.CharField(max_length=100)
+    BatchNo = models.CharField(max_length=100, null=True)
     SCHEDULE = [
         ('09:00 AM - 10:00 AM','09:00 AM - 10:00 AM'),
         ('10:00 AM - 11:30 AM','10:00 AM - 11:30 AM'),
@@ -35,45 +35,45 @@ class BatchInfoModel(models.Model):
         ('06:00 PM - 07:30 PM','06:00 PM - 07:30 PM'),
         ('08:00 PM - 09:30 PM','08:00 PM - 09:30 PM'),
     ]
-    Batchschedule = models.CharField(choices=SCHEDULE,max_length=100)
+    Batchschedule = models.CharField(choices=SCHEDULE,max_length=100, null=True)
     SECTION = [
         ('A','A'),
         ('B','B'),
         ('C','C'),
     ]
-    Section = models.CharField(choices=SECTION,max_length=100)
+    Section = models.CharField(choices=SECTION,max_length=100, null=True)
     STATUS = [
         ('Running','Running'),
         ('Completed','Completed'),
     ]
-    Status = models.CharField(choices=STATUS,max_length=100)
+    Status = models.CharField(choices=STATUS,max_length=100, null=True)
     BatchStart = models.DateField()
     
     def __str__(self):
         return self.BatchNo
 
 class StudentInfoModel(models.Model):
-    user = models.OneToOneField(CustomUserModel, on_delete =models.CASCADE,related_name='studentuser')
-    StudentName = models.CharField(max_length=100)
-    FatherName = models.CharField(max_length=100)
-    MotherName = models.CharField(max_length=100)
+    user = models.OneToOneField(CustomUserModel, on_delete =models.CASCADE,related_name='studentuser', null=True)
+    StudentName = models.CharField(max_length=100, null=True)
+    FatherName = models.CharField(max_length=100, null=True)
+    MotherName = models.CharField(max_length=100, null=True)
     GENDER = [
         ('Male','Male'),
         ('Female','Female'),
     ]
     
-    Gender = models.CharField(choices=GENDER,max_length=100)
-    DOB = models.DateField()
-    Religion = models.CharField(max_length=100)
-    Mobile = models.CharField(max_length=100)
-    EmergencyMobile = models.CharField(max_length=100)
-    StudentPhoto = models.ImageField(upload_to='studentphoto')
-    PresentAddress = models.CharField(max_length=100)
-    PermanentAddress = models.CharField(max_length=100)
-    RollNo = models.CharField(max_length=100)
-    CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.DO_NOTHING,related_name='courseinfomodel') 
-    BatchNo = models.ForeignKey(BatchInfoModel,on_delete=models.DO_NOTHING,related_name='batchinfomodel')
-    Batchschedule = models.CharField(max_length=100)
+    Gender = models.CharField(choices=GENDER,max_length=100, null=True)
+    DOB = models.DateField(null=True)
+    Religion = models.CharField(max_length=100, null=True)
+    Mobile = models.CharField(max_length=100, null=True)
+    EmergencyMobile = models.CharField(max_length=100, null=True)
+    StudentPhoto = models.ImageField(upload_to='studentphoto', null=True)
+    PresentAddress = models.CharField(max_length=100, null=True)
+    PermanentAddress = models.CharField(max_length=100, null=True)
+    RollNo = models.CharField(max_length=100, null=True)
+    CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.DO_NOTHING,related_name='courseinfomodel', null=True) 
+    BatchNo = models.ForeignKey(BatchInfoModel,on_delete=models.DO_NOTHING,related_name='batchinfomodel', null=True)
+    Batchschedule = models.CharField(max_length=100, null=True)
     
     SECTION = [
         ('A','A'),
@@ -81,10 +81,10 @@ class StudentInfoModel(models.Model):
         ('C','C'),
     ]
     
-    Section = models.CharField(max_length=100) 
-    CourseFee = models.CharField(max_length=100)
-    Payment = models.CharField(max_length=100)
-    Due = models.CharField(max_length=100)
+    Section = models.CharField(max_length=100, null=True) 
+    CourseFee = models.CharField(max_length=100, null=True)
+    Payment = models.CharField(max_length=100, null=True)
+    Due = models.CharField(max_length=100, null=True)
     AdmissionDate = models.DateField(auto_now_add=True)
     LastModified = models.DateField(auto_now=True)
     
@@ -92,9 +92,9 @@ class StudentInfoModel(models.Model):
     
 class AdmissionFormModel(models.Model):
     CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.DO_NOTHING) 
-    StudentName = models.CharField(max_length=100)
-    FatherName = models.CharField(max_length=100)
-    MotherName = models.CharField(max_length=100)
+    StudentName = models.CharField(max_length=100, null=True)
+    FatherName = models.CharField(max_length=100, null=True)
+    MotherName = models.CharField(max_length=100, null=True)
     DOB = models.DateField()
     
     GENDER = [
@@ -102,32 +102,32 @@ class AdmissionFormModel(models.Model):
         ('Female','Female'),
     ]
     
-    Gender = models.CharField(choices=GENDER,max_length=100)
-    email = models.EmailField(max_length=100)
-    Mobile = models.CharField(max_length=100)
-    Address = models.CharField(max_length=100)
-    StudentPhoto = models.ImageField(upload_to='pendingstudent')
+    Gender = models.CharField(choices=GENDER,max_length=100, null=True)
+    email = models.EmailField(max_length=100, null=True)
+    Mobile = models.CharField(max_length=100, null=True)
+    Address = models.CharField(max_length=100, null=True)
+    StudentPhoto = models.ImageField(upload_to='pendingstudent', null=True)
     
 
     
 class ServiceInfoModel(models.Model):
-    ServiceName = models.CharField(max_length=100)
-    AboutService = models.TextField()
+    ServiceName = models.CharField(max_length=100, null=True)
+    AboutService = models.TextField(null=True)
 
 class SuccessfulStudentInfoModel(models.Model):
-    StudentName = models.CharField(max_length=100)
-    StudentDesignation = models.CharField(max_length=100)
-    StudentInstitute = models.CharField(max_length=100)
-    StudentImage = models.ImageField(upload_to='successStudent')
+    StudentName = models.CharField(max_length=100, null=True)
+    StudentDesignation = models.CharField(max_length=100, null=True)
+    StudentInstitute = models.CharField(max_length=100, null=True)
+    StudentImage = models.ImageField(upload_to='successStudent', null=True)
     
 class GalleryImageModel(models.Model):
-    ImageTitle = models.CharField(max_length=100)
-    GalleryImage = models.ImageField(upload_to='galleryImage')
+    ImageTitle = models.CharField(max_length=100, null=True)
+    GalleryImage = models.ImageField(upload_to='galleryImage', null=True)
     
 class ContactUsModel(models.Model):
     Address = models.CharField(max_length=200)
-    Email = models.EmailField(max_length=100)
-    Mobile = models.CharField(max_length=100)
-    Facebook = models.CharField(max_length=100)
-    MapLink = models.TextField()
+    Email = models.EmailField(max_length=100, null=True)
+    Mobile = models.CharField(max_length=100, null=True)
+    Facebook = models.CharField(max_length=100, null=True)
+    MapLink = models.TextField(null=True)
     
