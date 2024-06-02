@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List - Rainbow Computer Point</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: "Tinos", serif;
+            font-size: 14px;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1 {
+            font-size: 35px;
+            margin: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .batchinfo {
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            margin-top: 3px;
+        }
+
+        .batch-info {
+            display: inline-block;
+            border-radius: 10px;
+            padding: 10px;
+
+        }
+
+        .batch-info p {
+            font-size: 17px;
+            margin: 0;
+            color: #666;
+        }
+        .sl-no-column{
+            width: 30px;
+        }
+        .roll-no-column {
+            width: 60px; /* Adjust width as needed */
+        }
+        
+        .student-name-column {
+            width: 200px; /* Adjust width as needed */
+        }
+        
+        .admission-date-column {
+            width: 100px; /* Adjust width as needed */
+        }
+        
+        /* Add more column styles as needed */
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Rainbow Computer Point</h1>
+        <div class="batchinfo">
+            <div class="batch-info">
+                <p><strong>Batch No: </strong>{{batchData.BatchNo}}</p>
+            </div>
+            <div class="batch-info">
+                <p><strong>Section: </strong>{{batchData.Section}}</p>
+            </div>
+            <div class="batch-info">
+                <p><strong>Class Schedule: </strong>{{batchData.Batchschedule}}</p>
+            </div>
+        </div>
+
+    </div>
+    <table>
+        <thead>
+
+            <tr>
+                <th class="sl-no-column">SL No</th>
+                <th class="roll-no-column">Roll No</th>
+                <th class="student-name-column">Student Name</th>
+                <th class="admission-date-column">Admission Date</th>
+                {% for i in "1234567" %}
+                <th></th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in studentData %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ student.RollNo }}</td>
+                <td>{{ student.StudentName }}</td>
+                <td>{{ student.AdmissionDate }}</td>
+
+                {% for i in "1234567" %}
+                <td></td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+
+</html>

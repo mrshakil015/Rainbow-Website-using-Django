@@ -100,3 +100,14 @@ def batchPrint(request, batchno):
     print("BatchData : ",studentData)
     
     return render(request,'mybatch/batchPrint.html',context)
+
+def attendenceSheetPrint(request, batchno):
+    studentData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno)
+    batchData = BatchInfoModel.objects.get(BatchNo=batchno)
+    context = {
+        'studentData':studentData,
+        'batchData':batchData,
+    }
+    print("BatchData : ",studentData)
+    
+    return render(request,'mybatch/attendance_sheet_print.html',context)

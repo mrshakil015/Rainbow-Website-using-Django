@@ -65,6 +65,7 @@ urlpatterns = [
     path('editBatch/<str:myid>',editBatch, name='editBatch'),
     path('viewSingleBatch/<str:batchno>',viewSingleBatch, name='viewSingleBatch'),
     path('batchPrint/<str:batchno>',batchPrint, name='batchPrint'),
+    path('attendenceSheetPrint/<str:batchno>',attendenceSheetPrint, name='attendenceSheetPrint'),
     
     #----------Payment-----------
     path('paymentList/',paymentList, name='paymentList'),

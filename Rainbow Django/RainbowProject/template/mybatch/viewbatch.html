@@ -14,8 +14,11 @@
           </div>
           <div class="col-auto text-right float-right ml-auto">
             <!-- Corrected the button tag -->
+            <button onclick="printBatchAttendance('{{ batchData.BatchNo }}')" class="btn btn-outline-primary mr-2">
+                <i class="fas fa-print"></i> Print Attendance Sheet
+            </button>
             <button onclick="printBatch('{{ batchData.BatchNo }}')" class="btn btn-outline-primary mr-2">
-                <i class="fas fa-print"></i>Print
+                <i class="fas fa-print"></i> Print
             </button>
           </div>
        </div>
@@ -86,6 +89,13 @@
 <script>
     function printBatch(batchNo) {
         var url = "/batchPrint/" + batchNo;
+        var printWindow = window.open(url, "_blank");
+        printWindow.onload = function() {
+            printWindow.print();
+        };
+    }
+    function printBatchAttendance(batchNo) {
+        var url = "/attendenceSheetPrint/" + batchNo;
         var printWindow = window.open(url, "_blank");
         printWindow.onload = function() {
             printWindow.print();
