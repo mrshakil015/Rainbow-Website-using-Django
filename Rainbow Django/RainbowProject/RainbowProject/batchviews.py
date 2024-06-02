@@ -79,30 +79,24 @@ def editBatch(request, myid):
     
     return render(request, 'mybatch/editbatch.html', context)
 
-
-def batchList1(request):
-    batchInfo = StudentInfoModel.objects.all()
-    unique_batch_numbers = set()
-    unique_batch_lst = []
-
-    for batch in batchInfo:
-        if batch.BatchNo not in unique_batch_numbers:
-            unique_batch_numbers.add(batch.BatchNo)
-            
-            studentcount = StudentInfoModel.objects.filter(BatchNo=batch.BatchNo).count()
-            unique_batch_lst.append(
-                {
-                    'batchNo': batch.BatchNo,
-                    'studentcount': studentcount
-                }
-            )
-    print("Batch list with student counts:")
-    for batch in unique_batch_lst:
-        print(batch)
-
-
-    
+def viewSingleBatch(request,batchno):
+    studentData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno)
+    batchData = BatchInfoModel.objects.get(BatchNo=batchno)
     context = {
-        'unique_batch_lst':unique_batch_lst
+        'studentData':studentData,
+        'batchData':batchData,
     }
-    return render(request,'mybatch/batchlist.html',context)
+    print("BatchData : ",studentData)
+    
+    return render(request,'mybatch/viewbatch.html',context)
+
+def batchPrint(request, batchno):
+    studentData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno)
+    batchData = BatchInfoModel.objects.get(BatchNo=batchno)
+    context = {
+        'studentData':studentData,
+        'batchData':batchData,
+    }
+    print("BatchData : ",studentData)
+    
+    return render(request,'mybatch/batchPrint.html',context)

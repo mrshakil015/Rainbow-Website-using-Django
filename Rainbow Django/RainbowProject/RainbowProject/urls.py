@@ -63,6 +63,8 @@ urlpatterns = [
     path('addBatch/',addBatch, name='addBatch'),
     path('deleteBatch/<str:myid>',deleteBatch, name='deleteBatch'),
     path('editBatch/<str:myid>',editBatch, name='editBatch'),
+    path('viewSingleBatch/<str:batchno>',viewSingleBatch, name='viewSingleBatch'),
+    path('batchPrint/<str:batchno>',batchPrint, name='batchPrint'),
     
     #----------Payment-----------
     path('paymentList/',paymentList, name='paymentList'),

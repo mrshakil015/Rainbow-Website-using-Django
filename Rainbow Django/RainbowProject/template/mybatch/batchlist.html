@@ -51,7 +51,10 @@
                              </td>
                              <td class="text-right">
                                  <div class="actions">
-                                     <a href="" class="btn btn-sm bg-info-light mr-2">
+                                    <button onclick="printBatch('{{ batch.BatchNo }}')" class="btn btn-outline-primary mr-2">
+                                        <i class="fas fa-print"></i> 
+                                    </button>
+                                     <a href="{% url 'viewSingleBatch' batch.BatchNo %}" class="btn btn-sm bg-info-light mr-2">
                                          <i class="fas fa-eye"></i>
                                      </a>
                                      <a href="{% url 'editBatch' batch.id %}" class="btn btn-sm bg-success-light mr-2">
@@ -75,6 +78,17 @@
        </div>
     </div>
  </div>
+
+ <script>
+    function printBatch(batchNo) {
+        var url = "/batchPrint/" + batchNo;
+        var printWindow = window.open(url, "_blank");
+        printWindow.onload = function() {
+            printWindow.print();
+        };
+    }
+</script>
+
     
 {% endblock admincontent %}
 

@@ -129,7 +129,7 @@ def studentDashboard(request):
     
     return render(request,'students/studentdashboard.html')
 
-
+#----------------Service-----------------
 def servicePage(request):
     serviceData = ServiceInfoModel.objects.all()
     
@@ -138,18 +138,6 @@ def servicePage(request):
     }
     
     return render(request,'ourservice/servicepage.html',context)
-
-def galleryPage(request):
-    galleryData = GalleryImageModel.objects.all()
-    
-    context = {
-        'galleryData': galleryData,
-    }
-    
-    return render(request,'gallery/gallerypage.html',context)
-
-
-
 
 def paymentList(request):
     studentinfo = StudentInfoModel.objects.all()
@@ -209,6 +197,15 @@ def deleteService(request,myid):
     return redirect('serviceList')
 
 #------------Gallery-----------------
+def galleryPage(request):
+    galleryData = GalleryImageModel.objects.all()
+    
+    context = {
+        'galleryData': galleryData,
+    }
+    
+    return render(request,'gallery/gallerypage.html',context)
+
 def addGallery(request):
     if request.method == 'POST':
         imagetitle = request.POST.get('imagetitle')
