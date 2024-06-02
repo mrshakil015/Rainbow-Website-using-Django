@@ -158,3 +158,19 @@ def editBatch(request, myid):
     
     return render(request, 'mybatch/editbatch.html', context)
 ```
+## Filter Data from foreginkey relationship
+
+```python
+this is your code:
+batchData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno)
+this is my code:
+batchData = StudentInfoModel.objects.filter(BatchNo=batchno)
+
+why my code not work?
+```
+
+Your code, batchData = StudentInfoModel.objects.filter(BatchNo=batchno), assumes that batchno is a direct match to the BatchNo field in the StudentInfoModel. However, since BatchNo is a foreign key field referencing the BatchInfoModel, you need to filter based on the BatchNo field within the related BatchInfoModel.
+
+When you do BatchNo=batchno, Django expects batchno to be an instance of BatchInfoModel, not just the value of the BatchNo field itself.
+
+To filter based on the BatchNo field within the related BatchInfoModel, you need to use the double underscore notation BatchNo__BatchNo to traverse the relationship and filter based on the BatchNo field of BatchInfoModel.

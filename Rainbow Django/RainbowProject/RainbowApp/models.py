@@ -71,8 +71,8 @@ class StudentInfoModel(models.Model):
     PresentAddress = models.CharField(max_length=100, null=True)
     PermanentAddress = models.CharField(max_length=100, null=True)
     RollNo = models.CharField(max_length=100, null=True)
-    CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.DO_NOTHING,related_name='courseinfomodel', null=True) 
-    BatchNo = models.ForeignKey(BatchInfoModel,on_delete=models.DO_NOTHING,related_name='batchinfomodel', null=True)
+    CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.SET_NULL,related_name='courseinfomodel', null=True) 
+    BatchNo = models.ForeignKey(BatchInfoModel,on_delete=models.SET_NULL,related_name='batchinfomodel', null=True)
     Batchschedule = models.CharField(max_length=100, null=True)
     
     SECTION = [
@@ -91,7 +91,7 @@ class StudentInfoModel(models.Model):
     
     
 class AdmissionFormModel(models.Model):
-    CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.DO_NOTHING) 
+    CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.SET_NULL,null=True) 
     StudentName = models.CharField(max_length=100, null=True)
     FatherName = models.CharField(max_length=100, null=True)
     MotherName = models.CharField(max_length=100, null=True)
