@@ -414,3 +414,17 @@ def editSuccessStudent(request,myid):
         return redirect('successStudentList')
     
     return render(request,'students/success_student_edit.html',context)
+
+def printAdmissionform(request,myid):
+    courseData = CourseInfoModel.objects.all()   
+    batchData = BatchInfoModel.objects.all()
+    studentdata = StudentInfoModel.objects.get(id=myid)
+    date_of_birth = studentdata.DOB.isoformat() if studentdata.DOB else ''
+    context = {
+        'studentdata':studentdata,
+        'courseData':courseData,
+        'date_of_birth': date_of_birth,
+        'batchData': batchData,
+    }
+    
+    return render(request,'students/print_admissionform.html',context)

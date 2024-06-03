@@ -1,0 +1,258 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        .header-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 10px 15px 0 15px;
+        }
+
+        .box {
+            height: 120px;
+            width: 110px;
+            border: 1px solid #4a45cf;
+            border-radius: 5px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .left-logo {
+            padding: 4px;
+            margin-top: 10px;
+            border-top: 10px solid #4a45cf;
+            border-bottom: 10px solid #4a45cf;
+        }
+
+        .right-image {
+            margin-top: 10px;
+            border: none;
+        }
+
+        .right-image img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .middle-text {
+            text-align: center;
+            color: black;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .outline-primary {
+            border: 2px solid #4a45cf;
+            color: #fff;
+            background-color: #4a45cf;
+        }
+        .btn:hover{
+            border: 2px solid #4a45cf;
+            color: #fff;
+            background-color: #4a45cf;
+        }
+        
+
+        .line1 {
+            border-bottom: 5px solid #4a45cf;
+            margin-top: 0;
+        }
+
+        .line {
+            border-bottom: 2px solid #4a45cf;
+            margin-top: 2px;
+        }
+
+        .details {
+            padding: 20px;
+        }
+        .details .signature p{
+            border-top: 1px dashed #4a45cf;
+        }
+
+        .info-line {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .info-line label {
+            margin-right: 10px;
+            margin-bottom: 0;
+            font-weight: bold;
+        }
+
+        .info-line p {
+            margin-bottom: 0;
+            border-bottom: 1px dashed #020204;
+            padding-bottom: 2px;
+            flex-grow: 1;
+        }
+       
+    </style>
+</head>
+
+<body>
+    <header class="header-section">
+        <div class="left-logo box">
+            <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="img-fluid">
+        </div>
+        <div class="middle-text">
+            <p class="m-0 p-0 fs-12">Youth Development Computer Training Institute</p>
+            <h2 class="fw-bold m-0 p-0">Rainbow Computer Point</h2>
+            <p class="m-0 p-0 fs-12">Joynabari, Hemayetpur, Savar, Dhaka-1340</p>
+            <p class="m-0 p-0 fs-12">Mobile: +8801793299882, Email:shakil.eub.cse@gmail.com</p>
+            <button class="btn outline-primary mt-2">Admission Form</button>
+        </div>
+        <div class="right-image box">
+            <img src="{{studentdata.StudentPhoto.url}}" alt="Right Image" class="img-fluid">
+        </div>
+    </header>
+    <div class="line1"></div>
+    <div class="line"></div>
+
+    <div class="details">
+        <div class="row  info-line">
+            <div class="col-lg-7 col-sm-7 d-flex">
+               
+            </div>
+            <div class="col-lg-5 col-sm-5 d-flex">
+                <label class="form-label">Admission Date:</label>
+                <p>  {{studentdata.AdmissionDate}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-12 d-flex col-sm-12">
+                <label for="studentName" class="form-label">Student Name:</label>
+                <p>{{studentdata.StudentName}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-12 d-flex col-sm-12">
+                <label for="fatherName" class="form-label">Father's Name:</label>
+                <p>{{studentdata.FatherName}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-12 d-flex col-sm-12">
+                <label for="motherName" class="form-label">Mother's Name:</label>
+                <p>{{studentdata.MotherName}}</p>
+            </div>
+        </div>
+        
+   
+        <div class="row info-line">
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Date of Birth:</label>
+                <p>{{date_of_birth}}</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Gender:</label>
+                <p>{{studentdata.Gender}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Mobile:</label>
+                <p>{{studentdata.Mobile}}</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Email:</label>
+                <p>{{studentdata.user.email}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-12 d-flex col-sm-12">
+                <label for="studentName" class="form-label">Present Address:</label>
+                <p>{{studentdata.PresentAddress}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-12 d-flex col-sm-12">
+                <label for="studentName" class="form-label">Permanent Address:</label>
+                <p>{{studentdata.PermanentAddress}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <button class="outline-primary">Course Information</button>
+    </div>
+    <div class="details">
+        
+    
+        <div class="row info-line">
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Roll No:</label>
+                <p>{{studentdata.RollNo}}</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Course Name:</label>
+                <p>{{studentdata.CourseName}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Batch No:</label>
+                <p>{{studentdata.BatchNo}}</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Section:</label>
+                <p>{{studentdata.Section}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Batch Schedule:</label>
+                <p>{{studentdata.Batchschedule}}</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Course Fee:</label>
+                <p>{{studentdata.CourseFee}}</p>
+            </div>
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Payment:</label>
+                <p>{{studentdata.Payment}}</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Due:</label>
+                <p>{{studentdata.Due}}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <button class="outline-primary">Declaration</button>
+        
+    </div>
+    <div class="details">
+        <p class="d-flex justify-content-between w-100">I hereby declare that all the details mentioned above are in accordance with the truth and fact as per my knowledge and I hold the responsibility for the correctness of the above-mentioned particulars.</p>
+        <div class="row mt-5 signature">
+            <div class="d-flex justify-content-between w-100">
+                <p class="form-label">Signature of Student</p>
+                <p class="form-label">Signature of Authorized</p>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+    
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
