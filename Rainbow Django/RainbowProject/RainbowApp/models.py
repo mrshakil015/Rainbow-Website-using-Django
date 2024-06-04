@@ -1,6 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django_cleanup import cleanup
 
+# Create your models here.
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return f"studentphoto/{instance.RollNo}_{filename}"
+
+@cleanup.select
 # Create your models here.
 class CustomUserModel(AbstractUser):
     USERTYPE = [
@@ -67,7 +74,7 @@ class StudentInfoModel(models.Model):
     Religion = models.CharField(max_length=100, null=True)
     Mobile = models.CharField(max_length=100, null=True)
     EmergencyMobile = models.CharField(max_length=100, null=True)
-    StudentPhoto = models.ImageField(upload_to='studentphoto', null=True)
+    StudentPhoto = models.ImageField(upload_to=user_directory_path, null=True)
     PresentAddress = models.CharField(max_length=100, null=True)
     PermanentAddress = models.CharField(max_length=100, null=True)
     RollNo = models.CharField(max_length=100, null=True)

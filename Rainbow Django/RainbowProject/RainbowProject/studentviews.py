@@ -357,7 +357,6 @@ def editPendingStudent(request,myid):
 def deletePendingStudent(request,myid):
    pendingstudentdata = AdmissionFormModel.objects.get(id=myid)
    img= pendingstudentdata.StudentPhoto
-   print(img)
    os.remove(img.path)
    
    pendingstudentdata.delete()
