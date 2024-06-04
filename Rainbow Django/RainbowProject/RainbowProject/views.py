@@ -147,6 +147,27 @@ def paymentList(request):
 
     return render(request,'payment/paymentlist.html',context)
 
+def updatePayment(request,myid):
+    studentpayment = StudentInfoModel.objects.get(id=myid)
+    context = {
+        'studentpayment':studentpayment,
+    }
+    if request.method == 'POST':
+        newpayment = request.POST.get('newpayment')
+        
+        prepayment = studentpayment.Payment
+        predue = studentpayment.Due
+        pay = int(prepayment) + int(newpayment)
+        due = int(predue) - int(newpayment)
+        
+        studentpayment.Payment = pay
+        studentpayment.Due = due
+        studentpayment.save()
+        messages.success(request,'Payment Updated Successfully.')
+        return redirect('paymentList')
+
+    return render(request,'payment/updatepayment.html',context)
+
 def serviceList(request):
     servicedata = ServiceInfoModel.objects.all()
     

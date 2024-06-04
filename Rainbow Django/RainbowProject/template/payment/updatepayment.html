@@ -1,0 +1,83 @@
+{% extends 'adminmaster/adminmaster.html' %}
+
+{% block admincontent %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Update Payment</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="students.html">Payment</a></li>
+               <li class="breadcrumb-item active">Update Payment</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="card">
+            
+            <div class="card-body">
+               {% include 'commons/message.html' %}
+               
+               <form action="{% url 'updatePayment' studentpayment.id %}" method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Update Payment Information</span></h5>
+                     </div>
+                     <div class="col-lg-12 col-12 col-sm-6 mb-3">
+                        <div class="profile-header">
+                           <div class="row align-items-center">
+                              <div class="col-auto profile-image">
+                                 <a href="#">
+                                    <img alt="User Image" src="{{studentpayment.StudentPhoto.url}}">
+                                 </a>
+                              </div>
+
+                              <div class="col ml-md-n2 profile-user-info">
+                                 <h4 class="user-name mb-0">{{studentpayment.StudentName}}</h4>
+                                 <h6 class="text-muted">{{studentpayment.CourseName}}</h6>
+                                 <div class="user-Location"><i class="fas fa-map-marker-alt"></i> {{studentpayment.PresentAddress}}</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Course Fee</label>
+                           <input type="text" name="coursefee" value="{{studentpayment.CourseFee}}" class="form-control" readonly>
+                        </div>
+                     </div>
+                     
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Payment</label>
+                           <input type="text" name="payment" value="{{studentpayment.Payment}}" class="form-control" readonly>
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Due</label>
+                           <input type="text" name="payment" value="{{studentpayment.Due}}" class="form-control" readonly>
+                        </div>
+                     </div>
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Today Payment</label>
+                           <input type="text" name="newpayment"  class="form-control">
+                        </div>
+                     </div>
+                     <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+    
+{% endblock admincontent %}
+    
