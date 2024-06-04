@@ -62,9 +62,12 @@
                            <td class="text-right">
                               <div class="actions">
                                  
-                                 <button onclick="printAdmissionform('{{ i.id}}')" class="btn btn-outline-primary mr-2">
+                                 <a onclick="printAdmissionform('{{i.id}}')" class="btn btn-outline-primary mr-2">
                                     <i class="fas fa-print"></i>
-                                </button>
+                                </a>
+                                <a onclick="downloadAdmissionform('{{i.id}}')" class="btn btn-outline-primary mr-2">
+                                 <i class="fas fa-download"></i> Download
+                             </a>
                                  <a href="{% url 'editStudent' i.id %}" class="btn btn-sm bg-success-light mr-2">
                                  <i class="fas fa-pen"></i>
                                  </a>
@@ -95,6 +98,29 @@
            printWindow.print();
        };
    }
+
+
+   function downloadAdmissionform(id) {
+      var url = "/downloadAdmissionform/" + id;
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url, true);
+      xhr.responseType = 'blob';
+  
+      xhr.onload = function () {
+          if (xhr.status === 200) {
+              var blob = xhr.response;
+              var a = document.createElement('a');
+              var url = window.URL.createObjectURL(blob);
+              a.href = url;
+              a.download = 'admission_form.pdf'; // Set the filename here
+              document.body.appendChild(a);
+              a.click();
+              window.URL.revokeObjectURL(url);
+          }
+      };
+  
+      xhr.send();
+  }
 </script>
     
 {% endblock admincontent %}

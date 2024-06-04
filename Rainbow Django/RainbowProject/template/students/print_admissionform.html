@@ -56,6 +56,7 @@
             border: 2px solid #4a45cf;
             color: #fff;
             background-color: #4a45cf;
+            font-weight: bold;
         }
         .btn:hover{
             border: 2px solid #4a45cf;
@@ -78,13 +79,14 @@
             padding: 20px;
         }
         .details .signature p{
-            border-top: 1px dashed #4a45cf;
+            border-top: 1px dashed #020204;
+            font-weight: 500;
         }
 
         .info-line {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .info-line label {
@@ -109,7 +111,7 @@
             <img src="{% static 'assets/img/logo.png' %}" alt="Logo" class="img-fluid">
         </div>
         <div class="middle-text">
-            <p class="m-0 p-0 fs-12">Youth Development Computer Training Institute</p>
+            
             <h2 class="fw-bold m-0 p-0">Rainbow Computer Point</h2>
             <p class="m-0 p-0 fs-12">Joynabari, Hemayetpur, Savar, Dhaka-1340</p>
             <p class="m-0 p-0 fs-12">Mobile: +8801793299882, Email:shakil.eub.cse@gmail.com</p>
@@ -121,6 +123,9 @@
     </header>
     <div class="line1"></div>
     <div class="line"></div>
+    <div class="row d-flex justify-content-center">
+        <button class="outline-primary">Personal Information</button>
+    </div>
 
     <div class="details">
         <div class="row  info-line">
@@ -132,6 +137,7 @@
                 <p>  {{studentdata.AdmissionDate}}</p>
             </div>
         </div>
+        
         <div class="row info-line">
             <div class="col-lg-12 d-flex col-sm-12">
                 <label for="studentName" class="form-label">Student Name:</label>
@@ -164,11 +170,22 @@
         </div>
         <div class="row info-line">
             <div class="col-lg-6 col-sm-6 d-flex">
-                <label class="form-label">Mobile:</label>
+                <label class="form-label">Contact:</label>
                 <p>{{studentdata.Mobile}}</p>
             </div>
             <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Emargency Contact:</label>
+                <p>{{studentdata.Mobile}}</p>
+            </div>
+            
+        </div>
+        <div class="row info-line">
+            <div class="col-lg-6 col-sm-6 d-flex">
                 <label class="form-label">Email:</label>
+                <p>{{studentdata.user.email}}</p>
+            </div>
+            <div class="col-lg-6 col-sm-6 d-flex">
+                <label class="form-label">Qualification:</label>
                 <p>{{studentdata.user.email}}</p>
             </div>
         </div>
@@ -218,17 +235,17 @@
             </div>
             <div class="col-lg-6 col-sm-6 d-flex">
                 <label class="form-label">Course Fee:</label>
-                <p>{{studentdata.CourseFee}}</p>
+                <p>{{studentdata.CourseFee}}/-</p>
             </div>
         </div>
         <div class="row info-line">
             <div class="col-lg-6 col-sm-6 d-flex">
                 <label class="form-label">Payment:</label>
-                <p>{{studentdata.Payment}}</p>
+                <p>{{studentdata.Payment}}/-</p>
             </div>
             <div class="col-lg-6 col-sm-6 d-flex">
                 <label class="form-label">Due:</label>
-                <p>{{studentdata.Due}}</p>
+                <p>{{studentdata.Due}}/-</p>
             </div>
         </div>
     </div>

@@ -106,7 +106,7 @@ class AdmissionFormModel(models.Model):
     email = models.EmailField(max_length=100, null=True)
     Mobile = models.CharField(max_length=100, null=True)
     Address = models.CharField(max_length=100, null=True)
-    StudentPhoto = models.ImageField(upload_to='pendingstudent', null=True)
+    StudentPhoto = models.ImageField(upload_to='studentphoto', null=True)
     
 
     

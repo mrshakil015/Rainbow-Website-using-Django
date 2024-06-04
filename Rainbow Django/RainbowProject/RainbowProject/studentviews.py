@@ -1,3 +1,5 @@
+import os
+from django.core.files.storage import FileSystemStorage
 from django.shortcuts import redirect,render
 from RainbowApp.models import *
 from django.contrib import messages
@@ -34,6 +36,8 @@ def addStudentPage(request):
         coursefee=request.POST.get('coursefee')
         payment=request.POST.get('payment')
         
+        print("First name of image: ",studentImage)
+        
         due = int(coursefee) - int(payment)
         
         if CustomUserModel.objects.filter(username=rollno).exists():
@@ -51,6 +55,15 @@ def addStudentPage(request):
             
             courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
             batchinfo = BatchInfoModel.objects.get(BatchNo=batchno)
+            
+            if studentImage:
+                _, extension = os.path.splitext(studentImage.name)
+                new_image_name = f"{rollno}_{fullname.replace(' ', '_')}{extension}"
+                fs = FileSystemStorage(location='/studentphoto/')
+                filename = fs.save(new_image_name, studentImage)
+                studentImage = 'studentphoto/' + filename
+                
+                print("Last name of image: ",studentImage)
             
             studentData = StudentInfoModel.objects.create(
                 user=studentuser,
@@ -158,6 +171,8 @@ def editStudent(request,myid):
 
 def deleteStudent(request,user):
    studentdata = CustomUserModel.objects.get(username=user)
+   img= studentdata.studentuser.StudentPhoto
+   os.remove(img.path)
    studentdata.delete()
    messages.success(request,'Student Deleted Done.')
    return redirect('studentList')
@@ -188,10 +203,7 @@ def studentList(request):
 
 
 def admissionformPage(request):
-    
     courseData = CourseInfoModel.objects.all()
-
-
     context = {
         'courseData':courseData,
     }
@@ -224,7 +236,8 @@ def admissionformPage(request):
             StudentPhoto=studentphoto,
         )
         admissiondata.save()
-        return redirect('homePage')
+        messages.success(request,'Thanks for Registraion.')
+        return redirect('admissionformPage')
         
     return render(request,'students/admissionform.html',context)
 
@@ -263,7 +276,7 @@ def editPendingStudent(request,myid):
         emergencymobile=request.POST.get('emergencymobile')
         email=request.POST.get('email')
         studentImage=request.FILES.get('studentImage')
-        preimg=request.FILES.get('preimg')
+        preimg=request.POST.get('preimg')
         presentaddress=request.POST.get('presentaddress')
         permanentaddress=request.POST.get('permanentaddress')
         
@@ -347,15 +360,15 @@ def editPendingStudent(request,myid):
     
     return render(request,'students/editpendingstudent.html',context)
 
-
-def admissionPage(request):
-    student_info=StudentInfoModel.objects.get(RollNo=21)
-    context = {
-        'student_info':student_info,
-    }
-    return render(request,'commons/test.html',context)
-
-
+def deletePendingStudent(request,myid):
+   pendingstudentdata = AdmissionFormModel.objects.get(id=myid)
+   img= pendingstudentdata.StudentPhoto
+   print(img)
+   os.remove(img.path)
+   
+   pendingstudentdata.delete()
+   messages.success(request,'Student Deleted Done.')
+   return redirect('pendingStudentList')
 
 #-----------------Successfull Students-----------------
 def addSuccessfulStudent(request):
@@ -387,6 +400,8 @@ def successStudentList(request):
 
 def deleteSuccessStudent(request,myid):
     studentData = SuccessfulStudentInfoModel.objects.get(id=myid)
+    img = studentData.StudentImage
+    os.remove(img.path)
     studentData.delete()
     messages.success(request,'Delete Successfully.') 
     return redirect('successStudentList')
@@ -416,6 +431,20 @@ def editSuccessStudent(request,myid):
     return render(request,'students/success_student_edit.html',context)
 
 def printAdmissionform(request,myid):
+    courseData = CourseInfoModel.objects.all()   
+    batchData = BatchInfoModel.objects.all()
+    studentdata = StudentInfoModel.objects.get(id=myid)
+    date_of_birth = studentdata.DOB.isoformat() if studentdata.DOB else ''
+    context = {
+        'studentdata':studentdata,
+        'courseData':courseData,
+        'date_of_birth': date_of_birth,
+        'batchData': batchData,
+    }
+    
+    return render(request,'students/print_admissionform.html',context)
+
+def downloadAdmissionform(request,myid):
     courseData = CourseInfoModel.objects.all()   
     batchData = BatchInfoModel.objects.all()
     studentdata = StudentInfoModel.objects.get(id=myid)

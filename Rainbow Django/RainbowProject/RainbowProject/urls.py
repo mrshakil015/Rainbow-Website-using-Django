@@ -26,8 +26,11 @@ urlpatterns = [
     path('editStudent/<str:myid>',editStudent, name='editStudent'),
     path('deleteStudent/<str:user>',deleteStudent, name='deleteStudent'),
     path('studentList/',studentList, name='studentList'),
+    
     path('pendingStudentList/',pendingStudentList, name='pendingStudentList'),
     path('editPendingStudent/<str:myid>',editPendingStudent, name='editPendingStudent'),
+    path('deletePendingStudent/<str:myid>',deletePendingStudent, name='deletePendingStudent'),
+    
     path('admitedcourseInfo/',admitedcourseInfo, name='admitedcourseInfo'),
     path('admitedcoursePaymentInfo/',admitedcoursePaymentInfo, name='admitedcoursePaymentInfo'),
     
@@ -83,8 +86,8 @@ urlpatterns = [
     path('editContact/<str:myid>',editContact, name='editContact'),
     path('deleteContact/<str:myid>',deleteContact, name='deleteContact'),
     
-    path('admissionPage/',admissionPage, name='admissionPage'),
     path('printAdmissionform/<str:myid>',printAdmissionform, name='printAdmissionform'),
+    path('downloadAdmissionform/<str:myid>',downloadAdmissionform, name='downloadAdmissionform'),
 ]
 
 urlpatterns+=re_path(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),

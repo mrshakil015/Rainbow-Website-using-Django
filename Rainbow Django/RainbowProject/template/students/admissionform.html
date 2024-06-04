@@ -11,7 +11,7 @@
     </div>
 
 </section>
-
+{% include 'commons/message.html' %}
 <section class="application-section section">
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -31,12 +31,13 @@
                         <p>বিঃদ্রঃ ফরমটি অবশ্যই ইংরেজিতে পূরণ করতে হবে।<br> সকল তথ্য অবশ্যই সার্টিফিকেট অনুযায়ী দিতে
                             হবে।</p>
                     </div>
+                    
                     <form id="contact-form" role="form" action="{% url 'admissionformPage' %}" method="POST"
                         enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="controls">
                             <div class="row">
-
+                               
                                 <div class="input-section col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="coursename">কোর্স সিলেক্ট করুন *</label>
