@@ -121,7 +121,7 @@ def coursePage(request):
     
     return render(request,'course/coursepage.html',context)
 
-@login_required
+
 def viewCourse(request,courseid):
    courseData = CourseInfoModel.objects.get(id=courseid)
    context = {
