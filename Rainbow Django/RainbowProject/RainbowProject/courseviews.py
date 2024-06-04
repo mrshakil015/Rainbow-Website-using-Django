@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from RainbowApp.models import *
 from django.contrib import messages
 
+@login_required
 def addCoursePage(request):
    if request.method == 'POST':
       coursename= request.POST.get('coursename') 
@@ -33,10 +35,9 @@ def addCoursePage(request):
          return redirect('courseList')
    return render(request,'course/addcourse.html')
  
+@login_required
 def courseList(request):
    courseinfo = CourseInfoModel.objects.all()
-   
-   # studentcount = StudentInfoModel.objects.filter(CourseName='Graphic Designing').count()
    courseList = []
    for i in courseinfo:
       studentcount = StudentInfoModel.objects.filter(CourseName=i).count()
@@ -51,23 +52,18 @@ def courseList(request):
             'CourseFee':i.CourseFee,
          }
       )
-      
-    
-   
    context = {
       'courseList':courseList,
    }
    
    return render(request,'course/courselist.html',context)
 
+@login_required
 def editCoursePage(request,myid):
    courseinfo = CourseInfoModel.objects.get(id=myid)
-   
    context = {
       'courseinfo':courseinfo,
    }
-   
-   
    if request.method == 'POST':
       coursename= request.POST.get('coursename') 
       courseduration= request.POST.get('courseduration') 
@@ -110,6 +106,7 @@ def editCoursePage(request,myid):
          
    return render(request,'course/editcourse.html',context)
 
+@login_required
 def deleteCourse(request,myid):
    courseData = CourseInfoModel.objects.get(id=myid)
    courseData.delete()
@@ -118,13 +115,13 @@ def deleteCourse(request,myid):
 
 def coursePage(request):
     courseData = CourseInfoModel.objects.all()
-    
     context = {
         'courseData': courseData,
     }
     
     return render(request,'course/coursepage.html',context)
 
+@login_required
 def viewCourse(request,courseid):
    courseData = CourseInfoModel.objects.get(id=courseid)
    context = {

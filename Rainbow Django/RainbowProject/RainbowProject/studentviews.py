@@ -1,11 +1,12 @@
 import os
 from django.core.files.storage import FileSystemStorage
 from django.shortcuts import redirect,render
+from django.contrib.auth.decorators import login_required
 from RainbowApp.models import *
 from django.contrib import messages
 
+@login_required
 def addStudentPage(request):
-    
     courseData = CourseInfoModel.objects.all()
     batchData = BatchInfoModel.objects.all()
     
@@ -56,15 +57,6 @@ def addStudentPage(request):
             courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
             batchinfo = BatchInfoModel.objects.get(BatchNo=batchno)
             
-            if studentImage:
-                _, extension = os.path.splitext(studentImage.name)
-                new_image_name = f"{rollno}_{fullname.replace(' ', '_')}{extension}"
-                fs = FileSystemStorage(location='/studentphoto/')
-                filename = fs.save(new_image_name, studentImage)
-                studentImage = 'studentphoto/' + filename
-                
-                print("Last name of image: ",studentImage)
-            
             studentData = StudentInfoModel.objects.create(
                 user=studentuser,
                 StudentName=fullname,
@@ -95,6 +87,7 @@ def addStudentPage(request):
     
     return render(request,'students/addstudent.html',context)
 
+@login_required
 def editStudent(request,myid):
     courseData = CourseInfoModel.objects.all()   
     batchData = BatchInfoModel.objects.all()
@@ -161,14 +154,13 @@ def editStudent(request,myid):
         CustomUserModel.objects.filter(username = rollno).update(
             email=email
         )
-        
-        
         studentdata.save()
         messages.success(request,'Successfully Updated.')
         return redirect('studentList')
     
     return render(request,'students/editstudent.html',context)
 
+@login_required
 def deleteStudent(request,user):
    studentdata = CustomUserModel.objects.get(username=user)
    img= studentdata.studentuser.StudentPhoto
@@ -177,6 +169,7 @@ def deleteStudent(request,user):
    messages.success(request,'Student Deleted Done.')
    return redirect('studentList')
 
+@login_required
 def admitedcourseInfo(request):
     current_batch = request.user
     studentData=StudentInfoModel.objects.get(user=current_batch)
@@ -188,19 +181,18 @@ def admitedcourseInfo(request):
     
     return render(request,'students/admitedcourseinfo.html',context)
 
+@login_required
 def admitedcoursePaymentInfo(request):
     
     return render(request,'students/admitedcoursepaymentinfo.html')
-    
+
+@login_required    
 def studentList(request):
     studentinfo = StudentInfoModel.objects.all()
-
-
     context = {
         'studentinfo':studentinfo,
     }
     return render(request,'students/studentlist.html',context)
-
 
 def admissionformPage(request):
     courseData = CourseInfoModel.objects.all()
@@ -241,16 +233,17 @@ def admissionformPage(request):
         
     return render(request,'students/admissionform.html',context)
 
+@login_required
 def pendingStudentList(request):
     pendingstudentdata = AdmissionFormModel.objects.all()
-    
-    
+
     context = {
         'pendingstudentdata':pendingstudentdata,
     }
     
     return render(request,'students/pendingstudentlist.html',context)
 
+@login_required
 def editPendingStudent(request,myid):
     pendingstudentdata = AdmissionFormModel.objects.get(id=myid)
     batchData = BatchInfoModel.objects.all()
@@ -360,6 +353,7 @@ def editPendingStudent(request,myid):
     
     return render(request,'students/editpendingstudent.html',context)
 
+@login_required
 def deletePendingStudent(request,myid):
    pendingstudentdata = AdmissionFormModel.objects.get(id=myid)
    img= pendingstudentdata.StudentPhoto
@@ -371,6 +365,7 @@ def deletePendingStudent(request,myid):
    return redirect('pendingStudentList')
 
 #-----------------Successfull Students-----------------
+@login_required
 def addSuccessfulStudent(request):
     if request.method == 'POST':
         studentname=request.POST.get('studentname')
@@ -389,6 +384,7 @@ def addSuccessfulStudent(request):
         return redirect('successStudentList')
     return render(request,'students/addsuccessstudent.html')
 
+@login_required
 def successStudentList(request):
     studentData = SuccessfulStudentInfoModel.objects.all()
     
@@ -398,6 +394,7 @@ def successStudentList(request):
     
     return render(request,'students/success_student_list.html',context)
 
+@login_required
 def deleteSuccessStudent(request,myid):
     studentData = SuccessfulStudentInfoModel.objects.get(id=myid)
     img = studentData.StudentImage
@@ -406,6 +403,7 @@ def deleteSuccessStudent(request,myid):
     messages.success(request,'Delete Successfully.') 
     return redirect('successStudentList')
 
+@login_required
 def editSuccessStudent(request,myid):
     studentData = SuccessfulStudentInfoModel.objects.get(id=myid)
     context = {
@@ -430,6 +428,7 @@ def editSuccessStudent(request,myid):
     
     return render(request,'students/success_student_edit.html',context)
 
+@login_required
 def printAdmissionform(request,myid):
     courseData = CourseInfoModel.objects.all()   
     batchData = BatchInfoModel.objects.all()
@@ -444,6 +443,7 @@ def printAdmissionform(request,myid):
     
     return render(request,'students/print_admissionform.html',context)
 
+@login_required
 def downloadAdmissionform(request,myid):
     courseData = CourseInfoModel.objects.all()   
     batchData = BatchInfoModel.objects.all()

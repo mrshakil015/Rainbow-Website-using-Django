@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from RainbowApp.models import *
 from django.contrib import messages
 
@@ -75,6 +76,7 @@ def logoutPage(request):
     logout(request)
     return redirect('homePage')
 
+@login_required
 def adminDashboard(request):
     studentinfo = StudentInfoModel.objects.all()
     courseinfo = CourseInfoModel.objects.all()
@@ -85,7 +87,6 @@ def adminDashboard(request):
     for i in courseinfo:
         studentcount = StudentInfoModel.objects.filter(CourseName=i).count()
         totalStudents+=studentcount
-        
         
         courseList.append(
             {
@@ -123,10 +124,9 @@ def studentSignin(request):
         
     return render(request,'students/studentlogin.html')
 
+@login_required
 def studentDashboard(request):
-    
-   
-    
+
     return render(request,'students/studentdashboard.html')
 
 #----------------Service-----------------
@@ -139,14 +139,67 @@ def servicePage(request):
     
     return render(request,'ourservice/servicepage.html',context)
 
+@login_required
+def serviceList(request):
+    servicedata = ServiceInfoModel.objects.all()
+    context = {
+        'servicedata':servicedata,
+    }
+    return render(request,'ourservice/servicelist.html',context)
+
+@login_required
+def addService(request):
+    if request.method=='POST':
+        servicename = request.POST.get('servicename')
+        aboutservice = request.POST.get('aboutservice')
+        
+        servicedata = ServiceInfoModel(
+            ServiceName= servicename,
+            AboutService = aboutservice,
+        )
+        servicedata.save()
+        messages.success(request,'Service Successfully Added.')
+        return redirect('serviceList')
+        
+    return render(request,'ourservice/addservice.html')
+
+@login_required
+def editService(request,myid):
+    servicedata = ServiceInfoModel.objects.get(id=myid)
+    
+    context = {
+        'servicedata':servicedata,
+    }
+    if request.method=='POST':
+        servicename = request.POST.get('servicename')
+        aboutservice = request.POST.get('aboutservice')
+
+
+        servicedata.ServiceName= servicename
+        servicedata.AboutService = aboutservice
+        servicedata.save()
+        messages.success(request,'Service Successfully Updated.')
+        return redirect('serviceList')
+    
+    return render(request,'ourservice/editservice.html',context)    
+
+@login_required
+def deleteService(request,myid):
+    servicedata = ServiceInfoModel.objects.get(id=myid)
+    servicedata.delete()
+    messages.success(request,'Service Successfully Deleted.')
+    return redirect('serviceList')
+
+#----------------Payment-----------------
+@login_required
 def paymentList(request):
     studentinfo = StudentInfoModel.objects.all()
     context = {
         'studentinfo':studentinfo,
     }
-
     return render(request,'payment/paymentlist.html',context)
 
+@login_required
 def updatePayment(request,myid):
     studentpayment = StudentInfoModel.objects.get(id=myid)
     context = {
@@ -168,55 +221,6 @@ def updatePayment(request,myid):
 
     return render(request,'payment/updatepayment.html',context)
 
-def serviceList(request):
-    servicedata = ServiceInfoModel.objects.all()
-    
-    context = {
-        'servicedata':servicedata,
-    }
-    
-    return render(request,'ourservice/servicelist.html',context)
-
-def addService(request):
-    if request.method=='POST':
-        servicename = request.POST.get('servicename')
-        aboutservice = request.POST.get('aboutservice')
-        
-        servicedata = ServiceInfoModel(
-            ServiceName= servicename,
-            AboutService = aboutservice,
-        )
-        servicedata.save()
-        messages.success(request,'Service Successfully Added.')
-        return redirect('serviceList')
-        
-    return render(request,'ourservice/addservice.html')
-
-def editService(request,myid):
-    servicedata = ServiceInfoModel.objects.get(id=myid)
-    
-    context = {
-        'servicedata':servicedata,
-    }
-    if request.method=='POST':
-        servicename = request.POST.get('servicename')
-        aboutservice = request.POST.get('aboutservice')
-
-
-        servicedata.ServiceName= servicename
-        servicedata.AboutService = aboutservice
-        servicedata.save()
-        messages.success(request,'Service Successfully Updated.')
-        return redirect('serviceList')
-    
-    return render(request,'ourservice/editservice.html',context)    
-
-def deleteService(request,myid):
-    servicedata = ServiceInfoModel.objects.get(id=myid)
-    servicedata.delete()
-    messages.success(request,'Service Successfully Deleted.')
-    return redirect('serviceList')
-
 #------------Gallery-----------------
 def galleryPage(request):
     galleryData = GalleryImageModel.objects.all()
@@ -227,6 +231,7 @@ def galleryPage(request):
     
     return render(request,'gallery/gallerypage.html',context)
 
+@login_required
 def addGallery(request):
     if request.method == 'POST':
         imagetitle = request.POST.get('imagetitle')
@@ -242,22 +247,20 @@ def addGallery(request):
         
     return render(request,'gallery/addgallery.html')
 
+@login_required
 def galleryList(request):
     galleryData = GalleryImageModel.objects.all()
-    
     context = {
         'galleryData':galleryData
     }
-    
     return render(request,'gallery/gallerylist.html',context)
 
+@login_required
 def editImage(request,myid):
     galleryData = GalleryImageModel.objects.get(id=myid)
-    
     context = {
         'galleryData':galleryData
     }
-    
     if request.method == 'POST':
         imagetitle = request.POST.get('imagetitle')
         galleryimage = request.FILES.get('galleryimage')
@@ -270,6 +273,7 @@ def editImage(request,myid):
         return redirect('galleryList')
     return render(request,'gallery/editgallery.html',context)
 
+@login_required
 def deleteImage(request,myid):
     galleryData = GalleryImageModel.objects.get(id=myid)
     galleryData.delete()
@@ -279,23 +283,22 @@ def deleteImage(request,myid):
 #------------Contact------------
 def contactUsPage(request):
     contactData = ContactUsModel.objects.all()
-    
     context = {
         'contactData':contactData,
     }
     
     return render(request,'contact/contactus.html',context)
 
+@login_required
 def contactList(request):
     contactData = ContactUsModel.objects.all()
     
     context = {
         'contactData':contactData,
     }
-    
-    
     return render(request,'contact/contactlist.html',context)
 
+@login_required
 def addContact(request):
     if request.method=='POST':
         address=request.POST.get('address')
@@ -316,15 +319,15 @@ def addContact(request):
         return redirect('contactList')
     return render(request,'contact/addcontact.html')
 
+@login_required
 def deleteContact(request,myid):
     contactData = ContactUsModel.objects.get(id=myid)
     contactData.delete()
     return redirect('contactList')
 
+@login_required
 def editContact(request,myid):
-    
     contactData = ContactUsModel.objects.get(id=myid)
-    
     context = {
         'contactData':contactData,
     }

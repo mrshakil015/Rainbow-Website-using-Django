@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from RainbowApp.models import *
 from django.contrib import messages
 from django.db import transaction
 
+@login_required
 def addBatch(request):
     if request.method=='POST':
         batchno=request.POST.get('batchno')
@@ -24,7 +26,7 @@ def addBatch(request):
     
     return render(request,'mybatch/addbatch.html')
 
-
+@login_required
 def batchList(request):
     batchData = BatchInfoModel.objects.all()
     batch_data_with_counts = []
@@ -38,15 +40,14 @@ def batchList(request):
 
     return render(request, 'mybatch/batchlist.html', context)
 
-
-    
+@login_required  
 def deleteBatch(request,myid):
     batchData = BatchInfoModel.objects.get(id=myid)
     batchData.delete()
     messages.success(request,'Batch Delete Successfully')
     return redirect('batchList')
 
-
+@login_required
 def editBatch(request, myid):
     batchData = BatchInfoModel.objects.get(id=myid)
     batch_Date = batchData.BatchStart.isoformat() if batchData.BatchStart else ''
@@ -79,6 +80,7 @@ def editBatch(request, myid):
     
     return render(request, 'mybatch/editbatch.html', context)
 
+@login_required
 def viewSingleBatch(request,batchno):
     studentData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno)
     batchData = BatchInfoModel.objects.get(BatchNo=batchno)
@@ -86,10 +88,10 @@ def viewSingleBatch(request,batchno):
         'studentData':studentData,
         'batchData':batchData,
     }
-    print("BatchData : ",studentData)
     
     return render(request,'mybatch/viewbatch.html',context)
 
+@login_required
 def batchPrint(request, batchno):
     studentData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno)
     batchData = BatchInfoModel.objects.get(BatchNo=batchno)
@@ -97,10 +99,10 @@ def batchPrint(request, batchno):
         'studentData':studentData,
         'batchData':batchData,
     }
-    print("BatchData : ",studentData)
     
     return render(request,'mybatch/batchPrint.html',context)
 
+@login_required
 def attendenceSheetPrint(request, batchno):
     studentData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno)
     batchData = BatchInfoModel.objects.get(BatchNo=batchno)
