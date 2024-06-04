@@ -55,6 +55,7 @@
                                 <th>Due</th>
                                 <th>Admission</th>
                                 <th>Last Update</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -72,6 +73,21 @@
                                 <td>{{ student.Due }}</td>
                                 <td>{{ student.AdmissionDate }}</td>
                                 <td>{{ student.LastModified }}</td>
+                                <td class="text-right">
+                                    <div class="actions">
+
+                                        <a onclick="printAdmissionform('{{student.id}}')" class="btn btn-outline-primary mr-2">
+                                           <i class="fas fa-print"></i>
+                                        </a>
+                                        
+                                        <a href="{% url 'editStudent' student.id %}" class="btn btn-sm bg-success-light mr-2">
+                                           <i class="fas fa-pen"></i>
+                                        </a>
+                                        <a href="{% url 'deleteStudent' student.user %}" class="btn btn-sm bg-danger-light">
+                                           <i class="fas fa-trash"></i>
+                                        </a>
+                                     </div>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -85,7 +101,7 @@
  <!-- Add this hidden iframe -->
 <iframe id="printFrame" style="display:none;"></iframe>
 
-<!-- Add this script at the end of your viewbatch.html file -->
+
 <script>
     function printBatch(batchNo) {
         var url = "/batchPrint/" + batchNo;
@@ -101,6 +117,15 @@
             printWindow.print();
         };
     }
+
+    function printAdmissionform(id) {
+        var url = "/printAdmissionform/" + id;
+        var printWindow = window.open(url, "_blank");
+        printWindow.onload = function () {
+           printWindow.print();
+        };
+     }
+  
 </script>
 
 
