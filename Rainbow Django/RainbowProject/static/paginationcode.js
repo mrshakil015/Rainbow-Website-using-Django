@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     showStudentPage(studentCurrentPage);
 
     // Gallery Pagination
-    const galleryItemsPerPage = 2;
+    const galleryItemsPerPage = 3;
     const galleryItems = document.querySelectorAll('.gallery-item');
     const galleryTotalItems = galleryItems.length;
     const galleryTotalPages = Math.ceil(galleryTotalItems / galleryItemsPerPage);

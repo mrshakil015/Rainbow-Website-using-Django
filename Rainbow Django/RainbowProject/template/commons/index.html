@@ -139,9 +139,9 @@
       </div>
       <div class="row" id="galleryimage-cards-container">
         {% for i in galleryData %}
-        <div class="col-lg-6 gallery-item">
+        <div class="col-lg-4 gallery-item">
             <div class="img-card" style="height: 300px; padding-top:20px;">
-                <img src="{{ i.GalleryImage.url }}" class="card-img-top" alt="profile image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
+                <img src="{{ i.GalleryImage.url }}" class="card-img-top" alt="profile image" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;" data-toggle="modal" data-target="#imageModal" data-img-url="{{ i.GalleryImage.url }}">
             </div>
         </div>
         {% endfor %}
@@ -150,6 +150,36 @@
     </div>
   </div>
 </section>
+
+<!-- Modal Structure -->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">Preview Image</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img id="modalImage" src="" alt="Full size image" style="width: 100%; height: auto;">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Bootstrap JS, jQuery, and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  $('#imageModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var imgUrl = button.data('img-url'); // Extract info from data-* attributes
+    var modal = $(this);
+    modal.find('#modalImage').attr('src', imgUrl);
+  });
+</script>
 
 
 <!-- ======= Contact Section ======= -->
@@ -179,7 +209,6 @@
           <div class="social-links">
             <a href="{{i.Facebook}}" class="facebook" target="_blank"><i
                 class="bi bi-facebook"></i></a>
-            
           </div>
         </div>
       </div>
