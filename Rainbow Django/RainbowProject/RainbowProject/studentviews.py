@@ -36,9 +36,7 @@ def addStudentPage(request):
         section=request.POST.get('section')
         coursefee=request.POST.get('coursefee')
         payment=request.POST.get('payment')
-        
-        print("First name of image: ",studentImage)
-        
+
         due = int(coursefee) - int(payment)
         
         if CustomUserModel.objects.filter(username=rollno).exists():
@@ -174,7 +172,6 @@ def admitedcourseInfo(request):
     current_batch = request.user
     studentData=StudentInfoModel.objects.get(user=current_batch)
     batchData = BatchInfoModel.objects.get(BatchNo=studentData.BatchNo)
-    print("Current batch, ",batchData.Status)
     context ={
         'batchData':batchData,
     }
@@ -248,8 +245,6 @@ def editPendingStudent(request,myid):
     batchData = BatchInfoModel.objects.all()
     courseData = CourseInfoModel.objects.all()   
     date_of_birth = pendingstudentdata.DOB.isoformat() if pendingstudentdata.DOB else ''
-    for batch in batchData:
-        print("Batch data is: ",batch.Batchschedule)
     context = {
         'pendingstudentdata':pendingstudentdata,
         'courseData':courseData,

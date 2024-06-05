@@ -110,6 +110,5 @@ def attendenceSheetPrint(request, batchno):
         'studentData':studentData,
         'batchData':batchData,
     }
-    print("BatchData : ",studentData)
     
     return render(request,'mybatch/attendance_sheet_print.html',context)

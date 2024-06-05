@@ -42,7 +42,6 @@ def courseList(request):
    courseList = []
    for i in courseinfo:
       studentcount = StudentInfoModel.objects.filter(CourseName=i).count()
-      print("Course name: ",i.CourseName)
       
       courseList.append(
          {
