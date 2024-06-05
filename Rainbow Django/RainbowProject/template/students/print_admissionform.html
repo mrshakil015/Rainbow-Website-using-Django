@@ -51,6 +51,10 @@
             margin-top: 0;
             margin-bottom: 10px;
         }
+        .middle-text h2 {
+            font-size: 37px;
+            color: #4a45cf;
+        }
 
         .outline-primary {
             border: 2px solid #4a45cf;
@@ -101,6 +105,9 @@
             padding-bottom: 2px;
             flex-grow: 1;
         }
+        .admissionbtn{
+            font-size: 20px;
+        }
        
     </style>
 </head>
@@ -113,28 +120,30 @@
         <div class="middle-text">
             
             <h2 class="fw-bold m-0 p-0">Rainbow Computer Point</h2>
-            <p class="m-0 p-0 fs-12">Joynabari, Hemayetpur, Savar, Dhaka-1340</p>
-            <p class="m-0 p-0 fs-12">Mobile: +8801793299882, Email:shakil.eub.cse@gmail.com</p>
-            <button class="btn outline-primary mt-2">Admission Form</button>
+            <p class="m-0 p-0 fs-12">Hemayetpur (Joynabari Road), Savar, Dhaka-1340</p>
+            <p class="m-0 p-0 fs-12">Mobile: +8801716-226026, Email: rainbow.saif@gmail.com</p>
+            <button class="btn admissionbtn outline-primary mt-2">Admission Form</button>
         </div>
         <div class="right-image box">
             <img src="{{studentdata.StudentPhoto.url}}" alt="Right Image" class="img-fluid">
         </div>
     </header>
-    <div class="line1"></div>
-    <div class="line"></div>
     <div class="row d-flex justify-content-center">
         <button class="outline-primary">Personal Information</button>
     </div>
 
     <div class="details">
         <div class="row  info-line">
-            <div class="col-lg-7 col-sm-7 d-flex">
+            <div class="col-lg-4 col-sm-4 d-flex">
+                <label class="form-label">Roll No:</label>
+                <span>{{studentdata.RollNo}}</span>
+            </div>
+            <div class="col-lg-3 col-sm-3 d-flex">
                
             </div>
             <div class="col-lg-5 col-sm-5 d-flex">
                 <label class="form-label">Admission Date:</label>
-                <p>  {{studentdata.AdmissionDate}}</p>
+                <span>  {{studentdata.AdmissionDate}}</span>
             </div>
         </div>
         
