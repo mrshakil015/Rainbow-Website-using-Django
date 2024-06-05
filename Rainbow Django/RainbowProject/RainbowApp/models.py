@@ -97,14 +97,17 @@ class StudentInfoModel(models.Model):
 class ExamResultModel(models.Model):
     Candidate = models.ForeignKey(CustomUserModel,on_delete=models.CASCADE, related_name='examinfo', null=True)
     ExamTitle = models.CharField(max_length=100, null=True)
-    MCQ = models.CharField(max_length=100, null=True)
-    Written = models.CharField(max_length=100, null=True)
-    Practicle = models.CharField(max_length=100, null=True)
-    TotalMark = models.CharField(max_length=100, null=True)
+    ObtainMCQ = models.CharField(max_length=100, null=True)
+    ObtainWritten = models.CharField(max_length=100, null=True)
+    ObtainPracticle = models.CharField(max_length=100, null=True)
+    ObtainTotalMark = models.CharField(max_length=100, null=True)
+    
+    TotalMCQ = models.CharField(max_length=100, null=True)
+    TotalWritten = models.CharField(max_length=100, null=True)
+    TotalPracticle = models.CharField(max_length=100, null=True)
+    TotalExamMark = models.CharField(max_length=100, null=True)
+    
     ExamDate = models.DateField(null=True)
-    
-    
-    
 class AdmissionFormModel(models.Model):
     CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.SET_NULL,null=True) 
     StudentName = models.CharField(max_length=100, null=True)

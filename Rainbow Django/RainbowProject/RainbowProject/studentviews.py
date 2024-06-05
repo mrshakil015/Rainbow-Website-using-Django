@@ -456,3 +456,57 @@ def downloadAdmissionform(request,myid):
     }
     
     return render(request,'students/print_admissionform.html',context)
+
+
+#-------------------Exam Result-----------------------
+def examList(request):
+    current_user = request.user
+    current_userType = request.user.UserType
+    if current_userType == 'Admin':
+        examdata = ExamResultModel.objects.all()
+    else:
+        examdata = ExamResultModel.objects.filter(Candidate=current_user)
+    
+    context = {
+        'examdata': examdata
+    }
+    
+    
+    return render(request,'examresult/examlist.html',context)
+
+def addExamResult(request):
+    if request.method == 'POST':
+        studentroll= request.POST.get('studentroll')
+        examtitle= request.POST.get('examtitle')
+        
+        obtainedmcq= request.POST.get('obtainedmcq')
+        totalmcq= request.POST.get('totalmcq')
+        obtainedwritten= request.POST.get('obtainedwritten')
+        totalwritten= request.POST.get('totalwritten')
+        obtainedpractical= request.POST.get('obtainedpractical')
+        totalpractical= request.POST.get('totalpractical')
+        examdate= request.POST.get('examdate')
+        
+        obtaintotalmarks= int(obtainedmcq) + int(obtainedwritten) + int(obtainedpractical)
+        totalexamark= int(totalmcq) + int(totalwritten) + int(totalpractical)
+        student = CustomUserModel.objects.get(username=studentroll)
+        
+        examdata = ExamResultModel.objects.create(
+            Candidate=student,
+            ExamTitle = examtitle,
+            
+            ObtainMCQ = obtainedmcq,
+            ObtainWritten = obtainedwritten,
+            ObtainPracticle = obtainedpractical,
+            ObtainTotalMark = obtaintotalmarks,
+            TotalMCQ = totalmcq,
+            TotalWritten = totalwritten,
+            TotalPracticle = totalpractical,
+            TotalExamMark = totalexamark,
+            ExamDate = examdate,
+        )
+        examdata.save()
+        messages.success(request,'Exam Result Added')
+        return redirect('examList')
+    
+    return render(request,'examresult/addexamresult.html')

@@ -74,6 +74,10 @@ urlpatterns = [
     path('paymentList/',paymentList, name='paymentList'),
     path('updatePayment/<str:myid>',updatePayment, name='updatePayment'),
     
+    #------------Exam Result-----------
+    path('examList/',examList,name='examList'),
+    path('addExamResult/',addExamResult,name='addExamResult'),
+    
     #------------Service------------
     path('serviceList/',serviceList, name='serviceList'),
     path('addService/',addService, name='addService'),

@@ -19,7 +19,7 @@ class StudentInfoDisplay(admin.ModelAdmin):
 admin.site.register(StudentInfoModel,StudentInfoDisplay)    
     
 class ExamInfoDisplay(admin.ModelAdmin):
-    list_display = ['Candidate','ExamTitle','TotalMark']
+    list_display = ['Candidate','ExamTitle','TotalExamMark']
 admin.site.register(ExamResultModel,ExamInfoDisplay)    
     
 

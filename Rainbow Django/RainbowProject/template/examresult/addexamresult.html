@@ -1,0 +1,107 @@
+{% extends 'adminmaster/adminmaster.html' %}
+
+{% block admincontent %}
+<div class="content container-fluid">
+   <div class="page-header">
+      <div class="row align-items-center">
+         <div class="col">
+            <h3 class="page-title">Exam Result Info</h3>
+            <ul class="breadcrumb">
+               <li class="breadcrumb-item"><a href="{% url 'batchList' %}">Result</a></li>
+               <li class="breadcrumb-item active">Add Exam Result</li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-sm-12">
+         <div class="card">
+            
+            <div class="card-body">
+               {% include 'commons/message.html' %}
+               
+               <form action="{% url 'addExamResult' %}" method="POST" enctype="multipart/form-data">
+                 {% csrf_token %}
+                  <div class="row">
+                     <div class="col-12">
+                        <h5 class="form-title"><span>Exam Result Information</span></h5>
+                     </div>
+                     
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Student Roll</label>
+                           <input type="text" name="studentroll" class="form-control" placeholder="Student Roll">
+                        </div>
+                     </div>
+                     
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Exam Title</label>
+                           <input type="text" name="examtitle" class="form-control" placeholder="Exam Title">
+                        </div>
+                     </div>
+                     
+                     <!-- MCQ Section -->
+                     <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label>MCQ</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" name="obtainedmcq" class="form-control" placeholder="Obtained MCQ">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" name="totalmcq" class="form-control" placeholder="Total MCQ Mark">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Written Section -->
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label>Written</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" name="obtainedwritten" class="form-control" placeholder="Obtained Written">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" name="totalwritten" class="form-control" placeholder="Total Written Mark">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Practical Section -->
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                            <label>Practical</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" name="obtainedpractical" class="form-control" placeholder="Obtained Practical">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" name="totalpractical" class="form-control" placeholder="Total Practical Mark">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Exam Date Section -->
+                    <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                           <label>Exam Date</label>
+                           <input type="date" name="examdate" class="form-control">
+                        </div>
+                     </div>
+
+                     <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock admincontent %}
