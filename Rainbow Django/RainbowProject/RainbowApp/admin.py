@@ -18,6 +18,10 @@ class StudentInfoDisplay(admin.ModelAdmin):
     list_display = ['user','StudentName','CourseName']
 admin.site.register(StudentInfoModel,StudentInfoDisplay)    
     
+class ExamInfoDisplay(admin.ModelAdmin):
+    list_display = ['Candidate','ExamTitle','TotalMark']
+admin.site.register(ExamResultModel,ExamInfoDisplay)    
+    
 
 class PendingStudentDisplay(admin.ModelAdmin):
     list_display = ['StudentName','CourseName']

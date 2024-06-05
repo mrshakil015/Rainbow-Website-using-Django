@@ -4,7 +4,6 @@ from django_cleanup import cleanup
 
 # Create your models here.
 def user_directory_path(instance, filename):
-    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return f"studentphoto/{instance.RollNo}_{filename}"
 
 @cleanup.select
@@ -94,6 +93,15 @@ class StudentInfoModel(models.Model):
     Due = models.CharField(max_length=100, null=True)
     AdmissionDate = models.DateField(auto_now_add=True)
     LastModified = models.DateField(auto_now=True)
+
+class ExamResultModel(models.Model):
+    Candidate = models.ForeignKey(CustomUserModel,on_delete=models.CASCADE, related_name='examinfo', null=True)
+    ExamTitle = models.CharField(max_length=100, null=True)
+    MCQ = models.CharField(max_length=100, null=True)
+    Written = models.CharField(max_length=100, null=True)
+    Practicle = models.CharField(max_length=100, null=True)
+    TotalMark = models.CharField(max_length=100, null=True)
+    ExamDate = models.DateField(null=True)
     
     
     
