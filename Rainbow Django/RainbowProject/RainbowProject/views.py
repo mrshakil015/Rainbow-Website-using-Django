@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -294,6 +295,8 @@ def editImage(request,myid):
 @login_required
 def deleteImage(request,myid):
     galleryData = GalleryImageModel.objects.get(id=myid)
+    img= galleryData.GalleryImage
+    os.remove(img.path)
     galleryData.delete()
     messages.success(request,'Image Successfully Deleted.')
     return redirect('galleryList')

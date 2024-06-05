@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from RainbowApp.models import *
@@ -109,6 +110,8 @@ def editCoursePage(request,myid):
 @login_required
 def deleteCourse(request,myid):
    courseData = CourseInfoModel.objects.get(id=myid)
+   img= courseData.CourseImage
+   os.remove(img.path)
    courseData.delete()
    messages.success(request,'Course Successfully Deleted.')
    return redirect('courseList')
