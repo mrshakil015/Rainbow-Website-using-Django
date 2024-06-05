@@ -4,6 +4,21 @@ from django.contrib.auth.decorators import login_required
 from RainbowApp.models import *
 from django.contrib import messages
 
+def adminlogout_required(view_func):
+    def wrapper(request, *args, **kwargs):
+        if request.user.is_authenticated:
+            messages.warning(request, "You are already logged in.")
+            return redirect('adminDashboard')
+        return view_func(request, *args, **kwargs)
+    return wrapper
+
+def studentlogout_required(view_func):
+    def wrapper(request, *args, **kwargs):
+        if request.user.is_authenticated:
+            messages.warning(request, "You are already logged in.")
+            return redirect('studentDashboard')
+        return view_func(request, *args, **kwargs)
+    return wrapper
 
 def homePage(request):
     courseData = CourseInfoModel.objects.all()
@@ -33,7 +48,7 @@ def aboutUs(request):
     
     return render(request,'commons/aboutus.html',context)
 
-
+@adminlogout_required
 def adminSignUP(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -53,6 +68,7 @@ def adminSignUP(request):
     
     return render(request,'myadmin/adminregister.html')
 
+@adminlogout_required
 def adminSignin(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -107,6 +123,7 @@ def adminDashboard(request):
 
     return render(request,'myadmin/admindashboard.html',context)
 
+@studentlogout_required
 def studentSignin(request):
     if request.method == 'POST':
         studentroll = request.POST.get('studentroll')
