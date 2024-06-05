@@ -64,7 +64,7 @@ def adminSignUP(request):
             user.save()
             return redirect('adminSignin')
         else:
-            return redirect('homePage')
+            return redirect('adminSignUP')
     
     return render(request,'myadmin/adminregister.html')
 
@@ -77,13 +77,13 @@ def adminSignin(request):
         print("Password is: ",password)
         
         user = authenticate(username=username,password=password)
-        print("User is :",user)
         if user:
             if user.UserType == 'Admin':
                 login(request,user)
                 return redirect('adminDashboard')
         else:
-            return redirect('homePage')
+            messages.warning(request,'Username and Password not matched.')
+            return redirect('adminSignin')
     
     return render(request,'myadmin/adminlogin.html')
 
@@ -137,6 +137,7 @@ def studentSignin(request):
             else:
                 return redirect('studentSignin')
         else:
+            messages.warning(request,'Username and Password not matched.')
             return redirect('studentSignin')
         
     return render(request,'students/studentlogin.html')

@@ -9,7 +9,7 @@
     <link rel="icon" href="{% static 'assets/img/favicon.png' %}" type="image/x-icon" />
     <!-- Add Font Awesome for the eye icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+ 
 </head>
 <body>
     <div class="wrapper">
@@ -22,7 +22,7 @@
         <div class="text-center mt-4 name">
             
         </div>
-    
+        {% include 'commons/message.html' %}
         <form class="p-3 mt-3" action="{% url 'adminSignin' %}" method="POST">
             {% csrf_token %}
 
@@ -35,12 +35,12 @@
                 <input type="password" name="password" id="admin_password" placeholder="Authorization Password">
                 <span class="toggle-password fas fa-eye" onclick="togglePasswordVisibility()"></span>
             </div>
-            
+        
             <script>
                 function togglePasswordVisibility() {
                     var passwordInput = document.getElementById("admin_password");
                     var togglePassword = document.querySelector(".toggle-password");
-                
+        
                     if (passwordInput.type === "password") {
                         passwordInput.type = "text";
                         togglePassword.classList.remove("fa-eye");
@@ -51,8 +51,7 @@
                         togglePassword.classList.add("fa-eye");
                     }
                 }
-                </script>
-                
+            </script>
             
             <div>
                 <button type="submit" class="btn mt-3">Admin Login</button>
@@ -61,6 +60,7 @@
             <a class="pt-3" href="{% url 'homePage' %}">Goto HomePage </a>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 </html>
 

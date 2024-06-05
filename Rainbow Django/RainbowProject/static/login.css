@@ -6,12 +6,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Anek Bangla;
 }
 
 body {
     background: #ecf0f3;
-    font-family: Anek Bangla;
+    font-family: 'Anek Bangla', sans-serif;
 }
 
 .wrapper {
@@ -34,13 +33,15 @@ body {
     height: auto;
     object-fit: cover;
 }
-.wrapper .msg-text{
+
+.wrapper .msg-text {
     text-align: center;
     font-size: 12px;
     padding-bottom: 10px;
 }
+
 .wrapper .name {
-    font-weight: 600;
+    font-weight: bold;
     font-size: 1.4rem;
     letter-spacing: 1.3px;
     padding-left: 10px;
@@ -49,7 +50,6 @@ body {
     align-items: center;
     text-align: center;
     text-transform: uppercase;
-    font-weight: bold;
 }
 
 .wrapper .form-field input {
@@ -58,13 +58,14 @@ body {
     border: none;
     outline: none;
     background: none;
-    margin-left: 10px;
+    margin-left: 30px; /* Adjusted to ensure input text doesn't overlap with icon */
     font-size: 0.8rem;
     color: #4a45cf;
     padding: 15px 15px 15px 10px;
 }
 
 .wrapper .form-field {
+    position: relative;
     padding-left: 10px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -111,11 +112,7 @@ body {
 }
 
 /* CSS for eye icon placement */
-.form-field {
-    position: relative;
-}
-
-.form-field span{
+.form-field span {
     font-size: 0.8rem;
 }
 
@@ -141,12 +138,9 @@ body {
     color: #4a45cf; /* Change to your preferred color */
 }
 
-
-@media(max-width: 380px) {
+@media (max-width: 380px) {
     .wrapper {
         margin: 30px 20px;
         padding: 40px 15px 15px 15px;
     }
 }
-
-

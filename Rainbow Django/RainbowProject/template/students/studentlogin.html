@@ -23,7 +23,7 @@
         <div class="text-center mt-4 name">
             
         </div>
-    
+        {% include 'commons/message.html' %}
         <form class="p-3 mt-3" action="{% url 'studentSignin' %}" method="POST">
             {% csrf_token %}
 
@@ -33,15 +33,15 @@
             </div>
             <div class="form-field">
                 <span class="fas fa-key icon"></span>
-                <input type="password" name="studentpassword" id="studentpassword" placeholder="Enter Passowrd">
+                <input type="password" name="password" id="admin_password" placeholder="Authorization Password">
                 <span class="toggle-password fas fa-eye" onclick="togglePasswordVisibility()"></span>
             </div>
-            
+        
             <script>
                 function togglePasswordVisibility() {
                     var passwordInput = document.getElementById("admin_password");
                     var togglePassword = document.querySelector(".toggle-password");
-                
+        
                     if (passwordInput.type === "password") {
                         passwordInput.type = "text";
                         togglePassword.classList.remove("fa-eye");
@@ -52,7 +52,7 @@
                         togglePassword.classList.add("fa-eye");
                     }
                 }
-                </script>
+            </script>
             <div class="text-center align-center">
                 <button class="btn mt-3">ছাত্র/ছাত্রী লগইন</button>
                 
@@ -63,6 +63,7 @@
             {% endif %}
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 </html>
 
