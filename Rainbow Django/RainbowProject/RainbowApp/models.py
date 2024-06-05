@@ -5,6 +5,8 @@ from django_cleanup import cleanup
 # Create your models here.
 def user_directory_path(instance, filename):
     return f"studentphoto/{instance.RollNo}_{filename}"
+def pending_student_dict(instance, filename):
+    return f"studentphoto/apply_{instance.StudentName}_{filename}"
 
 @cleanup.select
 # Create your models here.
@@ -124,7 +126,7 @@ class AdmissionFormModel(models.Model):
     email = models.EmailField(max_length=100, null=True)
     Mobile = models.CharField(max_length=100, null=True)
     Address = models.CharField(max_length=100, null=True)
-    StudentPhoto = models.ImageField(upload_to='studentphoto', null=True)
+    StudentPhoto = models.ImageField(upload_to=pending_student_dict, null=True)
     
 
     

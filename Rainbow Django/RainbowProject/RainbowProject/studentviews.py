@@ -209,7 +209,6 @@ def admissionformPage(request):
         gender = request.POST.get('gender')
         email = request.POST.get('email')
         mobile = request.POST.get('mobile')
-        mobile = request.POST.get('mobile')
         address = request.POST.get('address')
         studentphoto = request.FILES.get('studentphoto')
         

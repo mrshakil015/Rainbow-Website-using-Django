@@ -131,62 +131,9 @@
                                 <div class="input-section col-lg-6 col-md-6 col-sm-12">
                                     <div class="form-group">
                                         <label for="photo" class="form-label">ছবি (সর্বোচ্চ ২ MB, ৫৩০ x ৬৫০ Pixels) *</label>
-                                        <input class="form-control" type="file" accept="image/*" id="photo" name="photo" required="required">
+                                        <input class="form-control" type="file" accept="image/*" id="photo" name="studentphoto" required="required">
                                     </div>
                                 </div>
-                                <script>
-                                    // Function to handle file input change event
-                                    function checkImage(input) {
-                                        input.classList.remove('error-border');
-                                
-                                        if (input.files && input.files[0]) {
-                                            let file = input.files[0];
-                                            let maxSize = 2 * 1024 * 1024; // 2MB in bytes
-                                            let requiredWidth = 530;
-                                            let requiredHeight = 650;
-                                
-                                            // Check file size
-                                            if (file.size > maxSize) {
-                                                Swal.fire({
-                                                    title: "Error!",
-                                                    text: "ছবির সাইজ অবশ্যই ২ MB এর কম হতে হবে।",
-                                                    icon: "error"
-                                                });
-                                                input.value = '';
-                                                input.classList.add('error-border');
-                                                return;
-                                            }
-                                
-                                            let img = new Image();
-                                            img.onload = function () {
-                                                // Check image dimensions
-                                                if (img.width !== requiredWidth || img.height !== requiredHeight) {
-                                                    Swal.fire({
-                                                        title: "Error!",
-                                                        text: "ছবির সাইজ অবশ্যই 530x650 Pixels হতে হবে।",
-                                                        icon: "error"
-                                                    });
-                                                    input.value = '';
-                                                    input.classList.add('error-border');
-                                                }
-                                            };
-                                            img.onerror = function () {
-                                                Swal.fire({
-                                                    title: "Error!",
-                                                    text: "Invalid image file.",
-                                                    icon: "error"
-                                                });
-                                                input.value = '';
-                                                input.classList.add('error-border');
-                                            };
-                                            img.src = URL.createObjectURL(file);
-                                        }
-                                    }
-                                
-                                    document.getElementById('photo').addEventListener('change', function () {
-                                        checkImage(this);
-                                    });
-                                </script>               
                                
                             </div>
 
