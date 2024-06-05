@@ -77,6 +77,8 @@ urlpatterns = [
     #------------Exam Result-----------
     path('examList/',examList,name='examList'),
     path('addExamResult/',addExamResult,name='addExamResult'),
+    path('deleteExam/<str:myid>',deleteExam,name='deleteExam'),
+    path('editExam/<str:myid>',editExam,name='editExam'),
     
     #------------Service------------
     path('serviceList/',serviceList, name='serviceList'),

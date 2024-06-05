@@ -509,3 +509,55 @@ def addExamResult(request):
         return redirect('examList')
     
     return render(request,'examresult/addexamresult.html')
+
+def deleteExam(request,myid):
+    examdata =ExamResultModel.objects.get(id=myid)
+    examdata.delete()   
+    messages.success(request,'Exam Information Deleted')
+    return redirect('examList')
+
+def editExam(request,myid):
+    
+    examdata = ExamResultModel.objects.get(id=myid)
+    exam_date = examdata.ExamDate.isoformat() if examdata.ExamDate else ''
+    
+    context = {
+        'examdata': examdata,
+        'exam_date': exam_date,
+    }
+    
+    if request.method == 'POST':
+        studentroll= request.POST.get('studentroll')
+        examtitle= request.POST.get('examtitle')
+        
+        obtainedmcq= request.POST.get('obtainedmcq')
+        totalmcq= request.POST.get('totalmcq')
+        obtainedwritten= request.POST.get('obtainedwritten')
+        totalwritten= request.POST.get('totalwritten')
+        obtainedpractical= request.POST.get('obtainedpractical')
+        totalpractical= request.POST.get('totalpractical')
+        examdate= request.POST.get('examdate')
+        
+        obtaintotalmarks= int(obtainedmcq) + int(obtainedwritten) + int(obtainedpractical)
+        totalexamark= int(totalmcq) + int(totalwritten) + int(totalpractical)
+        student = CustomUserModel.objects.get(username=studentroll)
+        
+       
+        examdata.Candidate=student
+        examdata.ExamTitle = examtitle
+        
+        examdata.ObtainMCQ = obtainedmcq
+        examdata.ObtainWritten = obtainedwritten
+        examdata.ObtainPracticle = obtainedpractical
+        examdata.ObtainTotalMark = obtaintotalmarks
+        examdata.TotalMCQ = totalmcq
+        examdata.TotalWritten = totalwritten
+        examdata.TotalPracticle = totalpractical
+        examdata.TotalExamMark = totalexamark
+        examdata.ExamDate = examdate
+        examdata.save()
+        messages.success(request,'Exam Result Updated')
+        return redirect('examList')
+    
+    
+    return render(request,'examresult/editexam.html',context)
