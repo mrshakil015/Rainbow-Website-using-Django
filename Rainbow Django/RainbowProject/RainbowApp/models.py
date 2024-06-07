@@ -82,7 +82,7 @@ class StudentInfoModel(models.Model):
     CourseName = models.ForeignKey(CourseInfoModel,on_delete=models.SET_NULL,related_name='courseinfomodel', null=True) 
     BatchNo = models.ForeignKey(BatchInfoModel,on_delete=models.SET_NULL,related_name='batchinfomodel', null=True)
     Batchschedule = models.CharField(max_length=100, null=True)
-    
+    Qualification = models.CharField(max_length=100, null=True)
     SECTION = [
         ('A','A'),
         ('B','B'),
@@ -121,11 +121,14 @@ class AdmissionFormModel(models.Model):
         ('Male','Male'),
         ('Female','Female'),
     ]
-    
+    Religion = models.CharField(max_length=100, null=True)
     Gender = models.CharField(choices=GENDER,max_length=100, null=True)
     email = models.EmailField(max_length=100, null=True)
     Mobile = models.CharField(max_length=100, null=True)
+    EmergencyMobile = models.CharField(max_length=100, null=True)
+    Qualification = models.CharField(max_length=100, null=True)
     Address = models.CharField(max_length=100, null=True)
+    PermanentAddress = models.CharField(max_length=100, null=True)
     StudentPhoto = models.ImageField(upload_to=pending_student_dict, null=True)
     
 

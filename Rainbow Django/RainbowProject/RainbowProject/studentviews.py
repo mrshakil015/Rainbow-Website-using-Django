@@ -111,6 +111,7 @@ def editStudent(request,myid):
         presentaddress=request.POST.get('presentaddress')
         permanentaddress=request.POST.get('permanentaddress')
         
+        qualification=request.POST.get('qualification')
         rollno=request.POST.get('rollno')
         coursename=request.POST.get('coursename')
         batchno=request.POST.get('batchno')
@@ -138,6 +139,7 @@ def editStudent(request,myid):
         studentdata.PresentAddress=presentaddress
         studentdata.PermanentAddress=permanentaddress
         
+        studentdata.Qualification=qualification
         studentdata.RollNo=rollno
         studentdata.CourseName=courseinfo
         studentdata.BatchNo=batchinfo
@@ -204,9 +206,13 @@ def admissionformPage(request):
         mothername = request.POST.get('mothername')
         dob = request.POST.get('dob')
         gender = request.POST.get('gender')
+        religion = request.POST.get('religion')
         email = request.POST.get('email')
         mobile = request.POST.get('mobile')
+        emergency = request.POST.get('emergency')
+        qualification = request.POST.get('qualification')
         address = request.POST.get('address')
+        permanentaddress = request.POST.get('permanentaddress')
         studentphoto = request.FILES.get('studentphoto')
         
         courseinfo = CourseInfoModel.objects.get(CourseName=coursename)
@@ -218,9 +224,13 @@ def admissionformPage(request):
             MotherName=mothername,
             DOB=dob,
             Gender=gender,
+            Religion=religion,
             email=email,
             Mobile=mobile,
+            EmergencyMobile=emergency,
+            Qualification=qualification,
             Address=address,
+            PermanentAddress=permanentaddress,
             StudentPhoto=studentphoto,
         )
         admissiondata.save()
@@ -267,6 +277,7 @@ def editPendingStudent(request,myid):
         presentaddress=request.POST.get('presentaddress')
         permanentaddress=request.POST.get('permanentaddress')
         
+        qualification=request.POST.get('qualification')
         rollno=request.POST.get('rollno')
         coursename=request.POST.get('coursename')
         batchno=request.POST.get('batchno')
@@ -306,6 +317,7 @@ def editPendingStudent(request,myid):
                     PresentAddress=presentaddress,
                     PermanentAddress=permanentaddress,
                     
+                    Qualification=qualification,
                     RollNo=rollno,
                     CourseName=courseinfo,
                     BatchNo=batchinfo,
@@ -330,6 +342,7 @@ def editPendingStudent(request,myid):
                     PresentAddress=presentaddress,
                     PermanentAddress=permanentaddress,
                     
+                    Qualification=qualification,
                     RollNo=rollno,
                     CourseName=courseinfo,
                     BatchNo=batchinfo,
