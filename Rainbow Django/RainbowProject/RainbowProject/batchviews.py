@@ -28,7 +28,7 @@ def addBatch(request):
 
 @login_required
 def batchList(request):
-    batchData = BatchInfoModel.objects.all()
+    batchData = BatchInfoModel.objects.all().order_by('-BatchNo')
     batch_data_with_counts = []
     for batch in batchData:
         student_count = StudentInfoModel.objects.filter(BatchNo=batch).count()

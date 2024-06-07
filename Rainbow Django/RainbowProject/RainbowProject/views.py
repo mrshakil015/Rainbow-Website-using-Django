@@ -210,7 +210,7 @@ def deleteService(request,myid):
 #----------------Payment-----------------
 @login_required
 def paymentList(request):
-    studentinfo = StudentInfoModel.objects.all()
+    studentinfo = StudentInfoModel.objects.all().order_by('-RollNo')
     context = {
         'studentinfo':studentinfo,
     }

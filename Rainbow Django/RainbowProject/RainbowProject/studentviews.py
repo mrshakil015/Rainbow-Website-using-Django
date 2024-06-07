@@ -187,7 +187,7 @@ def admitedcoursePaymentInfo(request):
 
 @login_required    
 def studentList(request):
-    studentinfo = StudentInfoModel.objects.all()
+    studentinfo = StudentInfoModel.objects.all().order_by('-RollNo')
     context = {
         'studentinfo':studentinfo,
     }
