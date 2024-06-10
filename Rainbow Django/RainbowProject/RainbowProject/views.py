@@ -95,6 +95,8 @@ def logoutPage(request):
 def adminDashboard(request):
     studentinfo = StudentInfoModel.objects.all()
     courseinfo = CourseInfoModel.objects.all()
+    pendingstudent = AdmissionFormModel.objects.all().count()
+    totalbatch = BatchInfoModel.objects.all().count()
     
     courseList = []
     totalStudents = 0
@@ -118,6 +120,8 @@ def adminDashboard(request):
         'courseList':courseList,
         'totalStudents':totalStudents,
         'totalCourse':totalCourse,
+        'pendingstudent':pendingstudent,
+        'totalbatch':totalbatch,
     }
 
     return render(request,'myadmin/admindashboard.html',context)
