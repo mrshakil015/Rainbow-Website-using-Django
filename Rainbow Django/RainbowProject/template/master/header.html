@@ -11,18 +11,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-            <li class="nav-item"> <a class="nav-link" href="{% url 'homePage' %}">হোম</a>
+            <li class="nav-item {% if request.path == '/' %} active{% endif %}"> <a class="nav-link" href="{% url 'homePage' %}">হোম</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="{% url 'aboutUs' %}">আমাদের সম্পর্কে</a>
+            <li class="nav-item {% if request.path == '/aboutUs/' %} active{% endif %}"> <a class="nav-link" href="{% url 'aboutUs' %}">আমাদের সম্পর্কে</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="{% url 'coursePage' %}">কোর্সসমূহ</a>
+            <li class="nav-item {% if request.path == '/coursePage/' %} active{% endif %}"> <a class="nav-link" href="{% url 'coursePage' %}">কোর্সসমূহ</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="{% url 'servicePage' %}">সেবাসমূহ</a>
+            <li class="nav-item {% if request.path == '/servicePage/' %} active{% endif %}"> <a class="nav-link" href="{% url 'servicePage' %}">সেবাসমূহ</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="{% url 'galleryPage' %}">গ্যালারী</a>
+            <li class="nav-item {% if request.path == '/galleryPage/' %} active{% endif %}"> <a class="nav-link" href="{% url 'galleryPage' %}">গ্যালারী</a>
             </li>
-            <li class="nav-item "> <a class="nav-link" href="{% url 'contactUsPage' %}">যোগাযোগ</a>
-            <li class="nav-item "> <a class="nav-link" href="{% url 'blogsPage' %}">ব্লোগ</a>
+            <li class="nav-item {% if request.path == '/contactUsPage/' %} active{% endif %}"> <a class="nav-link" href="{% url 'contactUsPage' %}">যোগাযোগ</a>
+            <li class="nav-item {% if request.path == '/blogsPage/' %} active{% endif %}"> <a class="nav-link" href="{% url 'blogsPage' %}">ব্লগ</a>
             </li>
 
 
