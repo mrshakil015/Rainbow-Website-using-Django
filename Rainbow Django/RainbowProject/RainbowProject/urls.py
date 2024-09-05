@@ -20,6 +20,8 @@ urlpatterns = [
     
     path('adminDashboard/',adminDashboard, name='adminDashboard'),
     path('studentDashboard/',studentDashboard, name='studentDashboard'),
+    path('blogsPage/',blogsPage, name='blogsPage'),
+    path('blogsdetails/<str:myid>',blogsdetails, name='blogsdetails'),
     
     #--------------Student Section-------------------------------
     path('addStudentPage/',addStudentPage, name='addStudentPage'),

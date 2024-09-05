@@ -154,3 +154,7 @@ class ContactUsModel(models.Model):
     Facebook = models.CharField(max_length=100, null=True)
     MapLink = models.TextField(null=True)
     
+class BlogsModel(models.Model):
+    TopicsName = models.CharField(max_length=150,null=True)
+    Files = models.FileField(upload_to='blogfiles', null=True)
+    

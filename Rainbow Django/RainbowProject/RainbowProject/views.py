@@ -1,5 +1,5 @@
 import os
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_list_or_404,get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from RainbowApp.models import *
@@ -373,3 +373,20 @@ def editContact(request,myid):
         return redirect('contactList')
     
     return render(request,'contact/editcontact.html',context)
+
+def blogsPage(request):
+    blogsdata = get_list_or_404(BlogsModel)
+    print('data is: ',blogsdata)
+    context = {
+        'blogsdata':blogsdata
+    }
+    
+    return render(request, 'commons/blogs.html',context)
+
+def blogsdetails(request, myid):
+    blogdata = get_object_or_404(BlogsModel, id=myid)
+    context = {
+        'blogdata':blogdata
+    }
+    
+    return render(request, 'commons/blogs-details.html',context)
