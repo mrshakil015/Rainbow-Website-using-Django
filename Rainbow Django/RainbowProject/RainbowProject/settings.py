@@ -121,3 +121,5 @@ LOGIN_URL = 'homePage'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
