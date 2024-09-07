@@ -376,13 +376,16 @@ def editContact(request,myid):
 
 def blogs(request):
     blogsdata = BlogFileModel.objects.all()
+    blogVideoData = BlogVideoModel.objects.all()
     context = {
-        "blogsdata":blogsdata
+        "blogsdata":blogsdata,
+        "blogVideoData":blogVideoData,
     }
     return render(request,'commons/blogs.html',context)
 
 def blogsdetails(request, myid):
     blogdata = BlogFileModel.objects.get(id=myid)
+    
     context = {
         'blogdata':blogdata
     }

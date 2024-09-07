@@ -1,0 +1,54 @@
+{% extends 'master/master.html' %}
+
+{% block content %}
+
+<section class="page-header bg-tertiary">
+    <div class="container">
+      <div class="row">
+        <div class="col-8 mx-auto text-center">
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="row justify-content-center mb-3">
+        <div class="col-lg-6">
+          <div class="section-title text-center">
+            
+            <h2>কম্পিউটার ক্লাস রিলেটেড টপিকস</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="accordion accordion-border-bottom" id="accordionFAQ">
+            
+            {% for data in blogsdata %}
+       
+                <div class="accordion-item">
+                    <a href="{% url 'blogsdetails' data.id %}">
+                        <h2 class="accordion-header accordion-button h5 border-0 "
+                      id="heading-8fe6730e26db16f15763887c30a614caa075f518" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#collapse-8fe6730e26db16f15763887c30a614caa075f518" aria-expanded="false"
+                      aria-controls="collapse-8fe6730e26db16f15763887c30a614caa075f518">{{data.File_Title}}</h2>
+                    </a>
+                  </div>
+        
+            {% endfor %}
+            
+          </div>
+        </div>
+        
+      </div>
+      
+    </div>
+    
+  </section>
+
+    
+{% endblock content %}
+    

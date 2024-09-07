@@ -161,3 +161,13 @@ class BlogFileModel(models.Model):
     
     def __str__(self):
         return self.File_Title
+    
+class BlogVideoModel(models.Model):
+    Video_Title = models.CharField(max_length=100,null=True)
+    Video_Description = models.TextField(null=True)
+    Video_Url = models.CharField(max_length=200,null=True)
+    Video_Thumbnail = models.ImageField(upload_to='VideoThumbnail/',null=True)
+    Posted_Date = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.Video_Title

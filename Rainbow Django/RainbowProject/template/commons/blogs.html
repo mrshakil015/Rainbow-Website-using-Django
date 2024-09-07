@@ -2,53 +2,166 @@
 
 {% block content %}
 
+<style>
+  .has-video-popup {
+    position: relative;
+    /* Ensure the container is positioned relative for absolute positioning of the icon */
+  }
+
+  .video-icon {
+    position: absolute;
+    top: 50%;
+    /* Center the icon vertically */
+    left: 50%;
+    /* Center the icon horizontally */
+    transform: translate(-50%, -50%);
+    /* Center the icon */
+    width: 60px;
+    /* Adjust the size of the icon as needed */
+    height: 60px;
+    /* Adjust the size of the icon as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    /* Allow clicks to pass through to the image */
+  }
+</style>
+
 <section class="page-header bg-tertiary">
-    <div class="container">
-      <div class="row">
-        <div class="col-8 mx-auto text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-8 mx-auto text-center">
 
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center mb-3">
+      <div class="col-lg-6">
+        <div class="section-title text-center">
+
+          <h2>কম্পিউটার ক্লাস রিলেটেড টপিকস</h2>
         </div>
       </div>
     </div>
-
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="row justify-content-center mb-3">
-        <div class="col-lg-6">
-          <div class="section-title text-center">
-            
-            <h2>কম্পিউটার ক্লাস রিলেটেড টপিকস</h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="accordion accordion-border-bottom" id="accordionFAQ">
-            
-            {% for data in blogsdata %}
-       
-                <div class="accordion-item">
-                    <a href="{% url 'blogsdetails' data.id %}">
-                        <h2 class="accordion-header accordion-button h5 border-0 "
-                      id="heading-8fe6730e26db16f15763887c30a614caa075f518" type="button" data-bs-toggle="collapse"
-                      data-bs-target="#collapse-8fe6730e26db16f15763887c30a614caa075f518" aria-expanded="false"
-                      aria-controls="collapse-8fe6730e26db16f15763887c30a614caa075f518">{{data.File_Title}}</h2>
-                    </a>
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="me-lg-4">
+          <div class="row gy-5">
+            {% for data in blogVideoData %}
+            <div class="col-md-6" data-aos="fade">
+              <article class="blog-post">
+                <div class="has-video-popup position-relative">
+                  <img loading="lazy" decoding="async" src="{{data.Video_Thumbnail.url}}" data-bs-toggle="modal"
+                    data-bs-target="#videoModal" data-video-url="{{data.Video_Url}}"
+                    data-video-title="{{data.Video_Title}}" alt="video thumb" class="rounded-lg w-100">
+                  <!-- Overlay Icon -->
+                  <div class="video-icon">
+                    <svg class="text-primary" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="45" cy="45" r="45" fill="currentColor" fill-opacity="0.4" />
+                      <circle cx="44.9995" cy="45" r="37.437" fill="currentColor" />
+                      <path d="M58.2354 44.9999L38.3824 56.462L38.3824 33.5378L58.2354 44.9999Z" fill="white" />
+                    </svg>
                   </div>
-        
+                </div>
+                <div class="pt-4">
+                  <p class="mb-3">{{data.Posted_Date}}</p>
+                  <h2 class="h4">{{data.Video_Title}}</h2>
+                  <p>{{data.Video_Description}}</p>
+                </div>
+              </article>
+            </div>
             {% endfor %}
-            
-          </div>
-        </div>
-        
-      </div>
-      
-    </div>
-    
-  </section>
 
-    
+
+
+            <!-- Video Modal -->
+            <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="videoModalTitle">Video Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body position-relative">
+                    <div class="ratio ratio-16x9">
+                      <iframe id="videoIframe" src="" title="Course Video" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <script>
+              document.addEventListener('DOMContentLoaded', function () {
+                var videoModal = document.getElementById('videoModal');
+                var videoTitleElement = document.getElementById('videoModalTitle');
+                var iframe = document.getElementById('videoIframe');
+
+                videoModal.addEventListener('show.bs.modal', function (event) {
+                  var button = event.relatedTarget; // Button that triggered the modal
+                  var videoUrl = button.getAttribute('data-video-url'); // Extract video URL
+                  var videoTitle = button.getAttribute('data-video-title'); // Extract video title
+
+                  // Ensure the URL is in YouTube embed format
+                  var embedUrl = videoUrl;
+                  if (!embedUrl.startsWith('https://www.youtube.com/embed/')) {
+                    var videoId = new URL(videoUrl).searchParams.get('v');
+                    if (videoId) {
+                      embedUrl = 'https://www.youtube.com/embed/' + videoId;
+                    }
+                  }
+
+                  // Update iframe src and video title
+                  iframe.src = embedUrl;
+                  videoTitleElement.textContent = videoTitle;
+                });
+
+                videoModal.addEventListener('hide.bs.modal', function (event) {
+                  // Clear the iframe src when modal is hidden
+                  iframe.src = '';
+                });
+              });
+            </script>
+
+
+
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <!-- categories -->
+        <div class="widget widget-categories">
+          <h5 class="widget-title"><span>Category</span></h5>
+          <ul class="list-unstyled widget-list">
+            <li><a href="#!">Four seasone <small class="ml-auto">(1)</small></a>
+            </li>
+            <li><a href="#!">Newyork city <small class="ml-auto">(2)</small></a>
+            </li>
+            <li><a href="#!">Photobooth <small class="ml-auto">(1)</small></a>
+            </li>
+            <li><a href="#!">Photography <small class="ml-auto">(2)</small></a>
+            </li>
+            <li><a href="#!">Videography <small class="ml-auto">(1)</small></a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
 {% endblock content %}
-    
