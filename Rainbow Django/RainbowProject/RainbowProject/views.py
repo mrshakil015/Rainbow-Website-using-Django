@@ -1,8 +1,9 @@
 import os
-from django.shortcuts import render, redirect, get_list_or_404,get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from RainbowApp.models import *
+from RainbowApp.forms import *
 from django.contrib import messages
 
 def adminlogout_required(view_func):
@@ -97,7 +98,6 @@ def adminDashboard(request):
     courseinfo = CourseInfoModel.objects.all()
     pendingstudent = AdmissionFormModel.objects.all().count()
     totalbatch = BatchInfoModel.objects.all().count()
-    
     courseList = []
     totalStudents = 0
     
@@ -374,19 +374,17 @@ def editContact(request,myid):
     
     return render(request,'contact/editcontact.html',context)
 
-def blogsPage(request):
-    blogsdata = get_list_or_404(BlogsModel)
-    print('data is: ',blogsdata)
+def blogs(request):
+    blogsdata = BlogFileModel.objects.all()
     context = {
-        'blogsdata':blogsdata
+        "blogsdata":blogsdata
     }
-    
-    return render(request, 'commons/blogs.html',context)
+    return render(request,'commons/blogs.html',context)
 
 def blogsdetails(request, myid):
-    blogdata = get_object_or_404(BlogsModel, id=myid)
+    blogdata = BlogFileModel.objects.get(id=myid)
     context = {
         'blogdata':blogdata
     }
     
-    return render(request, 'commons/blogs-details.html',context)
+    return render(request,'commons/blogs-details.html',context)

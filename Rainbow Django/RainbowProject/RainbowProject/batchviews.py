@@ -82,7 +82,7 @@ def editBatch(request, myid):
 
 @login_required
 def viewSingleBatch(request,batchno):
-    studentData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno)
+    studentData = StudentInfoModel.objects.filter(BatchNo__BatchNo=batchno).order_by('RollNo')
     batchData = BatchInfoModel.objects.get(BatchNo=batchno)
     context = {
         'studentData':studentData,

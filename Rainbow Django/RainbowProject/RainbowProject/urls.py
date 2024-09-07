@@ -17,11 +17,11 @@ urlpatterns = [
     path('adminSignUP/',adminSignUP, name='adminSignUP'),
     path('adminSignin/',adminSignin, name='adminSignin'),
     path('logoutPage/',logoutPage, name='logoutPage'),
+    path('blogs/',blogs, name='blogs'),
+    path('blogsdetails/<str:myid>',blogsdetails, name='blogsdetails'),
     
     path('adminDashboard/',adminDashboard, name='adminDashboard'),
     path('studentDashboard/',studentDashboard, name='studentDashboard'),
-    path('blogsPage/',blogsPage, name='blogsPage'),
-    path('blogsdetails/<str:myid>',blogsdetails, name='blogsdetails'),
     
     #--------------Student Section-------------------------------
     path('addStudentPage/',addStudentPage, name='addStudentPage'),

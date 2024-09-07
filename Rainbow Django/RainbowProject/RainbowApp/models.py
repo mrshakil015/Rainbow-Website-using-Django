@@ -121,6 +121,7 @@ class AdmissionFormModel(models.Model):
         ('Male','Male'),
         ('Female','Female'),
     ]
+    
     Religion = models.CharField(max_length=100, null=True)
     Gender = models.CharField(choices=GENDER,max_length=100, null=True)
     email = models.EmailField(max_length=100, null=True)
@@ -153,8 +154,10 @@ class ContactUsModel(models.Model):
     Mobile = models.CharField(max_length=100, null=True)
     Facebook = models.CharField(max_length=100, null=True)
     MapLink = models.TextField(null=True)
+
+class BlogFileModel(models.Model):
+    File_Title = models.CharField(max_length=100, null=True)
+    File = models.FileField(upload_to='BlogFile',null=True)
     
-class BlogsModel(models.Model):
-    TopicsName = models.CharField(max_length=150,null=True)
-    Files = models.FileField(upload_to='blogfiles', null=True)
-    
+    def __str__(self):
+        return self.File_Title

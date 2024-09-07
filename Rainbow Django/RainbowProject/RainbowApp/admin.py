@@ -50,4 +50,5 @@ admin.site.register(BatchInfoModel,BatchInfoDisplay)
 class ContactDisplay(admin.ModelAdmin):
     list_display = ['Address','Email','Mobile']
 admin.site.register(ContactUsModel,ContactDisplay)
-admin.site.register(BlogsModel)
+admin.site.register(BlogFileModel)
+
