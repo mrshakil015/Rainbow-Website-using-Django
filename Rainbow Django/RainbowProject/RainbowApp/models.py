@@ -164,8 +164,9 @@ class BlogFileModel(models.Model):
     
 class BlogVideoModel(models.Model):
     CATEGORY = [
-        ('Ms Word','Ms Word'),
-        ('Ms Excel','Ms Powerpoint'),
+        ('Ms-Word','Ms Word'),
+        ('Ms-Excel','Ms Excel'),
+        ('Ms-Powerpoint','Ms Powerpoint'),
         ('Other','Other'),
         
     ]
