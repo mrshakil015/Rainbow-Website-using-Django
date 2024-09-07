@@ -44,7 +44,7 @@
     <div class="row justify-content-center mb-3">
       <div class="col-lg-6">
         <div class="section-title text-center">
-          <h2>কম্পিউটার ক্লাস রিলেটেড টপিকস</h2>
+          <h2>{{title}} Videos</h2>
           <hr>
         </div>
       </div>
@@ -53,7 +53,7 @@
       <div class="col-lg-9">
         <div class="me-lg-4">
           <div class="row gy-5">
-            {% for data in blogVideoData %}
+            {% for data in categoryData %}
             <div class="col-md-6 blog-video" data-aos="fade">
               <article class="blog-post">
                 <div class="has-video-popup position-relative">
@@ -139,29 +139,28 @@
         </div>
       </div>
       <div class="col-lg-3" style="text-align: left;">
-        <!-- categories -->
-        <div class="widget widget-categories">
-          <h5 class="widget-title"><span>Video Category</span></h5>
-          <ul class="list-unstyled widget-list">
-            <li><a href="{% url 'blogs' %}">All Video</a>
-            </li>
-            {% for i in unique_category_list %}
-            <li><a href="{% url 'categoryVideo' i %}">{{i}}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
+       <!-- categories -->
+       <div class="widget widget-categories">
+        <h5 class="widget-title"><span>Video Category</span></h5>
+        <ul class="list-unstyled widget-list">
+          <li><a href="{% url 'blogs' %}">All Video</a>
+          </li>
+          {% for i in unique_category_list %}
+          <li><a href="{% url 'categoryVideo' i %}">{{i}}</a>
+          </li>
+          {% endfor %}
+          
+        </ul>
+      </div>
         <div class="widget widget-categories">
           <h5 class="widget-title"><span>গুরুত্বপূর্ণ ডকুমেন্ট</span></h5>
           <ul class="list-unstyled widget-list">
-
-            <li><a href="{% url 'alldocuments' %}">All Documents</a></li>
-
+            
             {% for data in blogsdata %}
             <li><a href="{% url 'blogsdetails' data.id %}">{{data.File_Title}}</a></li>
-
+              
             {% endfor %}
-
+              
           </ul>
         </div>
 

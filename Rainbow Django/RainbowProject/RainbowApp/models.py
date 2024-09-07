@@ -163,8 +163,15 @@ class BlogFileModel(models.Model):
         return self.File_Title
     
 class BlogVideoModel(models.Model):
+    CATEGORY = [
+        ('Ms Word','Ms Word'),
+        ('Ms Excel','Ms Powerpoint'),
+        ('Other','Other'),
+        
+    ]
     Video_Title = models.CharField(max_length=100,null=True)
     Video_Description = models.TextField(null=True)
+    Video_Category = models.CharField(choices=CATEGORY, max_length=50, null=True)
     Video_Url = models.CharField(max_length=200,null=True)
     Video_Thumbnail = models.ImageField(upload_to='VideoThumbnail/',null=True)
     Posted_Date = models.DateField(auto_now_add=True)

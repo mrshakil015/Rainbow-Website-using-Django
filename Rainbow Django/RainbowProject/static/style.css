@@ -11689,6 +11689,16 @@ blockquote::before {
     left: -30px;
     bottom: -20px;
 }
+.blog-video .has-video-popup {
+    height: 250px;
+    width: 100%;
+}
+
+.blog-video .has-video-popup img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
 .has-video-popup .video-play-btn {
     position: absolute;
@@ -12133,7 +12143,7 @@ textarea.form-control {
 .widget.widget-categories li a,
 .widget.widget-tags li a {
     display: block;
-    background: #fbfbfb;
+    background: #f1f1f1;
     padding: 10px 18px;
     color: #000;
     margin-bottom: 5px;

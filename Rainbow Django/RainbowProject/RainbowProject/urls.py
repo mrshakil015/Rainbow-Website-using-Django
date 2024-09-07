@@ -18,7 +18,10 @@ urlpatterns = [
     path('adminSignin/',adminSignin, name='adminSignin'),
     path('logoutPage/',logoutPage, name='logoutPage'),
     path('blogs/',blogs, name='blogs'),
+    path('alldocuments/',alldocuments, name='alldocuments'),
     path('blogsdetails/<str:myid>',blogsdetails, name='blogsdetails'),
+    path('categoryVideo/<str:myid>',categoryVideo, name='categoryVideo'),
+    
     
     path('adminDashboard/',adminDashboard, name='adminDashboard'),
     path('studentDashboard/',studentDashboard, name='studentDashboard'),

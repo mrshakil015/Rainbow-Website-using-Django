@@ -377,17 +377,59 @@ def editContact(request,myid):
 def blogs(request):
     blogsdata = BlogFileModel.objects.all()
     blogVideoData = BlogVideoModel.objects.all()
+    # Get distinct categories from the Video_Category field
+    unique_categories = BlogVideoModel.objects.values_list('Video_Category', flat=True).distinct()
+    unique_category_list = list(unique_categories)
+
+
     context = {
         "blogsdata":blogsdata,
         "blogVideoData":blogVideoData,
+        "unique_category_list":unique_category_list,
     }
     return render(request,'commons/blogs.html',context)
 
 def blogsdetails(request, myid):
-    blogdata = BlogFileModel.objects.get(id=myid)
+    singleblogdata = BlogFileModel.objects.get(id=myid)
+    blogsdata = BlogFileModel.objects.all()
+    # Get distinct categories from the Video_Category field
+    unique_categories = BlogVideoModel.objects.values_list('Video_Category', flat=True).distinct()
+    unique_category_list = list(unique_categories)
     
     context = {
-        'blogdata':blogdata
+        'singleblogdata':singleblogdata,
+        "blogsdata":blogsdata,
+        "unique_category_list":unique_category_list,
     }
     
     return render(request,'commons/blogs-details.html',context)
+
+def categoryVideo(request,myid):
+    blogsdata = BlogFileModel.objects.all()
+    categoryData = BlogVideoModel.objects.filter(Video_Category=myid)
+    # Get distinct categories from the Video_Category field
+    unique_categories = BlogVideoModel.objects.values_list('Video_Category', flat=True).distinct()
+    unique_category_list = list(unique_categories)
+
+    context = {
+        "blogsdata":blogsdata,
+        'categoryData':categoryData,
+        "unique_category_list":unique_category_list,
+        "title": myid,
+    }
+    
+    return render(request,'commons/category-video.html',context)
+
+def alldocuments(request):
+    alldocumentData = BlogFileModel.objects.all()
+    blogVideoData = BlogVideoModel.objects.all()
+    # Get distinct categories from the Video_Category field
+    unique_categories = BlogVideoModel.objects.values_list('Video_Category', flat=True).distinct()
+    unique_category_list = list(unique_categories)
+    
+    context = {
+        'alldocumentData':alldocumentData,
+        "unique_category_list":unique_category_list,
+    }
+    
+    return render(request, 'commons/alldocuments.html',context)

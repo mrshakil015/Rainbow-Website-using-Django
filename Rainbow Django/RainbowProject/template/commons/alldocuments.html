@@ -1,6 +1,9 @@
 
 
 
+
+
+
 {% extends 'master/master.html' %}
 
 {% block content %}
@@ -45,7 +48,7 @@
   <div class="container">
     <div class="row">
       <div class="section-title text-center">
-        <h2>{{singleblogdata.File_Title}}</h2>
+        <h2>গুরুত্বপূর্ণ ডকুমেন্টস</h2>
         <hr>
       </div>
       <div class="col-lg-9">
@@ -53,12 +56,22 @@
 
           <div class="row justify-content-center">
             <div class="col-lg-9">
-              <!-- Embed PDF directly -->
-              <div class="pdf-viewer mb-3">
-                <embed src="{{ singleblogdata.File.url }}" width="100%" height="600px" type="application/pdf" style="border: 2px solid #4a45cf; border-radius:5px;"/>
+              <div class="accordion accordion-border-bottom" id="accordionFAQ">
+            
+                {% for data in alldocumentData %}
+           
+                    <div class="accordion-item">
+                        <a href="{% url 'blogsdetails' data.id %}">
+                            <h2 class="accordion-header accordion-button h5 border-0 "
+                          id="heading-8fe6730e26db16f15763887c30a614caa075f518" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapse-8fe6730e26db16f15763887c30a614caa075f518" aria-expanded="false"
+                          aria-controls="collapse-8fe6730e26db16f15763887c30a614caa075f518">{{data.File_Title}}</h2>
+                        </a>
+                      </div>
+            
+                {% endfor %}
+                
               </div>
-              <p>If your browser does not support PDFs. <a href="{{ singleblogdata.File.url }}">Download the PDF</a>.</p>
-              
             </div>
           </div>
         </div>
@@ -76,18 +89,6 @@
             {% endfor %}
           </ul>
         </div>
-        <div class="widget widget-categories">
-          <h5 class="widget-title"><span>গুরুত্বপূর্ণ ডকুমেন্ট</span></h5>
-          <ul class="list-unstyled widget-list">
-            <li><a href="{% url 'alldocuments' %}">All Documents</a></li>
-            {% for data in blogsdata %}
-            <li><a href="{% url 'blogsdetails' data.id %}">{{data.File_Title}}</a></li>
-
-            {% endfor %}
-
-          </ul>
-        </div>
-
       </div>
     </div>
 
